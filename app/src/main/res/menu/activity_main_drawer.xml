@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_menu_map"
+            android:title="@string/map"/>
+        <item
+            android:id="@+id/nav_location"
+            android:icon="@drawable/ic_menu_place"
+            android:title="@string/location" />
+        <item
+            android:id="@+id/nav_work"
+            android:icon="@drawable/ic_menu_work"
+            android:title="@string/works" />
+        <item
+            android:id="@+id/nav_employee"
+            android:icon="@drawable/ic_menu_people"
+            android:title="@string/employee" />
+    </group>
+
+    <item android:title="@string/miscellaneous">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_setting"
+                    android:icon="@drawable/ic_menu_setting"
+                    android:title="@string/settings" />
+            </group>
+        </menu>
+    </item>
+</menu>
