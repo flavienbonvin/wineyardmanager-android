@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WineYardManager</string>
+    <string name="app_name">VineYardManager</string>
     <string name="title_activity_details_emplacement">DetailsEmplacement</string>
     <string name="title_activity_emplacement_details">EmplacementDetails</string>
     <string name="large_text">
@@ -27,11 +27,12 @@
     <string name="phone">phone</string>
     <string name="mail">mail</string>
     <string name="action">action</string>
-    <string name="winelotname">winelotname</string>
+    <string name="winelotname">vinelotname</string>
     <string name="deadline">deadline</string>
     <string name="workername">workername</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="wine_variety">Wine variety</string>
+    <string name="title_activity_main">Vineyard Manager</string>
+    <string name="wine_variety">Vine variety</string>
     <string name="vines">vines</string>
     <string name="square_meters">square meters</string>
+    <string name="work_details">Work details</string>
 </resources>

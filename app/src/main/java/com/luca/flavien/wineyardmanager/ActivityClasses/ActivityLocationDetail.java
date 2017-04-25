@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -53,5 +54,14 @@ public class ActivityLocationDetail extends AppCompatActivity {
         textViewnumberWineStock.setText(Integer.toString(wineLot.getNumberWineStock()) + " " + getString(R.string.vines));
         textViewSurface.setText(Float.toString(wineLot.getSurface()) + " " + getString(R.string.square_meters));
         textViewOrientation.setText(wineLot.getOrientation().getName());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            this.onBackPressed();
+            return true;
+        }
+        return true;
     }
 }

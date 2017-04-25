@@ -14,7 +14,9 @@ import android.widget.ListView;
 import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityEmployeeDetail;
 import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityWorkDetails;
 import com.luca.flavien.wineyardmanager.DB.Object.Job;
+import com.luca.flavien.wineyardmanager.DB.Object.Orientation;
 import com.luca.flavien.wineyardmanager.DB.Object.WineLot;
+import com.luca.flavien.wineyardmanager.DB.Object.WineVariety;
 import com.luca.flavien.wineyardmanager.DB.Object.Worker;
 import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.WorkAdapter;
@@ -46,14 +48,22 @@ public class FragWork extends Fragment{
         worker.setMail("lucacentofan@gmail.com");
         worker.setPhone("0788129662");
 
+        WineVariety wineVariety1 = new WineVariety();
+        wineVariety1.setId(1);
+        wineVariety1.setName("GAMAY");
+
+        Orientation orientation = new Orientation();
+        orientation.setName("Ouest");
+        orientation.setId(1);
+
         WineLot wineLot = new WineLot();
         wineLot.setId(1);
         wineLot.setName("Sion&Region");
         wineLot.setSurface(140);
         wineLot.setNumberWineStock(100);
-        wineLot.setOrientationId(2);
+        wineLot.setOrientation(orientation);
         wineLot.setPicture("hello");
-        wineLot.setWineVarietyId(2);
+        wineLot.setWineVariety(wineVariety1);
 
         Job job1 = new Job();
         job1.setId(1);

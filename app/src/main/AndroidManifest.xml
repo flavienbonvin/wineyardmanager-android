@@ -30,7 +30,6 @@
             android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".ActivityClasses.ActivityWorkDetails"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"/>
     </application>
 </manifest>

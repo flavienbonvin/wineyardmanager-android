@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,11 +30,11 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         Intent intent = getIntent();
         Worker passWorker = (Worker) intent.getSerializableExtra("Worker");
 
-        TextView textViewName = (TextView) findViewById(R.id.name);
+
         TextView textViewPhone = (TextView) findViewById(R.id.phone);
         TextView textViewMail = (TextView) findViewById(R.id.mail);
-//
-        textViewName.setText(passWorker.getLastName()+" "+ passWorker.getFirstName());
+
+        setTitle(passWorker.getLastName()+" "+ passWorker.getFirstName());
         textViewPhone.setText(passWorker.getPhone());
         textViewMail.setText(passWorker.getMail());
 
@@ -48,5 +49,13 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            this.onBackPressed();
+            return true;
+        }
+        return true;
     }
 }
