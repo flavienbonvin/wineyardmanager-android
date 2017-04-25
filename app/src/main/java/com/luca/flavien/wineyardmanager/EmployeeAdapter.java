@@ -26,7 +26,7 @@ import java.util.List;
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-//
+
             if(convertView == null){
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_employee,parent, false);
             }
