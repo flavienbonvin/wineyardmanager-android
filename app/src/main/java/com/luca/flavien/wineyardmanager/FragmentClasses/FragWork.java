@@ -1,5 +1,6 @@
 package com.luca.flavien.wineyardmanager.FragmentClasses;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,9 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityEmployeeDetail;
+import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityWorkDetails;
 import com.luca.flavien.wineyardmanager.DB.Object.Job;
+import com.luca.flavien.wineyardmanager.DB.Object.WineLot;
 import com.luca.flavien.wineyardmanager.DB.Object.Worker;
 import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.WorkAdapter;
@@ -22,13 +27,12 @@ import java.util.List;
  */
 
 public class FragWork extends Fragment{
-
+    private List<Job> jobs;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
         super.onCreate(savedInstanceState);
     }
-
 
     @Nullable
     @Override
@@ -42,25 +46,37 @@ public class FragWork extends Fragment{
         worker.setMail("lucacentofan@gmail.com");
         worker.setPhone("0788129662");
 
+        WineLot wineLot = new WineLot();
+        wineLot.setId(1);
+        wineLot.setName("Sion&Region");
+        wineLot.setSurface(140);
+        wineLot.setNumberWineStock(100);
+        wineLot.setOrientationId(2);
+        wineLot.setPicture("hello");
+        wineLot.setWineVarietyId(2);
+
         Job job1 = new Job();
         job1.setId(1);
+        job1.setWinelot(wineLot);
         job1.setWorker(worker);
         job1.setDescription("Taille");
         job1.setDeadline("28.12.2017");
 
         Job job2 = new Job();
         job2.setId(2);
+        job2.setWinelot(wineLot);
         job2.setWorker(worker);
         job2.setDescription("Coupe");
         job2.setDeadline("28.12.2017");
 
         Job job3 = new Job();
         job3.setId(3);
+        job3.setWinelot(wineLot);
         job3.setWorker(worker);
         job3.setDescription("Désherbage");
         job3.setDeadline("28.12.2017");
 
-        List<Job> jobs = new ArrayList<>();
+        jobs = new ArrayList<>();
         jobs.add(job1);
         jobs.add(job2);
         jobs.add(job3);
@@ -73,6 +89,17 @@ public class FragWork extends Fragment{
         );
 
         listView.setAdapter(listViewAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(getActivity(),ActivityWorkDetails.class);
+                intent.putExtra("Job",jobs.get(position));
+                startActivity(intent);
+
+            }
+        });
         return view;
     }
 }

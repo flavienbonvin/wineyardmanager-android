@@ -27,7 +27,7 @@
             android:name=".ActivityClasses.ActivityEmployeeDetail"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".ActivityClasses.ActivityWorkDetails"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".ActivityClasses.ActivityWorkDetails" />
     </application>
+
 </manifest>

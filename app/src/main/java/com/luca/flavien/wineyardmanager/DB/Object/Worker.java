@@ -1,15 +1,18 @@
 package com.luca.flavien.wineyardmanager.DB.Object;
 
+import java.io.Serializable;
+
 /**
  * Created by Flavien on 24.04.2017.
  */
 
-public class Worker {
+public class Worker implements Serializable {
     private int id;
     private String lastName;
     private String firstName;
     private String phone;
     private String mail ;
+
 
     public int getId() {
         return id;
