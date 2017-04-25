@@ -19,6 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".ActivityClasses.ActivityLocationDetail"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ActivityClasses.ActivityEmployeeDetail"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ActivityClasses.ActivityWorkDetails"
+            android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
 </manifest>
