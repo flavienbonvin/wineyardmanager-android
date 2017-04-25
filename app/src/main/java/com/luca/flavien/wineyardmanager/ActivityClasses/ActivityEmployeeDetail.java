@@ -32,7 +32,7 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         TextView textViewName = (TextView) findViewById(R.id.name);
         TextView textViewPhone = (TextView) findViewById(R.id.phone);
         TextView textViewMail = (TextView) findViewById(R.id.mail);
-
+//
         textViewName.setText(passWorker.getLastName()+" "+ passWorker.getFirstName());
         textViewPhone.setText(passWorker.getPhone());
         textViewMail.setText(passWorker.getMail());
