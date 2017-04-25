@@ -6,29 +6,29 @@ import java.io.Serializable;
  * Created by Flavien on 24.04.2017.
  */
 
-public class WineLot implements Serializable {
+public class WineLot implements Serializable{
     private int id;
     private String name ;
     private float surface;
     private int numberWineStock;
     private String picture;
-    private int wineVarietyId;
-    private int orientationId;
+    private WineVariety wineVariety;
+    private Orientation orientation;
 
-    public int getWineVarietyId() {
-        return wineVarietyId;
+    public WineVariety getWineVariety() {
+        return wineVariety;
     }
 
-    public void setWineVarietyId(int wineVarietyId) {
-        this.wineVarietyId = wineVarietyId;
+    public void setWineVariety(WineVariety wineVariety) {
+        this.wineVariety = wineVariety;
     }
 
-    public int getOrientationId() {
-        return orientationId;
+    public Orientation getOrientation() {
+        return orientation;
     }
 
-    public void setOrientationId(int orientationId) {
-        this.orientationId = orientationId;
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
     }
 
     public int getId() {

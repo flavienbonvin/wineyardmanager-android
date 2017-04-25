@@ -31,4 +31,7 @@
     <string name="deadline">deadline</string>
     <string name="workername">workername</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="wine_variety">Wine variety</string>
+    <string name="vines">vines</string>
+    <string name="square_meters">square meters</string>
 </resources>

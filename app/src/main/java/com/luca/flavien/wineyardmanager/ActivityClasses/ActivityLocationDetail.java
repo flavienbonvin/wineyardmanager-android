@@ -6,7 +6,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
+import com.luca.flavien.wineyardmanager.DB.Object.WineLot;
 import com.luca.flavien.wineyardmanager.R;
 
 /**
@@ -14,6 +16,8 @@ import com.luca.flavien.wineyardmanager.R;
  */
 
 public class ActivityLocationDetail extends AppCompatActivity {
+
+    private WineLot wineLot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +35,23 @@ public class ActivityLocationDetail extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        wineLot = (WineLot) getIntent().getSerializableExtra("winelot");
+        setTextView(wineLot);
+    }
+
+    private void setTextView(WineLot wineLot){
+        TextView textViewWineVariety = (TextView)findViewById(R.id.winevariety);
+        TextView textViewnumberWineStock = (TextView)findViewById(R.id.number_of_wine_stock);
+        TextView textViewSurface = (TextView)findViewById(R.id.surface);
+        TextView textViewOrientation = (TextView)findViewById(R.id.orientation);
+
+        setTitle(wineLot.getName());
+
+        textViewWineVariety.setText(wineLot.getWineVariety().getName());
+        textViewnumberWineStock.setText(Integer.toString(wineLot.getNumberWineStock()) + " " + getString(R.string.vines));
+        textViewSurface.setText(Float.toString(wineLot.getSurface()) + " " + getString(R.string.square_meters));
+        textViewOrientation.setText(wineLot.getOrientation().getName());
     }
 }

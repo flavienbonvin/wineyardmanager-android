@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Flavien on 24.04.2017.
  */
 
-public class WineVariety implements Serializable {
+public class WineVariety implements Serializable{
     private int id;
     private String name;
 

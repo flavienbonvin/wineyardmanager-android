@@ -22,12 +22,15 @@
 
         <activity
             android:name=".ActivityClasses.ActivityLocationDetail"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".ActivityClasses.ActivityEmployeeDetail"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".ActivityClasses.ActivityWorkDetails" />
+            android:name=".ActivityClasses.ActivityWorkDetails"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity"/>
     </application>
-
 </manifest>
