@@ -4,5 +4,4 @@
     <exclude
         domain="database"
         path="survey.db" />
-    <!-- Exclude specific shared preferences that contain GCM registration Id -->
 </full-backup-content>
