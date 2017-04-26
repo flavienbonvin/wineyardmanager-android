@@ -35,4 +35,13 @@
     <string name="vines">vines</string>
     <string name="square_meters">square meters</string>
     <string name="work_details">Work details</string>
+    <string name="Lastname">Lastname</string>
+    <string name="Firstname">Firstname</string>
+    <string name="Phone">Phone</string>
+    <string name="Mail">Mail</string>
+    <string name="Action">Action</string>
+    <string name="Winelotname">Winelot Name</string>
+    <string name="Deadline">Deadline</string>
+    <string name="WorkerFirstname">Worker firstname</string>
+    <string name="WorkerLastname">Worker lastname</string>
 </resources>

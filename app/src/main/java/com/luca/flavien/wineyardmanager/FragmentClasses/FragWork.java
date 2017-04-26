@@ -3,6 +3,7 @@ package com.luca.flavien.wineyardmanager.FragmentClasses;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -11,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityEmployeeAdd;
 import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityEmployeeDetail;
+import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityWorkAdd;
 import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityWorkDetails;
 import com.luca.flavien.wineyardmanager.DB.Object.Job;
 import com.luca.flavien.wineyardmanager.DB.Object.Orientation;
@@ -108,6 +111,15 @@ public class FragWork extends Fragment{
                 intent.putExtra("Job",jobs.get(position));
                 startActivity(intent);
 
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab_add_work);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ActivityWorkAdd.class);
+                getActivity().startActivity(intent);
             }
         });
         return view;

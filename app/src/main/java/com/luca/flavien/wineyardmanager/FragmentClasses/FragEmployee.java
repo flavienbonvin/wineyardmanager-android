@@ -3,6 +3,8 @@ package com.luca.flavien.wineyardmanager.FragmentClasses;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityEmployeeAdd;
 import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityEmployeeDetail;
 import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityWorkDetails;
 import com.luca.flavien.wineyardmanager.DB.Object.Job;
@@ -42,6 +45,7 @@ public class FragEmployee extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_employee,container, false);
         ListView listView = (ListView)view.findViewById(R.id.list_of_employee);
+
 
         Worker worker1 = new Worker();
         worker1.setId(1);
@@ -86,6 +90,18 @@ public class FragEmployee extends Fragment {
 
             }
         });
+
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.fab_add_employee);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ActivityEmployeeAdd.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+
+
         return view;
     }
 

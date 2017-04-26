@@ -55,6 +55,8 @@ public class Contract {
                 + JobEntry.KEY_ID + " INTEGER PRIMARY KEY,"
                 + JobEntry.KEY_DESCRIPTION + " TEXT, "
                 + JobEntry.KEY_DEADLINE + " TEXT, "
+                + JobEntry.KEY_WINELOT_ID + "INTEGER, "
+                + JobEntry.KEY_WORKER_ID + "INTEGER, "
                 + "FOREIGN KEY (" + KEY_WINELOT_ID +") REFERENCES " + WineLotEntry.TABLE_WINELOT+ " (" + KEY_ID + "), "
                 + "FOREIGN KEY (" + KEY_WORKER_ID +") REFERENCES " + WorkerEntry.TABLE_WORKER+ " (" + KEY_ID + "), "
                 + ");";
@@ -83,6 +85,8 @@ public class Contract {
                 + WineLotEntry.KEY_SURFACE + " TEXT, "
                 + WineLotEntry.KEY_NUMWINESTOCK + " TEXT, "
                 + WineLotEntry.KEY_PICTURE + " TEXT, "
+                + WineLotEntry.KEY_WINEVARIETY_ID + "INTEGER, "
+                + WineLotEntry.KEY_ORIENTATION_ID + "INTEGER, "
                 + "FOREIGN KEY (" + KEY_WINEVARIETY_ID +") REFERENCES " + WineVarietyEntry.TABLE_WINEVARIETY+ " (" + KEY_ID + "), "
                 + "FOREIGN KEY (" + KEY_ORIENTATION_ID +") REFERENCES " + OrientationEntry.TABLE_ORIENTATION+ " (" + KEY_ID + "), "
                 + ");";
