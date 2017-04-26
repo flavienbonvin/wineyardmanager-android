@@ -8,7 +8,7 @@
 
 
     <ListView
-        android:id="@+id/list_of_location"
+        android:id="@+id/list_of_variety"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_location_list"
+        android:id="@+id/fab_variety_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

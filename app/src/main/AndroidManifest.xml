@@ -30,8 +30,18 @@
         <activity
             android:name=".ActivityClasses.ActivityWorkDetails"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ActivityClasses.ActivityEmployeeAdd" />
-        <activity android:name=".ActivityClasses.ActivityWorkAdd"></activity>
+        <activity
+            android:name=".ActivityClasses.ActivityLocationAdd"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ActivityClasses.ActivityEmployeeAdd"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ActivityClasses.ActivityWorkAdd"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ActivityClasses.ActivityVarietyAdd"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

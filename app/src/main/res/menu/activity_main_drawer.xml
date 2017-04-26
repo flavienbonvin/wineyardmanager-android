@@ -4,10 +4,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_map"
-            android:icon="@drawable/ic_menu_map"
-            android:title="@string/map"/>
-        <item
             android:id="@+id/nav_location"
             android:icon="@drawable/ic_menu_place"
             android:title="@string/location"
@@ -21,6 +17,21 @@
             android:icon="@drawable/ic_menu_people"
             android:title="@string/employee" />
     </group>
+
+    <item android:title="Manage">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_vine_variety"
+                    android:icon="@drawable/ic_grapes"
+                    android:title="Vine variety"/>
+                <item
+                    android:id="@+id/nav_manage_orientation"
+                    android:icon="@drawable/ic_orientation"
+                    android:title="@string/Orientation"/>
+            </group>
+        </menu>
+    </item>
 
     <item android:title="@string/miscellaneous">
         <menu>

@@ -44,4 +44,22 @@
     <string name="Deadline">Deadline</string>
     <string name="WorkerFirstname">Worker firstname</string>
     <string name="WorkerLastname">Worker lastname</string>
+    <string name="vineyard_name">Vineyard name</string>
+    <string name="number_of_stock">Number of stocks</string>
+    <string name="Square_meters">Surface</string>
+    <string name="Orientation">Orientation</string>
+    <string name="problem_add_location_name">Problem with the name field</string>
+    <string name="problem_add_location_variety">Problem with the vine variety field</string>
+    <string name="problem_add_location_number">Problem with the number of stocks field</string>
+    <string name="problem_add_location_surface">Problem with the surface field</string>
+    <string name="problem_add_location_orientation">Problem with the orientation field</string>
+    <string name="south">South</string>
+    <string name="east">East</string>
+    <string name="west">West</string>
+    <string name="north">North</string>
+    <string name="title_activity_vine_variety_add">ActivityVineVarietyAdd</string>
+    <string name="problem_add_worker_firstname">Problem with the firstname field</string>
+    <string name="problem_add_worker_lastname">Problem with the lastname field</string>
+    <string name="problem_add_worker_main">Problem with the mail field</string>
+    <string name="problem_add_location_phone">Problem with the phone field</string>
 </resources>

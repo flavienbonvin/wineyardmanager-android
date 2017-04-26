@@ -28,6 +28,7 @@ public class SQLhelper extends SQLiteOpenHelper {
     public static SQLhelper getInstance(Context context){
         if(instance == null){
             instance = new SQLhelper(context.getApplicationContext());
+
             //Enable foreign key support
             instance.db.execSQL("PRAGMA foreign_keys = ON;");
         }
@@ -39,9 +40,9 @@ public class SQLhelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Contract.WorkerEntry.CREATE_TABLE_WORKER);
         db.execSQL(Contract.JobEntry.CREATE_TABLE_JOB);
-        db.execSQL(Contract.WineLotEntry.CREATE_TABLE_WINELOT);
         db.execSQL(Contract.WineVarietyEntry.CREATE_TABLE_WINEVARIETY);
         db.execSQL(Contract.OrientationEntry.CREATE_TABLE_ORIENTATION);
+        db.execSQL(Contract.WineLotEntry.CREATE_TABLE_WINELOT);
     }
 
     @Override

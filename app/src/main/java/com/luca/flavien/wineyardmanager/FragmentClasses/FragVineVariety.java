@@ -5,68 +5,59 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityLocationAdd;
-import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityLocationDetail;
-import com.luca.flavien.wineyardmanager.DB.Object.WineLot;
+import com.luca.flavien.wineyardmanager.ActivityClasses.ActivityVarietyAdd;
+import com.luca.flavien.wineyardmanager.DB.Object.Orientation;
 import com.luca.flavien.wineyardmanager.DB.Object.WineVariety;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by flavien on 26/04/17.
  */
 
-public class FragLocationList extends Fragment{
+public class FragVineVariety extends Fragment{
 
-    public FragLocationList() {}
-
-    private List<WineLot> listWineLot;
-    private ArrayAdapter<WineLot> adapter;
+    private List<WineVariety> varietyList;
+    private ArrayAdapter<WineVariety> adapter;
     private ListView listView;
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_vine_variety, container, false);
 
-    @Nullable
-    @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_location_list, container, false);
-
-        FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.fab_location_list);
+        FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.fab_variety_list);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ActivityLocationAdd.class);
+                Intent intent = new Intent(getContext(), ActivityVarietyAdd.class);
                 startActivity(intent);
             }
         });
 
-        listView = (ListView)view.findViewById(R.id.list_of_location);
+        listView = (ListView)view.findViewById(R.id.list_of_variety);
 
         updateDisplay();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), ActivityLocationDetail.class);
-                intent.putExtra("winelot", (WineLot)parent.getItemAtPosition(position));
-                startActivity(intent);
+                Toast.makeText(getActivity(), "There is no details", Toast.LENGTH_SHORT).show();
             }
         });
+
         return view;
     }
 
@@ -77,8 +68,8 @@ public class FragLocationList extends Fragment{
     }
 
     private void updateDisplay(){
-        listWineLot = MainActivity.wineLotDataSource.getAllWineLots();
-        adapter = new ArrayAdapter<>(getActivity(), R.layout.row_simple, listWineLot);
+        varietyList = MainActivity.wineVarietyDataSource.getAllWineVarieties();
+        adapter = new ArrayAdapter<>(getActivity(), R.layout.row_simple, varietyList);
         listView.setAdapter(adapter);
     }
 }

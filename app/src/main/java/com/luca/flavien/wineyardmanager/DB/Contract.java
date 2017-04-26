@@ -25,13 +25,14 @@ public class Contract {
         public static final String KEY_MAIL = "mail";
 
         //Table person create statement
-        public static final String CREATE_TABLE_WORKER = "CREATE TABLE "
-                + TABLE_WORKER + "("
-                + WorkerEntry.KEY_ID + " INTEGER PRIMARY KEY,"
-                + WorkerEntry.KEY_LASTNAME + " TEXT, "
-                + WorkerEntry.KEY_FIRSTNAME+ " TEXT, "
-                + WorkerEntry.KEY_PHONE +"TEXT, "
-                + WorkerEntry.KEY_MAIL + " TEXT "
+        public static final String CREATE_TABLE_WORKER =
+                "CREATE TABLE " + TABLE_WORKER
+                + "("
+                + WorkerEntry.KEY_ID            + " INTEGER PRIMARY KEY,"
+                + WorkerEntry.KEY_LASTNAME      + " TEXT, "
+                + WorkerEntry.KEY_FIRSTNAME     + " TEXT, "
+                + WorkerEntry.KEY_PHONE         + " TEXT, "
+                + WorkerEntry.KEY_MAIL          + " TEXT "
                 + ");";
 
 
@@ -50,21 +51,22 @@ public class Contract {
 
 
         //Table record create statement
-        public static final String CREATE_TABLE_JOB = "CREATE TABLE "
-                + TABLE_JOB + "("
-                + JobEntry.KEY_ID + " INTEGER PRIMARY KEY,"
-                + JobEntry.KEY_DESCRIPTION + " TEXT, "
-                + JobEntry.KEY_DEADLINE + " TEXT, "
-                + JobEntry.KEY_WINELOT_ID + "INTEGER, "
-                + JobEntry.KEY_WORKER_ID + "INTEGER, "
+        public static final String CREATE_TABLE_JOB =
+                "CREATE TABLE " + TABLE_JOB
+                + "("
+                + JobEntry.KEY_ID               + " INTEGER PRIMARY KEY,"
+                + JobEntry.KEY_DESCRIPTION      + " TEXT, "
+                + JobEntry.KEY_DEADLINE         + " TEXT, "
+                + JobEntry.KEY_WINELOT_ID       + " INTEGER, "
+                + JobEntry.KEY_WORKER_ID        + " INTEGER, "
                 + "FOREIGN KEY (" + KEY_WINELOT_ID +") REFERENCES " + WineLotEntry.TABLE_WINELOT+ " (" + KEY_ID + "), "
-                + "FOREIGN KEY (" + KEY_WORKER_ID +") REFERENCES " + WorkerEntry.TABLE_WORKER+ " (" + KEY_ID + "), "
+                + "FOREIGN KEY (" + KEY_WORKER_ID +") REFERENCES " + WorkerEntry.TABLE_WORKER+ " (" + KEY_ID + ") "
                 + ");";
     }
 
     public static abstract class WineLotEntry implements BaseColumns{
         //Table name
-        public static final String TABLE_WINELOT = "wineLot";
+        public static final String TABLE_WINELOT = "wine_lot";
 
         //Record Column names
         public static final String KEY_ID = "id";
@@ -72,29 +74,29 @@ public class Contract {
         public static final String KEY_SURFACE = "surface" ;
         public static final String KEY_NUMWINESTOCK= "numWineStock" ;
         public static final String KEY_PICTURE= "picture";
-        public static final String KEY_WINEVARIETY_ID = "winevariety id";
-        public static final String KEY_ORIENTATION_ID = "ORIENTATION id";
+        public static final String KEY_WINEVARIETY_ID = "winevariety_id";
+        public static final String KEY_ORIENTATION_ID = "orientation_id";
 
 
 
         //Table record create statement
-        public static final String CREATE_TABLE_WINELOT= "CREATE TABLE "
-                + TABLE_WINELOT + "("
-                + WineLotEntry.KEY_ID + " INTEGER PRIMARY KEY,"
-                + WineLotEntry.KEY_NAME + " DATETIME, "
-                + WineLotEntry.KEY_SURFACE + " TEXT, "
-                + WineLotEntry.KEY_NUMWINESTOCK + " TEXT, "
-                + WineLotEntry.KEY_PICTURE + " TEXT, "
-                + WineLotEntry.KEY_WINEVARIETY_ID + "INTEGER, "
-                + WineLotEntry.KEY_ORIENTATION_ID + "INTEGER, "
-                + "FOREIGN KEY (" + KEY_WINEVARIETY_ID +") REFERENCES " + WineVarietyEntry.TABLE_WINEVARIETY+ " (" + KEY_ID + "), "
-                + "FOREIGN KEY (" + KEY_ORIENTATION_ID +") REFERENCES " + OrientationEntry.TABLE_ORIENTATION+ " (" + KEY_ID + "), "
+        public static final String CREATE_TABLE_WINELOT=
+                "CREATE TABLE " + TABLE_WINELOT
+                + "("
+                + WineLotEntry.KEY_ID               + " INTEGER PRIMARY KEY, "
+                + WineLotEntry.KEY_NAME             + " DATETIME, "
+                + WineLotEntry.KEY_SURFACE          + " TEXT, "
+                + WineLotEntry.KEY_NUMWINESTOCK     + " TEXT, "
+                + WineLotEntry.KEY_PICTURE          + " TEXT, "
+                + WineLotEntry.KEY_WINEVARIETY_ID   + " INTEGER, "
+                + WineLotEntry.KEY_ORIENTATION_ID   + " INTEGER, "
+                + "FOREIGN KEY (" + KEY_WINEVARIETY_ID + ") REFERENCES " + WineVarietyEntry.TABLE_WINEVARIETY + " (" + KEY_ID + ") "
                 + ");";
     }
 
     public static abstract class WineVarietyEntry implements BaseColumns{
         //Table name
-        public static final String TABLE_WINEVARIETY= "wine variety";
+        public static final String TABLE_WINEVARIETY= "wine_variety";
 
         //Record Column names
         public static final String KEY_ID = "id";
@@ -102,10 +104,11 @@ public class Contract {
 
 
         //Table record create statement
-        public static final String CREATE_TABLE_WINEVARIETY = "CREATE TABLE "
-                + TABLE_WINEVARIETY + "("
-                + WineVarietyEntry.KEY_ID + " INTEGER PRIMARY KEY,"
-                + WineVarietyEntry.KEY_NAME + " TEXT, "
+        public static final String CREATE_TABLE_WINEVARIETY =
+                "CREATE TABLE " + TABLE_WINEVARIETY
+                + "("
+                + WineVarietyEntry.KEY_ID       + " INTEGER PRIMARY KEY,"
+                + WineVarietyEntry.KEY_NAME     + " TEXT "
                 + ");";
     }
 
@@ -119,10 +122,11 @@ public class Contract {
 
 
         //Table record create statement
-        public static final String CREATE_TABLE_ORIENTATION = "CREATE TABLE "
-                + TABLE_ORIENTATION + "("
-                + WineVarietyEntry.KEY_ID + " INTEGER PRIMARY KEY,"
-                + WineVarietyEntry.KEY_NAME + " TEXT, "
-                + ");";
+        public static final String CREATE_TABLE_ORIENTATION =
+                "CREATE TABLE " + TABLE_ORIENTATION
+                + "("
+                + WineVarietyEntry.KEY_ID       + " INTEGER PRIMARY KEY,"
+                + WineVarietyEntry.KEY_NAME     + " TEXT "
+                + " );";
     }
 }

@@ -13,7 +13,7 @@ public class WineLot implements Serializable{
     private int numberWineStock;
     private String picture;
     private WineVariety wineVariety;
-    private Orientation orientation;
+    private int orientationId;
 
     public WineVariety getWineVariety() {
         return wineVariety;
@@ -23,12 +23,12 @@ public class WineLot implements Serializable{
         this.wineVariety = wineVariety;
     }
 
-    public Orientation getOrientation() {
-        return orientation;
+    public int getOrientationid() {
+        return orientationId;
     }
 
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
+    public void setOrientationid(int orientationid) {
+        this.orientationId = orientationid;
     }
 
     public int getId() {
@@ -69,5 +69,10 @@ public class WineLot implements Serializable{
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

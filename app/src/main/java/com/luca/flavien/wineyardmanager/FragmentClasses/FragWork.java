@@ -64,7 +64,7 @@ public class FragWork extends Fragment{
         wineLot.setName("Sion&Region");
         wineLot.setSurface(140);
         wineLot.setNumberWineStock(100);
-        wineLot.setOrientation(orientation);
+        wineLot.setOrientationid(1);
         wineLot.setPicture("hello");
         wineLot.setWineVariety(wineVariety1);
 

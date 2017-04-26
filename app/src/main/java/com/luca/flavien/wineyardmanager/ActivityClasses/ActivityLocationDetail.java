@@ -53,7 +53,7 @@ public class ActivityLocationDetail extends AppCompatActivity {
         textViewWineVariety.setText(wineLot.getWineVariety().getName());
         textViewnumberWineStock.setText(Integer.toString(wineLot.getNumberWineStock()) + " " + getString(R.string.vines));
         textViewSurface.setText(Float.toString(wineLot.getSurface()) + " " + getString(R.string.square_meters));
-        textViewOrientation.setText(wineLot.getOrientation().getName());
+        textViewOrientation.setText(wineLot.getOrientationid());
     }
 
     @Override
