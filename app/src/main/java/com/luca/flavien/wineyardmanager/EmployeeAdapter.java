@@ -1,8 +1,7 @@
 package com.luca.flavien.wineyardmanager;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.luca.flavien.wineyardmanager.DB.Object.Job;
-import com.luca.flavien.wineyardmanager.DB.Object.Worker;
+import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 import java.util.List;
 
@@ -24,8 +22,9 @@ import java.util.List;
             super(context, 0, workers);
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
             if(convertView == null){
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_employee,parent, false);
@@ -47,7 +46,7 @@ import java.util.List;
             //TODO Ajouter une image dans le Worker
 
             String pathImg = null;
-            if(pathImg== null || pathImg==""){
+            if(pathImg== null || pathImg.equals("")){
                 viewHolder.avatar.setImageResource(R.drawable.ic_contact);
             }/*else{
                 Bitmap bMap = BitmapFactory.decodeFile(vin.getImg());

@@ -18,13 +18,13 @@
             android:title="@string/employee" />
     </group>
 
-    <item android:title="Manage">
+    <item android:title="@string/manage">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_vine_variety"
                     android:icon="@drawable/ic_grapes"
-                    android:title="Vine variety"/>
+                    android:title="@string/wine_variety"/>
                 <item
                     android:id="@+id/nav_manage_orientation"
                     android:icon="@drawable/ic_orientation"

@@ -1,29 +1,15 @@
 <resources>
     <string name="app_name">VineYardManager</string>
-    <string name="title_activity_details_emplacement">DetailsEmplacement</string>
-    <string name="title_activity_emplacement_details">EmplacementDetails</string>
-    <string name="large_text">
-        "TEST"
-    </string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_navigation">Navigation</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="email">email</string>
-    <string name="Hello">Hello</string>
-    <string name="delete">delete</string>
     <string name="location">Location</string>
     <string name="works">Works</string>
     <string name="employee">Employee</string>
     <string name="settings">Settings</string>
     <string name="miscellaneous">Miscellaneous</string>
-    <string name="android_studio">Android Studio</string>
-    <string name="android_studio_android_com">android.studio@android.com</string>
-    <string name="map">Map</string>
     <string name="contact_image">Contact image</string>
-    <string name="title_activity_employee_details">EmployeeDetails</string>
-    <string name="name">name</string>
     <string name="phone">phone</string>
     <string name="mail">mail</string>
     <string name="action">action</string>
@@ -40,10 +26,7 @@
     <string name="Phone">Phone</string>
     <string name="Mail">Mail</string>
     <string name="Action">Action</string>
-    <string name="Winelotname">Winelot Name</string>
     <string name="Deadline">Deadline</string>
-    <string name="WorkerFirstname">Worker firstname</string>
-    <string name="WorkerLastname">Worker lastname</string>
     <string name="vineyard_name">Vineyard name</string>
     <string name="number_of_stock">Number of stocks</string>
     <string name="Square_meters">Surface</string>
@@ -52,14 +35,17 @@
     <string name="problem_add_location_variety">Problem with the vine variety field</string>
     <string name="problem_add_location_number">Problem with the number of stocks field</string>
     <string name="problem_add_location_surface">Problem with the surface field</string>
-    <string name="problem_add_location_orientation">Problem with the orientation field</string>
     <string name="south">South</string>
     <string name="east">East</string>
     <string name="west">West</string>
     <string name="north">North</string>
-    <string name="title_activity_vine_variety_add">ActivityVineVarietyAdd</string>
     <string name="problem_add_worker_firstname">Problem with the firstname field</string>
     <string name="problem_add_worker_lastname">Problem with the lastname field</string>
     <string name="problem_add_worker_main">Problem with the mail field</string>
     <string name="problem_add_location_phone">Problem with the phone field</string>
+    <string name="problem_add_work_action">Problem with the action field</string>
+    <string name="problem_add_work_deadline">Problem with the deadline field</string>
+    <string name="icon">Icon</string>
+    <string name="manage">Manage</string>
+    <string name="vineyard_manager">Vineyard Manager</string>
 </resources>

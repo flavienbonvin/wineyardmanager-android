@@ -8,40 +8,42 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityClasses.ActivityLocationDetail"
+            android:name=".activity_classes.ActivityLocationDetail"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ActivityClasses.ActivityEmployeeDetail"
+            android:name=".activity_classes.ActivityEmployeeDetail"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ActivityClasses.ActivityWorkDetails"
+            android:name=".activity_classes.ActivityWorkDetails"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ActivityClasses.ActivityLocationAdd"
+            android:name=".activity_classes.ActivityLocationAdd"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ActivityClasses.ActivityEmployeeAdd"
+            android:name=".activity_classes.ActivityEmployeeAdd"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ActivityClasses.ActivityWorkAdd"
+            android:name=".activity_classes.ActivityWorkAdd"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ActivityClasses.ActivityVarietyAdd"
+            android:name=".activity_classes.ActivityVarietyAdd"
             android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".activity_classes.AndroidDatabaseManager"/>
     </application>
 
 </manifest>

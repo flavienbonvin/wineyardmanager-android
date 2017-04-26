@@ -11,8 +11,7 @@
         android:paddingBottom="8dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:paddingTop="8dp"
-        android:text="Action" />
+        android:paddingTop="8dp"/>
 
     <TextView
         android:id="@+id/second_line_employe"
@@ -21,6 +20,5 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp"
         android:paddingStart="24dp"
-        android:paddingEnd="16dp"
-        android:text="employe" />
+        android:paddingEnd="16dp"/>
 </LinearLayout>

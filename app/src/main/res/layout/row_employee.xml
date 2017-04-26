@@ -6,9 +6,8 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="65dp"
-        android:layout_height="60dp"
-        android:tint="@color/secondary_text"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="5dp"
@@ -19,15 +18,9 @@
 
     <TextView
         android:id="@+id/Itemname"
-        style="@style/Base.TextAppearance.AppCompat.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@id/icon"
-        android:paddingBottom="16dp"
-        android:paddingTop="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="0dp"
-        android:text="hello" />
+        android:layout_toEndOf="@id/icon" />
 
 </RelativeLayout>

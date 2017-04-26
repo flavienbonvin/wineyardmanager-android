@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ActivityClasses.ActivityEmployeeDetail"
+    tools:context=".activity_classes.ActivityEmployeeDetail"
     tools:showIn="@layout/activity_employee_detail">
 
     <LinearLayout
@@ -19,48 +19,45 @@
             android:id="@+id/winevariety"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_grapes"
+            android:drawableStart="@drawable/ic_grapes"
             android:drawablePadding="16dp"
             android:paddingBottom="16dp"
             android:paddingLeft="16dp"
-            android:paddingTop="20dp"
-            android:text="@string/wine_variety" />
+            android:paddingRight="16dp"
+            android:paddingTop="20dp"/>
 
         <TextView
             android:id="@+id/number_of_wine_stock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:drawableLeft="@drawable/ic_number_winestock"
+            android:drawableStart="@drawable/ic_number_winestock"
             android:drawablePadding="16dp"
             android:paddingBottom="16dp"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:text="Number of wine stock" />
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"/>
 
         <TextView
             android:id="@+id/surface"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:drawableLeft="@drawable/ic_surface"
+            android:drawableStart="@drawable/ic_surface"
             android:drawablePadding="16dp"
             android:paddingBottom="16dp"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:text="Surface" />
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"/>
 
         <TextView
             android:id="@+id/orientation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:drawableLeft="@drawable/ic_orientation"
+            android:drawableStart="@drawable/ic_orientation"
             android:drawablePadding="16dp"
             android:paddingBottom="16dp"
             android:paddingLeft="16dp"
-            android:paddingTop="16dp"
-            android:text="Orientation" />
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"/>
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
