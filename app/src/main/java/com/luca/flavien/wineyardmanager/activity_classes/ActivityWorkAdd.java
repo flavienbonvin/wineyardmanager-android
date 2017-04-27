@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.luca.flavien.wineyardmanager.R;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ActivityWorkAdd extends AppCompatActivity {
 
@@ -141,12 +144,12 @@ public class ActivityWorkAdd extends AppCompatActivity {
     }
 
     private boolean checkEntries(){
-        if (editTextAction.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_work_action, Toast.LENGTH_SHORT).show();
+        if (editTextAction.getText().toString().isEmpty()){
+            editTextAction.setError(getString(R.string.action_empty));
             return false;
         }
-        if (editTextDeadline.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_work_deadline, Toast.LENGTH_LONG).show();
+        if (editTextDeadline.getText().toString().isEmpty()){
+            editTextDeadline.setError(getString(R.string.deadline_empty));
             return false;
         }
         return true;

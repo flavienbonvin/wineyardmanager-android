@@ -56,9 +56,7 @@ public class ActivityVarietyAdd extends AppCompatActivity {
                     finish();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),
-                            getString(R.string.problem_add_location_variety),
-                            Toast.LENGTH_SHORT).show();
+                    editTextVariety.setError(getString(R.string.vine_variety_empty));
                 }
             }
         });

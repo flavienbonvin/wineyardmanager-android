@@ -31,20 +31,10 @@
     <string name="number_of_stock">Number of stocks</string>
     <string name="Square_meters">Surface</string>
     <string name="Orientation">Orientation</string>
-    <string name="problem_add_location_name">Problem with the name field</string>
-    <string name="problem_add_location_variety">Problem with the vine variety field</string>
-    <string name="problem_add_location_number">Problem with the number of stocks field</string>
-    <string name="problem_add_location_surface">Problem with the surface field</string>
     <string name="south">South</string>
     <string name="east">East</string>
     <string name="west">West</string>
     <string name="north">North</string>
-    <string name="problem_add_worker_firstname">Problem with the firstname field</string>
-    <string name="problem_add_worker_lastname">Problem with the lastname field</string>
-    <string name="problem_add_worker_main">Problem with the mail field</string>
-    <string name="problem_add_location_phone">Problem with the phone field</string>
-    <string name="problem_add_work_action">Problem with the action field</string>
-    <string name="problem_add_work_deadline">Problem with the deadline field</string>
     <string name="icon">Icon</string>
     <string name="manage">Managinte</string>
     <string name="vineyard_manager">Vineyard Manager</string>
@@ -57,4 +47,14 @@
     <string name="add_new_job">Add new work</string>
     <string name="job_to_do">Job to do</string>
     <string name="select_the_deadline">Select the deadline...</string>
+    <string name="phone_not_valid">Phone is not valid</string>
+    <string name="email_not_valid">Email is not valid</string>
+    <string name="lastname_empty">Please enter the lastname</string>
+    <string name="fistname_empty">Please enter the firstname</string>
+    <string name="location_name_empty">Please enter the location name</string>
+    <string name="stocks_empty">Please enter a number of stocks</string>
+    <string name="surface_empty">Please enter a surface</string>
+    <string name="vine_variety_empty">Please enter a vine variety</string>
+    <string name="action_empty">Please enter an action</string>
+    <string name="deadline_empty">Please enter a deadline</string>
 </resources>

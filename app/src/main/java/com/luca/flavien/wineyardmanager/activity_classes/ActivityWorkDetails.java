@@ -13,6 +13,7 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -143,7 +144,6 @@ public class ActivityWorkDetails extends AppCompatActivity {
 
     private void displayHideFAB(){
         if (floatingActionButtonEdit.getVisibility() == View.VISIBLE) {
-
             floatingActionButtonMsg.setVisibility(View.GONE);
             floatingActionButtonEdit.setVisibility(View.GONE);
             floatingActionButtonMail.setVisibility(View.GONE);

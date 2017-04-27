@@ -101,16 +101,16 @@ public class ActivityLocationAdd extends AppCompatActivity {
     }
 
     private boolean checkEntries(){
-        if (editTextName.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_location_name, Toast.LENGTH_SHORT).show();
+        if (editTextName.getText().toString().trim().isEmpty()){
+            editTextName.setError(getString(R.string.location_name_empty));
             return false;
         }
-        if (editTextNumber.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_location_number , Toast.LENGTH_LONG).show();
+        if (editTextNumber.getText().toString().trim().isEmpty()){
+            editTextNumber.setError(getString(R.string.stocks_empty));
             return false;
         }
-        if (editTextSurface.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_location_surface , Toast.LENGTH_LONG).show();
+        if (editTextSurface.getText().toString().trim().isEmpty()){
+            editTextSurface.setError(getString(R.string.surface_empty));
             return false;
         }
         return true;

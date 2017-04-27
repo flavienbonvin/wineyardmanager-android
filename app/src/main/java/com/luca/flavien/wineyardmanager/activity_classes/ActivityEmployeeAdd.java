@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -96,22 +97,22 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
     }
 
     private boolean checkEntries(){
-        if (editTextFirstName.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_worker_firstname, Toast.LENGTH_SHORT).show();
+        if (editTextLastName.getText().toString().trim().isEmpty()){
+            editTextLastName.setError(getString(R.string.lastname_empty));
             return false;
         }
-        if (editTextLastName.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_worker_lastname , Toast.LENGTH_LONG).show();
+        if (editTextFirstName.getText().toString().trim().isEmpty()){
+            editTextFirstName.setError(getString(R.string.fistname_empty));
             return false;
         }
-        if (editTextMail.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_worker_main , Toast.LENGTH_LONG).show();
+        if (!isValidEmail(editTextMail.getText())){
+            editTextMail.setError(getString(R.string.email_not_valid));
             return false;
         }
-        if (editTextPhone.getText().toString().matches("")){
-            Toast.makeText(this, R.string.problem_add_location_phone, Toast.LENGTH_LONG).show();
+        /*if (!isValidMobile(editTextPhone.getText())){
+            editTextPhone.setError(getString(R.string.phone_not_valid));
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -122,5 +123,21 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
             return true;
         }
         return true;
+    }
+
+    public final static boolean isValidEmail(CharSequence mail) {
+        if (mail.toString().trim().isEmpty()) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+        }
+    }
+
+    private boolean isValidMobile(CharSequence phone) {
+        if (phone.toString().trim().isEmpty()||android.util.Patterns.PHONE.matcher(phone).matches()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

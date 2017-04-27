@@ -47,11 +47,12 @@ public class MainActivity extends AppCompatActivity
 
     /*
         Problems:
-        - Rotation brings back to location fragment
+        OK Rotation brings back to location fragment
         OK Deadline should have another keyboard or even a calendar
-        - Works only have one line
+        OK Works only have one line
         - Adapt values of spinners when modifying a object (location, work)
         - Update display instead of going back to the list (location, work)
+        - Check the verification of the phone number, swiss number dosn't work
      */
 
     /*
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity
             - Work
             - Vine lot
             - Vine variety
-        - Remove 3 dots
+        OK Remove 3 dots
      */
 
     /*
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity
         - Photo of the vineyard
         OK Remove orientation table
         - Create calendar envent for the jobs
+        - Check input in EditTexts
      */
 
 
