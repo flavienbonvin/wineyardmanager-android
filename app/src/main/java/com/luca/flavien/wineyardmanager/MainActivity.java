@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     /*
         Problems:
         - Rotation brings back to location fragment
-        - Deadline should have another keyboard or even a calendar
+        OK Deadline should have another keyboard or even a calendar
         - Works only have one line
         - Adapt values of spinners when modifying a object (location, work)
         - Update display instead of going back to the list (location, work)

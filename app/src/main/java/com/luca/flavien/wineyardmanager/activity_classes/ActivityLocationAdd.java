@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -67,6 +68,8 @@ public class ActivityLocationAdd extends AppCompatActivity {
         Orientation orientation = (Orientation) spinnerOrientation.getSelectedItem();
         WineVariety wineVariety = (WineVariety) spinnerVariety.getSelectedItem();
 
+        Log.d("CREATE YINEYARD: ", wineVariety.getId() + " name: " + wineVariety.getName());
+
         wineLot.setWineVariety(wineVariety);
         wineLot.setOrientationid(orientation.getId());
         wineLot.setName(editTextName.getText().toString());
@@ -95,7 +98,6 @@ public class ActivityLocationAdd extends AppCompatActivity {
         editTextSurface.setText(Float.toString(wineLot.getSurface()));
 
         spinnerOrientation.setSelection(wineLot.getOrientationid());
-        spinnerVariety.setSelection(wineLot.getWineVariety().getId());
     }
 
     private boolean checkEntries(){

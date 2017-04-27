@@ -47,6 +47,12 @@ public class ActivityLocationDetail extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ActivityLocationAdd.class);
                 intent.putExtra("vinelot", wineLot);
+
+                Log.d("EDIT VINEYARD: ", wineLot.getId() +
+                        " name: " + wineLot.getName() +
+                        " variety: " + wineLot.getWineVariety().getName() +
+                        " varietyID: " + wineLot.getWineVariety().getId());
+
                 startActivity(intent);
                 finish();
             }
