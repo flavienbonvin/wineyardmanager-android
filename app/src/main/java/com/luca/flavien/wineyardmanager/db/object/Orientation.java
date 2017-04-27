@@ -10,9 +10,6 @@ public class Orientation implements Serializable {
     private int id;
     private String name;
 
-    public Orientation() {
-    }
-
     public Orientation(int id, String name) {
         this.id = id;
         this.name = name;

@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityVarietyAdd;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;

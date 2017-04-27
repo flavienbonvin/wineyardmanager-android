@@ -1,13 +1,10 @@
 package com.luca.flavien.wineyardmanager.fragment_classes;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.luca.flavien.wineyardmanager.EmployeeAdapter;
 import com.luca.flavien.wineyardmanager.WorkAdapter;
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityWorkAdd;
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityWorkDetails;
 import com.luca.flavien.wineyardmanager.db.object.Job;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
-import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 import java.util.List;
 

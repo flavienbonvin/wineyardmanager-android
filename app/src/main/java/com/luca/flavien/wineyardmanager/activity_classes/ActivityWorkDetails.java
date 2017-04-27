@@ -3,9 +3,9 @@ package com.luca.flavien.wineyardmanager.activity_classes;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.MailTo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,12 +13,15 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.Job;
 import com.luca.flavien.wineyardmanager.R;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Flavien on 24.04.2017.
@@ -26,11 +29,11 @@ import com.luca.flavien.wineyardmanager.R;
 
 public class ActivityWorkDetails extends AppCompatActivity {
 
-    private FloatingActionButton floatingActionButtonMenu;
     private FloatingActionButton floatingActionButtonMsg;
     private FloatingActionButton floatingActionButtonEdit;
     private FloatingActionButton floatingActionButtonMail;
     private FloatingActionButton floatingActionButtonPhone;
+    private FloatingActionButton floatingActionButtonCalendar;
 
     private Job passJob;
 
@@ -53,11 +56,12 @@ public class ActivityWorkDetails extends AppCompatActivity {
         textViewWineLotName.setText(passJob.getWinelot().getName());
         textViewWorkerName.setText(passJob.getWorker().getLastName() + " " + passJob.getWorker().getFirstName());
 
-        floatingActionButtonMenu = (FloatingActionButton) findViewById(R.id.fabmenu);
+        FloatingActionButton floatingActionButtonMenu = (FloatingActionButton) findViewById(R.id.fab_menu);
         floatingActionButtonMsg = (FloatingActionButton) findViewById(R.id.fab_send_message);
         floatingActionButtonEdit = (FloatingActionButton) findViewById(R.id.fab_edit_work);
         floatingActionButtonMail = (FloatingActionButton) findViewById(R.id.fab_send_mail);
         floatingActionButtonPhone = (FloatingActionButton) findViewById(R.id.fab_call_worker);
+        floatingActionButtonCalendar = (FloatingActionButton) findViewById(R.id.fab_calendar);
         floatingActionButtonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,11 +86,12 @@ public class ActivityWorkDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String phoneNo = passJob.getWorker().getPhone();
+
                 String msg =
-                        getString(R.string.job_to_do) + " " +
-                                passJob.getDescription() + " " +
-                                getString(R.string.vineyard_name) + ": " + passJob.getWinelot() + " " +
-                                getString(R.string.deadline) + ": " + passJob.getDeadline();
+                        getString(R.string.job_to_do) + ": " + passJob.getDescription() + "\n" +
+                        getString(R.string.vineyard_name) + ": " + passJob.getWinelot().getName() + "\n" +
+                        getString(R.string.wine_variety) + ": " + passJob.getWinelot().getWineVariety().getName() + "\n" +
+                        getString(R.string.Deadline) + ": " + passJob.getDeadline();
 
                 Log.d("SEND SMS: ", phoneNo + " " + msg);
 
@@ -103,11 +108,12 @@ public class ActivityWorkDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String address = passJob.getWorker().getMail();
+
                 String msg =
-                        getString(R.string.job_to_do) + ": " +
-                                passJob.getDescription() + " " +
-                                getString(R.string.vineyard_name) + ": " + passJob.getWinelot() + " " +
-                                getString(R.string.deadline) + ": " + passJob.getDeadline();
+                        getString(R.string.job_to_do) + ": " + passJob.getDescription() + "\n" +
+                        getString(R.string.vineyard_name) + ": " + passJob.getWinelot().getName() + "\n" +
+                        getString(R.string.wine_variety) + ": " + passJob.getWinelot().getWineVariety().getName() + "\n" +
+                        getString(R.string.Deadline) + ": " + passJob.getDeadline();
 
                 Log.d("SEND MAIL: ", address + " " + msg);
 
@@ -117,7 +123,6 @@ public class ActivityWorkDetails extends AppCompatActivity {
                 i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.job_to_do));
                 i.putExtra(Intent.EXTRA_TEXT, msg);
                 try {
-                    Toast.makeText(getApplicationContext(), "Sending mail", Toast.LENGTH_SHORT).show();
                     startActivity(Intent.createChooser(i, "Send mail..."));
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(getApplicationContext(), "There are no email clients installed.", Toast.LENGTH_SHORT).show();
@@ -138,6 +143,46 @@ public class ActivityWorkDetails extends AppCompatActivity {
                 }
                 Log.d("CALLING WORKER: ", number);
                 startActivity(phoneIntent);
+                displayHideFAB();
+            }
+        });
+        floatingActionButtonCalendar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_EDIT);
+
+                String title = passJob.getDescription();
+                String date = passJob.getDeadline();
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date dateEvent = new Date();
+                try {
+                    dateEvent = simpleDateFormat.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Log.d("DATE FORMAT: ", dateEvent.toString());
+
+                String desc =
+                        getString(R.string.job_to_do) + ": " + passJob.getDescription() + "\n" +
+                        getString(R.string.employee) + ": " + passJob.getWorker().getLastName() + " " + passJob.getWorker().getFirstName() + "\n" +
+                        getString(R.string.vineyard_name) + ": " + passJob.getWinelot().getName() + "\n" +
+                        getString(R.string.wine_variety) + ": " + passJob.getWinelot().getWineVariety().getName();
+
+                String location = passJob.getWinelot().getName();
+
+
+                intent.setType("vnd.android.cursor.item/event");
+                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, dateEvent.getTime());
+                intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, dateEvent.getTime());
+                intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+                intent.putExtra(CalendarContract.Events.TITLE, title);
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, desc);
+                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, location);
+
+                startActivity(intent);
+                displayHideFAB();
             }
         });
     }
@@ -148,11 +193,13 @@ public class ActivityWorkDetails extends AppCompatActivity {
             floatingActionButtonEdit.setVisibility(View.GONE);
             floatingActionButtonMail.setVisibility(View.GONE);
             floatingActionButtonPhone.setVisibility(View.GONE);
+            floatingActionButtonCalendar.setVisibility(View.GONE);
         } else {
             floatingActionButtonMsg.setVisibility(View.VISIBLE);
             floatingActionButtonEdit.setVisibility(View.VISIBLE);
             floatingActionButtonMail.setVisibility(View.VISIBLE);
             floatingActionButtonPhone.setVisibility(View.VISIBLE);
+            floatingActionButtonCalendar.setVisibility(View.VISIBLE);
         }
     }
 

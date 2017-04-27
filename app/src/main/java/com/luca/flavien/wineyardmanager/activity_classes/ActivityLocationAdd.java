@@ -10,14 +10,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
-import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 import java.util.List;
 
@@ -32,6 +30,8 @@ public class ActivityLocationAdd extends AppCompatActivity {
 
     private WineLot wineLot;
     private boolean hasIntent;
+
+    private FloatingActionButton floatingActionButtonDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +62,21 @@ public class ActivityLocationAdd extends AppCompatActivity {
                 }
             }
         });
+
+        floatingActionButtonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.wineLotDataSource.deleteWineLot(wineLot.getId());
+                finish();
+            }
+        });
     }
 
     private void setWineLotField(){
         Orientation orientation = (Orientation) spinnerOrientation.getSelectedItem();
         WineVariety wineVariety = (WineVariety) spinnerVariety.getSelectedItem();
 
-        Log.d("CREATE YINEYARD: ", wineVariety.getId() + " name: " + wineVariety.getName());
+        Log.d("CREATE VINEYARD: ", wineVariety.getId() + " name: " + wineVariety.getName());
 
         wineLot.setWineVariety(wineVariety);
         wineLot.setOrientationid(orientation.getId());
@@ -80,15 +88,18 @@ public class ActivityLocationAdd extends AppCompatActivity {
     private  void checkIntent(){
         Intent intent = getIntent();
 
-        if(intent.hasExtra("vinelot")){
-            wineLot = (WineLot) intent.getSerializableExtra("vinelot");
+        if(intent.hasExtra("vine_lot")){
+            wineLot = (WineLot) intent.getSerializableExtra("vine_lot");
             setTitle(getString(R.string.edit)+ " " + wineLot.getName());
 
             hasIntent = true;
+
+            floatingActionButtonDelete.setVisibility(View.VISIBLE);
+
             setEdit();
         }
         else {
-            setTitle(getString(R.string.add_new_vinelot));
+            setTitle(getString(R.string.add_new_vine_lot));
         }
     }
 
@@ -123,6 +134,8 @@ public class ActivityLocationAdd extends AppCompatActivity {
         editTextName = (EditText)findViewById(R.id.edit_vineyard_name);
         editTextNumber = (EditText)findViewById(R.id.edit_number_vine_stock);
         editTextSurface = (EditText)findViewById(R.id.edit_size);
+
+        floatingActionButtonDelete = (FloatingActionButton)findViewById(R.id.fab_delete_location);
     }
 
     private void updateSpinner(){

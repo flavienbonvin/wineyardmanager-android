@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
-import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 public class ActivityVarietyAdd extends AppCompatActivity {
 
@@ -22,6 +18,8 @@ public class ActivityVarietyAdd extends AppCompatActivity {
 
     private WineVariety wineVariety;
     private boolean hasIntent;
+
+    private FloatingActionButton floatingActionButtonDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,14 @@ public class ActivityVarietyAdd extends AppCompatActivity {
                 }
             }
         });
+
+        floatingActionButtonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.wineVarietyDataSource.deleteWineVariety(wineVariety.getId());
+                finish();
+            }
+        });
     }
 
     private  void checkIntent(){
@@ -69,7 +75,9 @@ public class ActivityVarietyAdd extends AppCompatActivity {
             wineVariety = (WineVariety)intent.getSerializableExtra("variety");
 
             setTitle(getString(R.string.modify) + " " + wineVariety.getName());
+
             hasIntent = true;
+            floatingActionButtonDelete.setVisibility(View.VISIBLE);
 
             setEdit();
         }
@@ -84,6 +92,8 @@ public class ActivityVarietyAdd extends AppCompatActivity {
 
     private void initEditText(){
         editTextVariety = (EditText)findViewById(R.id.edit_variety_name);
+
+        floatingActionButtonDelete = (FloatingActionButton)findViewById(R.id.fab_delete_vine_variety);
     }
 
     @Override

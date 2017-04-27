@@ -41,17 +41,19 @@ import java.util.List;
 
             Worker worker = getItem(position);
 
-            viewHolder.name.setText(worker.getLastName()+" "+worker.getFirstName());
+            if (worker != null) {
+                viewHolder.name.setText(worker.getLastName()+" "+worker.getFirstName());
+            }
 
             //TODO Ajouter une image dans le Worker
 
             String pathImg = null;
-            if(pathImg== null || pathImg.equals("")){
+            if (pathImg != null && pathImg.equals("")) {
                 viewHolder.avatar.setImageResource(R.drawable.ic_contact);
             }/*else{
-                Bitmap bMap = BitmapFactory.decodeFile(vin.getImg());
-                viewHolder.avatar.setImageBitmap(bMap);
-            }*/
+                    Bitmap bMap = BitmapFactory.decodeFile(vin.getImg());
+                    viewHolder.avatar.setImageBitmap(bMap);
+                }*/
 
 
             return convertView;

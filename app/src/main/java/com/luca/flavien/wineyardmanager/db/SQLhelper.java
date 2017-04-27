@@ -29,6 +29,10 @@ public class SQLhelper extends SQLiteOpenHelper {
     private SQLhelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         db = this.getWritableDatabase();
+
+        if (!db.isReadOnly()) {
+            db.execSQL("PRAGMA foreign_keys = ON;");
+        }
     }
 
     public static SQLhelper getInstance(Context context){

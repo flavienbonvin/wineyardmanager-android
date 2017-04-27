@@ -40,7 +40,9 @@ public class WorkAdapter extends ArrayAdapter<Job>{
 
         Job job = getItem(position);
 
-        viewHolder.action.setText(job.getDescription());
+        if (job != null) {
+            viewHolder.action.setText(job.getDescription());
+        }
         viewHolder.employee.setText(job.getWorker().getLastName()+" "+job.getWorker().getFirstName());
             /*String pathImg = vin.getImg();
             if(pathImg== null || pathImg==""){

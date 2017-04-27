@@ -57,13 +57,16 @@ public class JobDataSource {
         }
 
         Job job = new Job();
-        job.setId(cursor.getInt(cursor.getColumnIndex(Contract.JobEntry.KEY_ID)));
-        job.setDescription(cursor.getString(cursor.getColumnIndex(Contract.JobEntry.KEY_DESCRIPTION)));
-        job.setDeadline(cursor.getString(cursor.getColumnIndex(Contract.JobEntry.KEY_DEADLINE)));
-        int idWineLot = (cursor.getInt(cursor.getColumnIndex(Contract.JobEntry.KEY_WINELOT_ID)));
-        job.setWinelot(wineLotDataS.getWineLotById(idWineLot));
-        int idWorker = cursor.getInt(cursor.getColumnIndex(Contract.JobEntry.KEY_WORKER_ID));
-        job.setWorker(workerDataS.getWorkerById(idWorker));
+
+        if (cursor != null) {
+            job.setId(cursor.getInt(cursor.getColumnIndex(Contract.JobEntry.KEY_ID)));
+            job.setDescription(cursor.getString(cursor.getColumnIndex(Contract.JobEntry.KEY_DESCRIPTION)));
+            job.setDeadline(cursor.getString(cursor.getColumnIndex(Contract.JobEntry.KEY_DEADLINE)));
+            int idWineLot = (cursor.getInt(cursor.getColumnIndex(Contract.JobEntry.KEY_WINELOT_ID)));
+            job.setWinelot(wineLotDataS.getWineLotById(idWineLot));
+            int idWorker = cursor.getInt(cursor.getColumnIndex(Contract.JobEntry.KEY_WORKER_ID));
+            job.setWorker(workerDataS.getWorkerById(idWorker));
+        }
 
         cursor.close();
         return job;
@@ -108,6 +111,15 @@ public class JobDataSource {
 
         return this.db.update(Contract.JobEntry.TABLE_JOB, values, Contract.JobEntry.KEY_ID + " = ?",
                 new String[] { String.valueOf(job.getId()) });
+    }
+
+    public void deleteWork(long id){
+
+        String selection = Contract.JobEntry.KEY_ID + " LIKE ? ";
+        String[] args = {String.valueOf(id)};
+
+
+        db.delete(Contract.JobEntry.TABLE_JOB, selection, args);
     }
 
    /* public void deleteJob(long id){

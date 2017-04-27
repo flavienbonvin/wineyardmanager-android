@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.MainActivity;
@@ -25,6 +22,8 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
     private Worker worker;
     private boolean hasIntent;
 
+    private FloatingActionButton floatingActionButtonDelete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +34,7 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
         checkIntent();
 
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton)
+        final FloatingActionButton floatingActionButton = (FloatingActionButton)
                 findViewById(R.id.fab_confirm_add_employee);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,21 +45,29 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
 
                     if (hasIntent){
                         workerTemp = worker;
-                        setWorkerFileds(workerTemp);
+                        setWorkerFiled(workerTemp);
                         MainActivity.workerDataSource.updateWorker(workerTemp);
                     }
                     else{
                         workerTemp = new Worker();
-                        setWorkerFileds(workerTemp);
+                        setWorkerFiled(workerTemp);
                         MainActivity.workerDataSource.createWorker(workerTemp);
                     }
                     finish();
                 }
             }
         });
+
+        floatingActionButtonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.workerDataSource.deleteWorker(worker.getId());
+                finish();
+            }
+        });
     }
 
-    private void setWorkerFileds(Worker workerToSet){
+    private void setWorkerFiled(Worker workerToSet){
         workerToSet.setFirstName(editTextFirstName.getText().toString());
         workerToSet.setLastName(editTextLastName.getText().toString());
         workerToSet.setMail(editTextMail.getText().toString());
@@ -75,6 +82,9 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
             setTitle(getString(R.string.edit)+ " " + worker.getLastName() + " " + worker.getFirstName());
 
             hasIntent = true;
+
+            floatingActionButtonDelete.setVisibility(View.VISIBLE);
+
             setEdit();
         }
         else {
@@ -94,6 +104,8 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
         editTextLastName = (EditText)findViewById(R.id.edit_lastname);
         editTextMail = (EditText)findViewById(R.id.edit_mail);
         editTextPhone = (EditText)findViewById(R.id.edit_phone);
+
+        floatingActionButtonDelete = (FloatingActionButton)findViewById(R.id.fab_delete_worker);
     }
 
     private boolean checkEntries(){
@@ -102,7 +114,7 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
             return false;
         }
         if (editTextFirstName.getText().toString().trim().isEmpty()){
-            editTextFirstName.setError(getString(R.string.fistname_empty));
+            editTextFirstName.setError(getString(R.string.firstname_empty));
             return false;
         }
         if (!isValidEmail(editTextMail.getText())){
@@ -125,19 +137,11 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
         return true;
     }
 
-    public final static boolean isValidEmail(CharSequence mail) {
-        if (mail.toString().trim().isEmpty()) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
-        }
+    private static boolean isValidEmail(CharSequence mail) {
+        return !mail.toString().trim().isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
     }
 
     private boolean isValidMobile(CharSequence phone) {
-        if (phone.toString().trim().isEmpty()||android.util.Patterns.PHONE.matcher(phone).matches()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(phone.toString().trim().isEmpty() || android.util.Patterns.PHONE.matcher(phone).matches());
     }
 }

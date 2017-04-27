@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
@@ -18,11 +17,9 @@ import java.util.List;
  */
 
 public class WineVarietyDataSource {
-    private SQLiteDatabase db;
-    private Context context;
+    private final SQLiteDatabase db;
 
     public WineVarietyDataSource(Context context){
-        this.context = context;
         SQLhelper sqliteHelper = SQLhelper.getInstance(context);
         db = sqliteHelper.getWritableDatabase();
     }
@@ -52,8 +49,11 @@ public class WineVarietyDataSource {
         }
 
         WineVariety wineVariety = new WineVariety();
-        wineVariety.setId(cursor.getInt(cursor.getColumnIndex(Contract.WineVarietyEntry.KEY_ID)));
-        wineVariety.setName(cursor.getString(cursor.getColumnIndex(Contract.WineVarietyEntry.KEY_NAME)));
+
+        if (cursor != null) {
+            wineVariety.setId(cursor.getInt(cursor.getColumnIndex(Contract.WineVarietyEntry.KEY_ID)));
+            wineVariety.setName(cursor.getString(cursor.getColumnIndex(Contract.WineVarietyEntry.KEY_NAME)));
+        }
 
         cursor.close();
         return wineVariety;
@@ -97,6 +97,14 @@ public class WineVarietyDataSource {
                 constrain,
                 arg);
 
+    }
+
+    public void deleteWineVariety(long id){
+
+        String selection = Contract.WineVarietyEntry.KEY_ID + " LIKE ? ";
+        String[] args = {String.valueOf(id)};
+
+        db.delete(Contract.WineVarietyEntry.TABLE_WINEVARIETY, selection, args);
     }
 
     /* public void deleteWineVariety(long id){

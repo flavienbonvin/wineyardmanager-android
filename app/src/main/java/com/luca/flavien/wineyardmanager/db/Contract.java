@@ -7,10 +7,6 @@ import android.provider.BaseColumns;
  */
 
 public class Contract {
-    public Contract(){
-        //empty constructor
-        //should never be instantiate
-    }
 
     //Represents the rows of a table
     public static abstract class WorkerEntry implements BaseColumns {
@@ -59,8 +55,8 @@ public class Contract {
                 + JobEntry.KEY_DEADLINE         + " TEXT, "
                 + JobEntry.KEY_WINELOT_ID       + " INTEGER, "
                 + JobEntry.KEY_WORKER_ID        + " INTEGER, "
-                + "FOREIGN KEY (" + KEY_WINELOT_ID +") REFERENCES " + WineLotEntry.TABLE_WINELOT+ " (" + KEY_ID + "), "
-                + "FOREIGN KEY (" + KEY_WORKER_ID +") REFERENCES " + WorkerEntry.TABLE_WORKER+ " (" + KEY_ID + ") "
+                + "FOREIGN KEY (" + KEY_WINELOT_ID +") REFERENCES " + WineLotEntry.TABLE_WINELOT+ " (" + KEY_ID + ") ON DELETE CASCADE , "
+                + "FOREIGN KEY (" + KEY_WORKER_ID +") REFERENCES " + WorkerEntry.TABLE_WORKER+ " (" + KEY_ID + ")  ON DELETE CASCADE "
                 + ");";
     }
 
@@ -90,7 +86,7 @@ public class Contract {
                 + WineLotEntry.KEY_PICTURE          + " TEXT, "
                 + WineLotEntry.KEY_WINEVARIETY_ID   + " INTEGER, "
                 + WineLotEntry.KEY_ORIENTATION_ID   + " INTEGER, "
-                + "FOREIGN KEY (" + KEY_WINEVARIETY_ID + ") REFERENCES " + WineVarietyEntry.TABLE_WINEVARIETY + " (" + KEY_ID + ") "
+                + "FOREIGN KEY (" + KEY_WINEVARIETY_ID + ") REFERENCES " + WineVarietyEntry.TABLE_WINEVARIETY + " (" + KEY_ID + ") ON DELETE CASCADE "
                 + ");";
     }
 

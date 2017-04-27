@@ -4,9 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
-import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.db.SQLhelper;
@@ -22,7 +20,7 @@ public class WorkerDataSource {
 
     private SQLiteDatabase db;
 
-    private  Context context;
+    private final Context context;
 
     public WorkerDataSource(Context context){
         this.context = context;
@@ -59,11 +57,13 @@ public class WorkerDataSource {
         }
 
         Worker worker = new Worker();
-        worker.setId(cursor.getInt(cursor.getColumnIndex(Contract.WorkerEntry.KEY_ID)));
-        worker.setFirstName(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_FIRSTNAME)));
-        worker.setLastName(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_LASTNAME)));
-        worker.setPhone(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_PHONE)));
-        worker.setMail(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_MAIL)));
+        if (cursor != null) {
+            worker.setId(cursor.getInt(cursor.getColumnIndex(Contract.WorkerEntry.KEY_ID)));
+            worker.setFirstName(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_FIRSTNAME)));
+            worker.setLastName(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_LASTNAME)));
+            worker.setPhone(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_PHONE)));
+            worker.setMail(cursor.getString(cursor.getColumnIndex(Contract.WorkerEntry.KEY_MAIL)));
+        }
 
         cursor.close();
         return worker;
@@ -121,6 +121,15 @@ public class WorkerDataSource {
                 arg);
 
         return updated;
+    }
+
+    public void deleteWorker(long id){
+
+        String selection = Contract.WorkerEntry.KEY_ID + " LIKE ? ";
+        String[] args = {String.valueOf(id)};
+
+
+        db.delete(Contract.WorkerEntry.TABLE_WORKER, selection, args);
     }
 
     /* public void deleteWorkerContract.WorkerEntry.KEY_ID + " (long id){

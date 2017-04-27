@@ -3,23 +3,16 @@ package com.luca.flavien.wineyardmanager.activity_classes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.luca.flavien.wineyardmanager.EmployeeAdapter;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
-import com.luca.flavien.wineyardmanager.db.object.Worker;
-
-import java.util.List;
 
 /**
  * Created by Flavien on 24.04.2017.
@@ -28,8 +21,6 @@ import java.util.List;
 public class ActivityLocationDetail extends AppCompatActivity {
 
     private WineLot wineLot;
-
-    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +37,7 @@ public class ActivityLocationDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ActivityLocationAdd.class);
-                intent.putExtra("vinelot", wineLot);
+                intent.putExtra("vine_lot", wineLot);
 
                 Log.d("EDIT VINEYARD: ", wineLot.getId() +
                         " name: " + wineLot.getName() +

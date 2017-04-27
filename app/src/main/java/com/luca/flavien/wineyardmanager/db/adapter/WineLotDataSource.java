@@ -71,14 +71,16 @@ public class WineLotDataSource{
             cursor.moveToFirst();
         }
         WineLot wineLot = new WineLot();
-        wineLot.setId(cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_ID)));
-        wineLot.setName(cursor.getString(cursor.getColumnIndex(Contract.WineLotEntry.KEY_NAME)));
-        wineLot.setPicture(cursor.getString(cursor.getColumnIndex(Contract.WineLotEntry.KEY_PICTURE)));
-        wineLot.setNumberWineStock(cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_NUMWINESTOCK)));
-        wineLot.setSurface(cursor.getFloat(cursor.getColumnIndex(Contract.WineLotEntry.KEY_SURFACE)));
-        int idWineVariety = (cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_WINEVARIETY_ID)));
-        wineLot.setWineVariety(wineVarietyDataS.getWineVarietyById(idWineVariety));
-        wineLot.setOrientationid(cursor.getColumnIndex(Contract.WineLotEntry.KEY_ORIENTATION_ID));
+        if (cursor != null) {
+            wineLot.setId(cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_ID)));
+            wineLot.setName(cursor.getString(cursor.getColumnIndex(Contract.WineLotEntry.KEY_NAME)));
+            wineLot.setPicture(cursor.getString(cursor.getColumnIndex(Contract.WineLotEntry.KEY_PICTURE)));
+            wineLot.setNumberWineStock(cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_NUMWINESTOCK)));
+            wineLot.setSurface(cursor.getFloat(cursor.getColumnIndex(Contract.WineLotEntry.KEY_SURFACE)));
+            int idWineVariety = (cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_WINEVARIETY_ID)));
+            wineLot.setWineVariety(wineVarietyDataS.getWineVarietyById(idWineVariety));
+            wineLot.setOrientationid(cursor.getColumnIndex(Contract.WineLotEntry.KEY_ORIENTATION_ID));
+        }
 
         cursor.close();
         return wineLot;
@@ -127,6 +129,14 @@ public class WineLotDataSource{
 
         return this.db.update(Contract.WineLotEntry.TABLE_WINELOT, values, Contract.WineLotEntry.KEY_ID + " = ?",
                 new String[] { String.valueOf(wineLot.getId()) });
+    }
+
+    public void deleteWineLot(long id){
+
+        String selection = Contract.WineLotEntry.KEY_ID + " LIKE ? ";
+        String[] args = {String.valueOf(id)};
+
+        db.delete(Contract.WineLotEntry.TABLE_WINELOT, selection, args);
     }
 
    /* public void deleteWineLot(long id){

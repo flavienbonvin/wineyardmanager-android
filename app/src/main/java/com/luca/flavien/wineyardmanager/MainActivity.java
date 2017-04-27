@@ -1,10 +1,14 @@
 package com.luca.flavien.wineyardmanager;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -24,7 +28,6 @@ import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragEmployee;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragLocationList;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragOrientation;
-import com.luca.flavien.wineyardmanager.fragment_classes.FragSettings;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragVineVariety;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragWork;
 
@@ -34,13 +37,16 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     private FragmentManager fm;
     private FragmentTransaction ft;
+
 
     public static JobDataSource jobDataSource;
     public static WineLotDataSource wineLotDataSource;
     public static WineVarietyDataSource wineVarietyDataSource;
     public static WorkerDataSource workerDataSource;
+
 
     public static List<Orientation> orientationList;
 
@@ -52,7 +58,6 @@ public class MainActivity extends AppCompatActivity
         OK Works only have one line
         - Adapt values of spinners when modifying a object (location, work)
         - Update display instead of going back to the list (location, work)
-        - Check the verification of the phone number, swiss number dosn't work
      */
 
     /*
@@ -65,22 +70,24 @@ public class MainActivity extends AppCompatActivity
             OK Work (Add edit button)
             OK Vine lot
             OK Vine variety
-        - Delete for
-            - Worker
-            - Work
-            - Vine lot
-            - Vine variety
+        OK Delete for
+            OK Worker
+            OK Work
+            OK Vine lot
+            OK Vine variety
         OK Remove 3 dots
      */
 
     /*
         Optional:
-        OK Make the first letter of a textedit in capital
+        OK Make the first letter of a textEdit in capital
         - Photo of the worker
         - Photo of the vineyard
         OK Remove orientation table
-        - Create calendar envent for the jobs
-        - Check input in EditTexts
+        OK Create calendar event for the jobs
+        - Effect for buttons in work detail
+        - Create warning when delete object
+        - Create space for phone number in order to make them look like 000 000 00 00
      */
 
 
@@ -91,14 +98,23 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAppBar);
         setSupportActionBar(toolbar);
 
-        Context context = getApplicationContext();
 
+        //Create the adapter for the database
+        Context context = getApplicationContext();
         jobDataSource = new JobDataSource(context);
         wineLotDataSource = new WineLotDataSource(context);
         wineVarietyDataSource = new WineVarietyDataSource(context);
         workerDataSource = new WorkerDataSource(context);
 
+
+        //Check if the app has all the permissions it needs;
+        checkPermissions();
+
+
+        //Create all the orientation possible, this was had coded because there isn't
+        //a need to modify them
         initiateOrientations();
+
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
@@ -113,42 +129,39 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void checkPermissions(){
+        int PERMISSION_ALL = 1;
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        //List of all the permissions needed by the app
+        String[] permissions = new String[]{
+                Manifest.permission.WRITE_CALENDAR,
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.CALL_PHONE};
+
+
+        if(!hasPermissions(this, permissions)){
+            ActivityCompat.requestPermissions(this, permissions, PERMISSION_ALL);
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+
+    private static boolean hasPermissions(Context context, String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -193,6 +206,25 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        return false;
+    }
+
+
     private void initiateOrientations(){
         Orientation s = new Orientation(0, getString(R.string.south));
         Orientation se = new Orientation(1, getString(R.string.south) + " " + getString(R.string.east));
@@ -217,7 +249,5 @@ public class MainActivity extends AppCompatActivity
 
         orientationList.add(e);
         orientationList.add(w);
-
-
     }
 }
