@@ -104,9 +104,14 @@
             android:layout_weight="4"
             android:ems="10"
             android:inputType="date"
-            android:hint="@string/Deadline"
+            android:hint="@string/select_the_deadline"
             tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="50dp" />
+            tools:layout_editor_absoluteX="50dp"
+            android:datePickerMode="spinner"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
     </LinearLayout>
 
     <LinearLayout

@@ -74,6 +74,7 @@ public class ActivityWorkDetails extends AppCompatActivity {
                 Intent intentEdit = new Intent(getApplicationContext(), ActivityWorkAdd.class);
                 intentEdit.putExtra("job", passJob);
                 startActivity(intentEdit);
+                finish();
             }
         });
         floatingActionButtonMsg.setOnClickListener(new View.OnClickListener() {

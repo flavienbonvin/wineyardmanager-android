@@ -56,4 +56,5 @@
     <string name="add_new_vinelot">Add new vine lot</string>
     <string name="add_new_job">Add new work</string>
     <string name="job_to_do">Job to do</string>
+    <string name="select_the_deadline">Select the deadline...</string>
 </resources>

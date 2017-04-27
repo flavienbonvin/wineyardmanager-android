@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Flavien on 24.04.2017.
  */
 
-class WorkAdapter extends ArrayAdapter<Job>{
+public class WorkAdapter extends ArrayAdapter<Job>{
     public WorkAdapter(Context context, List<Job> jobs) {
         super(context, 0, jobs);
     }
