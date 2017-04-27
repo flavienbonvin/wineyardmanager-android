@@ -1,5 +1,6 @@
 package com.luca.flavien.wineyardmanager.activity_classes;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,7 +28,7 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        Worker passWorker = (Worker) intent.getSerializableExtra("Worker");
+        final Worker passWorker = (Worker) intent.getSerializableExtra("Worker");
 
 
         TextView textViewPhone = (TextView) findViewById(R.id.phone);
@@ -41,8 +42,10 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), ActivityEmployeeAdd.class);
+                intent.putExtra("Worker", passWorker);
+                startActivity(intent);
+                finish();
             }
         });
         if (getSupportActionBar() != null) {
@@ -50,6 +53,9 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         }
 
     }
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == android.R.id.home){

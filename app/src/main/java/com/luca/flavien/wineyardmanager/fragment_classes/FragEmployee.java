@@ -38,7 +38,7 @@ public class FragEmployee extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),ActivityEmployeeAdd.class);
-                getActivity().startActivity(intent);
+                startActivity(intent);
             }
         });
 

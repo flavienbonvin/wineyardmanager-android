@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
@@ -17,9 +18,11 @@ import java.util.List;
  */
 
 public class WineVarietyDataSource {
-    private final SQLiteDatabase db;
+    private SQLiteDatabase db;
+    private Context context;
 
     public WineVarietyDataSource(Context context){
+        this.context = context;
         SQLhelper sqliteHelper = SQLhelper.getInstance(context);
         db = sqliteHelper.getWritableDatabase();
     }
@@ -86,8 +89,14 @@ public class WineVarietyDataSource {
         ContentValues values = new ContentValues();
         values.put(Contract.WineVarietyEntry.KEY_NAME, wineVariety.getName());
 
-        return this.db.update(Contract.WineVarietyEntry.TABLE_WINEVARIETY, values, Contract.WineVarietyEntry.KEY_ID + " = ?",
-                new String[] { String.valueOf(wineVariety.getId()) });
+        String constrain = Contract.WineVarietyEntry.KEY_ID + " = ?";
+        String [] arg = new String[] { String.valueOf(wineVariety.getId())};
+
+
+        return this.db.update(Contract.WineVarietyEntry.TABLE_WINEVARIETY, values,
+                constrain,
+                arg);
+
     }
 
     /* public void deleteWineVariety(long id){

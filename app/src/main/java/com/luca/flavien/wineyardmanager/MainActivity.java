@@ -24,6 +24,7 @@ import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragEmployee;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragLocationList;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragOrientation;
+import com.luca.flavien.wineyardmanager.fragment_classes.FragSettings;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragVineVariety;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragWork;
 
@@ -49,18 +50,20 @@ public class MainActivity extends AppCompatActivity
         - Rotation brings back to location fragment
         - Deadline should have another keyboard or even a calendar
         - Works only have one line
+        - Adapt values of spinners when modifying a object (location, work)
+        - Update display instead of going back to the list (location, work)
      */
 
     /*
         To add:
-        - Send message to worker in order to notify the job
+        OK Send message to worker in order to notify the job
         - Translate the app
         - Comments
-        - Edit for
-            - Worker
-            - Work (Add edit button)
-            - Vine lot
-            - Vine variety
+        OK Edit for
+            OK Worker
+            OK Work (Add edit button)
+            OK Vine lot
+            OK Vine variety
         - Delete for
             - Worker
             - Work
@@ -71,10 +74,10 @@ public class MainActivity extends AppCompatActivity
 
     /*
         Optional:
-        - Make the first letter of a textedit in capital
+        OK Make the first letter of a textedit in capital
         - Photo of the worker
         - Photo of the vineyard
-        - Remove orientation table
+        OK Remove orientation table
         - Create calendar envent for the jobs
      */
 
@@ -168,10 +171,10 @@ public class MainActivity extends AppCompatActivity
                 ft.replace(R.id.content_layout, new FragEmployee()).commit();
                 break;
             case (R.id.nav_setting):
-                this.setTitle(getString(R.string.settings));
                 Intent intent = new Intent(this, AndroidDatabaseManager.class);
                 startActivity(intent);
-                // /ft.replace(R.id.content_layout, new FragSettings()).commit();
+                this.setTitle(getString(R.string.settings));
+                //ft.replace(R.id.content_layout, new FragSettings()).commit();
                 break;
             case (R.id.nav_vine_variety):
                 this.setTitle(getString(R.string.wine_variety));

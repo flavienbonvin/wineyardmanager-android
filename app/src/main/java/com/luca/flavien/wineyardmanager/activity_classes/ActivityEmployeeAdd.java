@@ -1,8 +1,10 @@
 package com.luca.flavien.wineyardmanager.activity_classes;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -19,11 +21,18 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
     private EditText editTextMail;
     private EditText editTextPhone;
 
+    private Worker worker;
+    private boolean hasIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_add);
+
+        hasIntent = false;
         initEditText();
+        checkIntent();
+
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)
                 findViewById(R.id.fab_confirm_add_employee);
@@ -31,17 +40,52 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkEntries()){
-                    Worker worker = new Worker();
-                    worker.setFirstName(editTextFirstName.getText().toString());
-                    worker.setLastName(editTextLastName.getText().toString());
-                    worker.setMail(editTextMail.getText().toString());
-                    worker.setPhone(editTextPhone.getText().toString());
 
-                    MainActivity.workerDataSource.createWorker(worker);
+                    Worker workerTemp;
+
+                    if (hasIntent){
+                        workerTemp = worker;
+                        setWorkerFileds(workerTemp);
+                        MainActivity.workerDataSource.updateWorker(workerTemp);
+                    }
+                    else{
+                        workerTemp = new Worker();
+                        setWorkerFileds(workerTemp);
+                        MainActivity.workerDataSource.createWorker(workerTemp);
+                    }
                     finish();
                 }
             }
         });
+    }
+
+    private void setWorkerFileds(Worker workerToSet){
+        workerToSet.setFirstName(editTextFirstName.getText().toString());
+        workerToSet.setLastName(editTextLastName.getText().toString());
+        workerToSet.setMail(editTextMail.getText().toString());
+        workerToSet.setPhone(editTextPhone.getText().toString());
+    }
+
+    private  void checkIntent(){
+        Intent intent = getIntent();
+
+        if(intent.hasExtra("Worker")){
+            worker = (Worker)intent.getSerializableExtra("Worker");
+            setTitle(getString(R.string.edit)+ " " + worker.getLastName() + " " + worker.getFirstName());
+
+            hasIntent = true;
+            setEdit();
+        }
+        else {
+            setTitle(getString(R.string.add_new_worker));
+        }
+    }
+
+    private void setEdit(){
+        editTextFirstName.setText(worker.getFirstName());
+        editTextLastName.setText(worker.getLastName());
+        editTextMail.setText(worker.getMail());
+        editTextPhone.setText(worker.getPhone());
     }
 
     private void initEditText(){

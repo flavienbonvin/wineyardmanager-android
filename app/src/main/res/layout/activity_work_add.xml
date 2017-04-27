@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:hint="@string/Action" />
     </LinearLayout>
 
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="date"
             android:hint="@string/Deadline"
             tools:layout_editor_absoluteY="0dp"
             tools:layout_editor_absoluteX="50dp" />

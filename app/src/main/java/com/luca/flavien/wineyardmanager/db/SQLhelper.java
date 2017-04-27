@@ -47,7 +47,6 @@ public class SQLhelper extends SQLiteOpenHelper {
         db.execSQL(Contract.WorkerEntry.CREATE_TABLE_WORKER);
         db.execSQL(Contract.JobEntry.CREATE_TABLE_JOB);
         db.execSQL(Contract.WineVarietyEntry.CREATE_TABLE_WINEVARIETY);
-        db.execSQL(Contract.OrientationEntry.CREATE_TABLE_ORIENTATION);
         db.execSQL(Contract.WineLotEntry.CREATE_TABLE_WINELOT);
     }
 
@@ -58,7 +57,6 @@ public class SQLhelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Contract.JobEntry.TABLE_JOB);
         db.execSQL("DROP TABLE IF EXISTS " + Contract.WineLotEntry.TABLE_WINELOT);
         db.execSQL("DROP TABLE IF EXISTS " + Contract.WineVarietyEntry.TABLE_WINEVARIETY);
-        db.execSQL("DROP TABLE IF EXISTS " + Contract.OrientationEntry.TABLE_ORIENTATION);
 
         //create new tables
         onCreate(db);

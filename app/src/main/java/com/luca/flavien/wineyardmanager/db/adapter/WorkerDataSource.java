@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
+import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.db.SQLhelper;
@@ -17,9 +19,14 @@ import java.util.List;
  */
 
 public class WorkerDataSource {
-    private final SQLiteDatabase db;
+
+    private SQLiteDatabase db;
+
+    private  Context context;
 
     public WorkerDataSource(Context context){
+        this.context = context;
+
         SQLhelper sqliteHelper = SQLhelper.getInstance(context);
         db = sqliteHelper.getWritableDatabase();
     }
@@ -92,17 +99,31 @@ public class WorkerDataSource {
      *  Update a Worker
      */
     public int updateWorker(Worker worker){
+        int updated;
+
+        SQLhelper sqliteHelper = SQLhelper.getInstance(context);
+        db = sqliteHelper.getReadableDatabase();
+
         ContentValues values = new ContentValues();
         values.put(Contract.WorkerEntry.KEY_FIRSTNAME, worker.getFirstName());
         values.put(Contract.WorkerEntry.KEY_LASTNAME, worker.getLastName());
         values.put(Contract.WorkerEntry.KEY_PHONE, worker.getPhone());
         values.put(Contract.WorkerEntry.KEY_MAIL, worker.getMail());
 
-        return this.db.update(Contract.WorkerEntry.TABLE_WORKER, values, Contract.WorkerEntry.KEY_ID + " = ?",
-                new String[] { String.valueOf(worker.getId()) });
+
+        String[] arg = {String.valueOf(worker.getId())};
+        String idRow = Contract.WorkerEntry.KEY_ID + " LIKE ?";
+
+        updated = db.update(
+                Contract.WorkerEntry.TABLE_WORKER,
+                values,
+                idRow,
+                arg);
+
+        return updated;
     }
 
-    /* public void deleteWorker(long id){
+    /* public void deleteWorkerContract.WorkerEntry.KEY_ID + " (long id){
         RecordDataSource pra = new RecordDataSource(context);
         //get all records of the user
         List<Record> records = pra.getAllRecordsByPerson(id);

@@ -43,7 +43,11 @@
             android:name=".activity_classes.ActivityVarietyAdd"
             android:parentActivityName=".MainActivity"/>
 
-        <activity android:name=".activity_classes.AndroidDatabaseManager"/>
+        <activity
+            android:name=".activity_classes.AndroidDatabaseManager"/>
     </application>
+
+    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
 </manifest>

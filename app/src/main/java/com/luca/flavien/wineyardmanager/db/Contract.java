@@ -111,22 +111,4 @@ public class Contract {
                 + WineVarietyEntry.KEY_NAME     + " TEXT "
                 + ");";
     }
-
-    public static abstract class OrientationEntry implements BaseColumns{
-        //Table name
-        public static final String TABLE_ORIENTATION = "orientation";
-
-        //Record Column names
-        public static final String KEY_ID = "id";
-        public static final String KEY_NAME= "name";
-
-
-        //Table record create statement
-        public static final String CREATE_TABLE_ORIENTATION =
-                "CREATE TABLE " + TABLE_ORIENTATION
-                + "("
-                + WineVarietyEntry.KEY_ID       + " INTEGER PRIMARY KEY,"
-                + WineVarietyEntry.KEY_NAME     + " TEXT "
-                + " );";
-    }
 }

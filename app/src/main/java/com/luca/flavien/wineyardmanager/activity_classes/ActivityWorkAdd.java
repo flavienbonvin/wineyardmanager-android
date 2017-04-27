@@ -1,8 +1,10 @@
 package com.luca.flavien.wineyardmanager.activity_classes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.Job;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
+import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
@@ -26,35 +29,79 @@ public class ActivityWorkAdd extends AppCompatActivity {
     private EditText editTextAction;
     private EditText editTextDeadline;
 
+    private Job job;
+    private boolean hasIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_add);
         setTitle("Add a work");
 
+        hasIntent = false;
+
         initObjects();
         updateSpinner();
+
+        checkIntent();
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)findViewById(R.id.fab_confirm_location);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(checkEntries()){
-                    Worker worker = (Worker)spinnerWorker.getSelectedItem();
-                    WineLot wineLot = (WineLot)spinnerWineLot.getSelectedItem();
 
-                    Job job = new Job();
-                    job.setWinelot(wineLot);
-                    job.setDeadline(editTextDeadline.getText().toString());
-                    job.setDescription(editTextAction.getText().toString());
-                    job.setWorker(worker);
 
-                    MainActivity.jobDataSource.createJob(job);
+                    if (hasIntent){
+                        setJobField();
+                        MainActivity.jobDataSource.updateJob(job);
+                    }
+                    else {
+                        job = new Job();
+                        setJobField();
+                        MainActivity.jobDataSource.createJob(job);
+                    }
                     finish();
                 }
             }
         });
     }
+
+    private void setJobField(){
+        Worker worker = (Worker)spinnerWorker.getSelectedItem();
+        WineLot wineLot = (WineLot)spinnerWineLot.getSelectedItem();
+
+        job.setWinelot(wineLot);
+        job.setDeadline(editTextDeadline.getText().toString());
+        job.setDescription(editTextAction.getText().toString());
+        job.setWorker(worker);
+    }
+
+    private  void checkIntent(){
+        Intent intent = getIntent();
+
+        if(intent.hasExtra("job")){
+            job = (Job) intent.getSerializableExtra("job");
+
+            setTitle(getString(R.string.modify));
+            hasIntent = true;
+
+            setEdit();
+        }
+        else {
+            setTitle(getString(R.string.add_new_job));
+        }
+    }
+
+    private void setEdit(){
+        editTextAction.setText(job.getDescription());
+        editTextDeadline.setText(job.getDeadline());
+
+        spinnerWineLot.setSelection(job.getWinelot().getId());
+        spinnerWorker.setSelection(job.getWorker().getId());
+    }
+
+
 
     @Override
     protected void onResume() {

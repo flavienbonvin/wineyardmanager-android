@@ -29,7 +29,7 @@ public class FragVineVariety extends Fragment{
     private ListView listView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_vine_variety, container, false);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.fab_variety_list);
@@ -48,9 +48,12 @@ public class FragVineVariety extends Fragment{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "There is no details", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), ActivityVarietyAdd.class);
+                intent.putExtra("variety", (WineVariety)parent.getItemAtPosition(position));
+                startActivity(intent);
             }
         });
+
         return view;
     }
 

@@ -46,6 +46,14 @@
     <string name="problem_add_work_action">Problem with the action field</string>
     <string name="problem_add_work_deadline">Problem with the deadline field</string>
     <string name="icon">Icon</string>
-    <string name="manage">Manage</string>
+    <string name="manage">Managinte</string>
     <string name="vineyard_manager">Vineyard Manager</string>
+    <string name="modify">Modify</string>
+    <string name="add_new_variety">Add new vine variety</string>
+    <string name="add_new_worker">Add new employee</string>
+    <string name="edit_worker">Edit employee</string>
+    <string name="edit">Edit</string>
+    <string name="add_new_vinelot">Add new vine lot</string>
+    <string name="add_new_job">Add new work</string>
+    <string name="job_to_do">Job to do</string>
 </resources>

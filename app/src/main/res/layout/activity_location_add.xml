@@ -53,7 +53,7 @@
             android:layout_weight="4"
             android:ems="10"
             android:hint="@string/vineyard_name"
-            android:inputType="textPersonName" />
+            android:inputType="textCapSentences" />
     </LinearLayout>
 
     <LinearLayout
