@@ -114,17 +114,17 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
             return false;
         }
         if (editTextFirstName.getText().toString().trim().isEmpty()){
-            editTextFirstName.setError(getString(R.string.firstname_empty));
+            editTextFirstName.setError(getString(R.string.fistname_empty));
             return false;
         }
         if (!isValidEmail(editTextMail.getText())){
             editTextMail.setError(getString(R.string.email_not_valid));
             return false;
         }
-        /*if (!isValidMobile(editTextPhone.getText())){
+        if (!isValidMobile(editTextPhone.getText())){
             editTextPhone.setError(getString(R.string.phone_not_valid));
             return false;
-        }*/
+        }
         return true;
     }
 
@@ -138,10 +138,18 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
     }
 
     private static boolean isValidEmail(CharSequence mail) {
-        return !mail.toString().trim().isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+        if (mail.toString().trim().isEmpty()) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+        }
     }
 
     private boolean isValidMobile(CharSequence phone) {
-        return !(phone.toString().trim().isEmpty() || android.util.Patterns.PHONE.matcher(phone).matches());
+        if(phone.toString().trim().isEmpty()){
+            return false;
+        }else{
+            return android.util.Patterns.PHONE.matcher(phone).matches();
+        }
     }
 }

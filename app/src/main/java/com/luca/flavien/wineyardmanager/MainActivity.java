@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.luca.flavien.wineyardmanager.activity_classes.AndroidDatabaseManager;
 import com.luca.flavien.wineyardmanager.db.adapter.JobDataSource;
@@ -28,11 +30,13 @@ import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragEmployee;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragLocationList;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragOrientation;
+import com.luca.flavien.wineyardmanager.fragment_classes.FragSettings;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragVineVariety;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragWork;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity
 
 
     public static List<Orientation> orientationList;
+    public static List<String> languageList;
 
 
     /*
@@ -114,6 +119,9 @@ public class MainActivity extends AppCompatActivity
         //Create all the orientation possible, this was had coded because there isn't
         //a need to modify them
         initiateOrientations();
+        
+        //Create all the language possible
+        initiateLanguage();
 
 
         fm = getSupportFragmentManager();
@@ -186,10 +194,11 @@ public class MainActivity extends AppCompatActivity
                 ft.replace(R.id.content_layout, new FragEmployee()).commit();
                 break;
             case (R.id.nav_setting):
-                Intent intent = new Intent(this, AndroidDatabaseManager.class);
-                startActivity(intent);
                 this.setTitle(getString(R.string.settings));
-                //ft.replace(R.id.content_layout, new FragSettings()).commit();
+                /*Intent intent = new Intent(this, AndroidDatabaseManager.class);
+                startActivity(intent);*/
+                this.setTitle(getString(R.string.settings));
+                ft.replace(R.id.content_layout, new FragSettings()).commit();
                 break;
             case (R.id.nav_vine_variety):
                 this.setTitle(getString(R.string.wine_variety));
@@ -250,4 +259,18 @@ public class MainActivity extends AppCompatActivity
         orientationList.add(e);
         orientationList.add(w);
     }
+    private void initiateLanguage(){
+        String german = getString(R.string.language_german);
+        String french = getString(R.string.language_french);
+        String english = getString(R.string.language_english);
+
+
+        languageList = new ArrayList<>();
+
+        languageList.add(german);
+        languageList.add(french);
+        languageList.add(english);
+
+    }
+
 }

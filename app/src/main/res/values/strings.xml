@@ -47,11 +47,21 @@
     <string name="select_the_deadline">Select the deadline</string>
     <string name="email_not_valid">Email is not valid</string>
     <string name="lastname_empty">Please enter the lastname</string>
-    <string name="firstname_empty">Please enter the firstname</string>
     <string name="location_name_empty">Please enter the location name</string>
     <string name="stocks_empty">Please enter a number of stocks</string>
     <string name="surface_empty">Please enter a surface</string>
     <string name="vine_variety_empty">Please enter a vine variety</string>
     <string name="action_empty">Please enter an action</string>
     <string name="deadline_empty">Please enter a deadline</string>
+    <string name="edit_worker">Edit worker</string>
+    <string name="fistname_empty">Please enter the firstname</string>
+    <string name="phone_not_valid">Please enter phone number</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_new_vinelot">Add new vine lot</string>
+    <string name="language_german">Deutsch</string>
+    <string name="language_french">Français</string>
+    <string name="language_english">English</string>
+    <string name="willkommen">Willkommen</string>
+    <string name="bienvenue">Bienvenue</string>
+    <string name="welcome">Welcome</string>
 </resources>
