@@ -1,16 +1,22 @@
 package com.luca.flavien.wineyardmanager.activity_classes;
 
 import android.content.Intent;
+import android.location.Location;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+
+import org.w3c.dom.Text;
 
 public class ActivityEmployeeAdd extends AppCompatActivity {
 
@@ -32,7 +38,6 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
         hasIntent = false;
         initEditText();
         checkIntent();
-
 
         final FloatingActionButton floatingActionButton = (FloatingActionButton)
                 findViewById(R.id.fab_confirm_add_employee);

@@ -4,6 +4,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_menu_people"
+            android:title="@string/map"/>
+        <item
             android:id="@+id/nav_location"
             android:icon="@drawable/ic_menu_place"
             android:title="@string/location"

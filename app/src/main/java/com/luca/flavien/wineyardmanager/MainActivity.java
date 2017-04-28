@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,9 +21,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.activity_classes.AndroidDatabaseManager;
+import com.luca.flavien.wineyardmanager.activity_classes.ActivityMap;
 import com.luca.flavien.wineyardmanager.db.adapter.JobDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WineLotDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WineVarietyDataSource;
@@ -36,7 +39,6 @@ import com.luca.flavien.wineyardmanager.fragment_classes.FragWork;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -51,9 +53,12 @@ public class MainActivity extends AppCompatActivity
     public static WineVarietyDataSource wineVarietyDataSource;
     public static WorkerDataSource workerDataSource;
 
+    private LocationManager locationManager;
+    private static Location location;
+
+    public static  List<String> languageList;
 
     public static List<Orientation> orientationList;
-    public static List<String> languageList;
 
 
     /*
@@ -119,9 +124,14 @@ public class MainActivity extends AppCompatActivity
         //Create all the orientation possible, this was had coded because there isn't
         //a need to modify them
         initiateOrientations();
-        
+
+
         //Create all the language possible
         initiateLanguage();
+
+
+        //Get the location of the user
+        getUserLocation();
 
 
         fm = getSupportFragmentManager();
@@ -150,7 +160,9 @@ public class MainActivity extends AppCompatActivity
         String[] permissions = new String[]{
                 Manifest.permission.WRITE_CALENDAR,
                 Manifest.permission.SEND_SMS,
-                Manifest.permission.CALL_PHONE};
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION};
 
 
         if(!hasPermissions(this, permissions)){
@@ -181,6 +193,9 @@ public class MainActivity extends AppCompatActivity
         ft = fm.beginTransaction();
 
         switch (id){
+            case (R.id.nav_map):
+                Intent intentMap = new Intent(this, ActivityMap.class);
+                startActivity(intentMap);
             case (R.id.nav_location):
                 this.setTitle(R.string.location);
                 ft.replace(R.id.content_layout, new FragLocationList()).commit();
@@ -194,9 +209,6 @@ public class MainActivity extends AppCompatActivity
                 ft.replace(R.id.content_layout, new FragEmployee()).commit();
                 break;
             case (R.id.nav_setting):
-                this.setTitle(getString(R.string.settings));
-                /*Intent intent = new Intent(this, AndroidDatabaseManager.class);
-                startActivity(intent);*/
                 this.setTitle(getString(R.string.settings));
                 ft.replace(R.id.content_layout, new FragSettings()).commit();
                 break;
@@ -258,6 +270,42 @@ public class MainActivity extends AppCompatActivity
 
         orientationList.add(e);
         orientationList.add(w);
+    }
+
+    public void getUserLocation(){
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2* 60 * 1000, 250, locationListenerNetwork);
+    }
+
+
+    private final LocationListener locationListenerNetwork = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            MainActivity.location = location;
+        }
+
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+    };
+
+    public static Location getLocation() {
+        return location;
     }
     private void initiateLanguage(){
         String german = getString(R.string.language_german);

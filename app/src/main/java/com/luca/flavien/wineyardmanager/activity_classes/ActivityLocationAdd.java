@@ -1,6 +1,7 @@
 package com.luca.flavien.wineyardmanager.activity_classes;
 
 import android.content.Intent;
+import android.location.Location;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,8 +9,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
@@ -28,6 +32,9 @@ public class ActivityLocationAdd extends AppCompatActivity {
     private Spinner spinnerOrientation;
     private Spinner spinnerVariety;
 
+    private TextView textLocation;
+    private Location location;
+
     private WineLot wineLot;
     private boolean hasIntent;
 
@@ -43,6 +50,8 @@ public class ActivityLocationAdd extends AppCompatActivity {
 
         checkIntent();
 
+
+        location = MainActivity.getLocation();
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)findViewById(R.id.fab_confirm_location);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -76,13 +85,18 @@ public class ActivityLocationAdd extends AppCompatActivity {
         Orientation orientation = (Orientation) spinnerOrientation.getSelectedItem();
         WineVariety wineVariety = (WineVariety) spinnerVariety.getSelectedItem();
 
-        Log.d("CREATE VINEYARD: ", wineVariety.getId() + " name: " + wineVariety.getName());
+        Log.d("CREATE VINEYARD: ", wineVariety.getId() +
+                " name: " + wineVariety.getName() +
+                " longitude: " + location.getLatitude() +
+                " latitude: " + location.getLatitude());
 
         wineLot.setWineVariety(wineVariety);
         wineLot.setOrientationid(orientation.getId());
         wineLot.setName(editTextName.getText().toString());
         wineLot.setNumberWineStock(Integer.parseInt(editTextNumber.getText().toString()));
         wineLot.setSurface(Float.parseFloat(editTextSurface.getText().toString()));
+        wineLot.setLongitude(location.getLongitude());
+        wineLot.setLatitude(location.getLatitude());
     }
 
     private  void checkIntent(){
@@ -101,6 +115,11 @@ public class ActivityLocationAdd extends AppCompatActivity {
         else {
             setTitle(getString(R.string.add_new_vine_lot));
         }
+    }
+
+    public void locationManagement(View view){
+        if (location != null)
+            textLocation.setText("Location: " + "\n" + "Longitude: " + location.getLongitude() + "\n" + "Latitude: " + location.getLatitude());
     }
 
     private void setEdit(){
@@ -136,6 +155,8 @@ public class ActivityLocationAdd extends AppCompatActivity {
         editTextSurface = (EditText)findViewById(R.id.edit_size);
 
         floatingActionButtonDelete = (FloatingActionButton)findViewById(R.id.fab_delete_location);
+
+        textLocation = (TextView)findViewById(R.id.tw_user_location);
     }
 
     private void updateSpinner(){

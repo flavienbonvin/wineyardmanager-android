@@ -2,6 +2,8 @@ package com.luca.flavien.wineyardmanager.db;
 
 import android.provider.BaseColumns;
 
+import com.luca.flavien.wineyardmanager.db.object.WineLot;
+
 /**
  * Created by Flavien on 24.04.2017.
  */
@@ -72,6 +74,8 @@ public class Contract {
         public static final String KEY_PICTURE= "picture";
         public static final String KEY_WINEVARIETY_ID = "winevariety_id";
         public static final String KEY_ORIENTATION_ID = "orientation_id";
+        public static final String KEY_LONGITUDE = "longitude";
+        public static final String KEY_LATITUDE = "latitude";
 
 
 
@@ -86,6 +90,8 @@ public class Contract {
                 + WineLotEntry.KEY_PICTURE          + " TEXT, "
                 + WineLotEntry.KEY_WINEVARIETY_ID   + " INTEGER, "
                 + WineLotEntry.KEY_ORIENTATION_ID   + " INTEGER, "
+                + WineLotEntry.KEY_LONGITUDE        + " DOUBLE, "
+                + WineLotEntry.KEY_LATITUDE         + " DOUBLE, "
                 + "FOREIGN KEY (" + KEY_WINEVARIETY_ID + ") REFERENCES " + WineVarietyEntry.TABLE_WINEVARIETY + " (" + KEY_ID + ") ON DELETE CASCADE "
                 + ");";
     }

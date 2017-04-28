@@ -42,6 +42,8 @@ public class WineLotDataSource{
         values.put(Contract.WineLotEntry.KEY_PICTURE, wineLot.getPicture());
         values.put(Contract.WineLotEntry.KEY_ORIENTATION_ID, wineLot.getOrientationid());
         values.put(Contract.WineLotEntry.KEY_NUMWINESTOCK, wineLot.getNumberWineStock());
+        values.put(Contract.WineLotEntry.KEY_LONGITUDE, wineLot.getLongitude());
+        values.put(Contract.WineLotEntry.KEY_LATITUDE, wineLot.getLatitude());
 
         Log.i(
                 "Values data",
@@ -80,6 +82,8 @@ public class WineLotDataSource{
             int idWineVariety = (cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_WINEVARIETY_ID)));
             wineLot.setWineVariety(wineVarietyDataS.getWineVarietyById(idWineVariety));
             wineLot.setOrientationid(cursor.getColumnIndex(Contract.WineLotEntry.KEY_ORIENTATION_ID));
+            wineLot.setLongitude(cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_LONGITUDE)));
+            wineLot.setLatitude(cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_LATITUDE)));
         }
 
         cursor.close();
@@ -106,6 +110,8 @@ public class WineLotDataSource{
                 int idWineVariety = (cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_WINEVARIETY_ID)));
                 wineLot.setWineVariety(wineVarietyDataS.getWineVarietyById(idWineVariety));
                 wineLot.setOrientationid(cursor.getInt(cursor.getColumnIndex(Contract.WineLotEntry.KEY_ORIENTATION_ID)));
+                wineLot.setLongitude(cursor.getDouble(cursor.getColumnIndex(Contract.WineLotEntry.KEY_LONGITUDE)));
+                wineLot.setLatitude(cursor.getDouble(cursor.getColumnIndex(Contract.WineLotEntry.KEY_LATITUDE)));
 
                 WineLots.add(wineLot);
             } while(cursor.moveToNext());
@@ -126,6 +132,8 @@ public class WineLotDataSource{
         values.put(Contract.WineLotEntry.KEY_SURFACE, wineLot.getSurface());
         values.put(Contract.WineLotEntry.KEY_WINEVARIETY_ID, wineLot.getWineVariety().getId());
         values.put(Contract.WineLotEntry.KEY_ORIENTATION_ID, wineLot.getOrientationid());
+        values.put(Contract.WineLotEntry.KEY_LONGITUDE, wineLot.getLongitude());
+        values.put(Contract.WineLotEntry.KEY_LATITUDE, wineLot.getLatitude());
 
         return this.db.update(Contract.WineLotEntry.TABLE_WINELOT, values, Contract.WineLotEntry.KEY_ID + " = ?",
                 new String[] { String.valueOf(wineLot.getId()) });
