@@ -56,6 +56,10 @@ public class FragSettings extends Fragment {
                         Toast.makeText(getContext(), R.string.welcome,Toast.LENGTH_SHORT).show();
                         langueEnglish(v);
                         break;
+                    case "Italiano":
+                        Toast.makeText(getContext(), R.string.welcome,Toast.LENGTH_SHORT).show();
+                        langueEnglish(v);
+                        break;
                 }
                 }
 
@@ -102,6 +106,19 @@ public class FragSettings extends Fragment {
     public void langueEnglish(View v)
     {
         String languageToLoad  = "en";
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getResources().updateConfiguration(config,v.getResources().getDisplayMetrics());
+
+        Intent intent = new Intent(getActivity(),MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+    public void langueItalian(View v)
+    {
+        String languageToLoad  = "it";
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();

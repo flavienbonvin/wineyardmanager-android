@@ -64,4 +64,9 @@
     <string name="language_german">Deutsch</string>
     <string name="welcome">Welcome</string>
     <string name="willkommen">Willkommen</string>
+    <string name="firstname_empty">Bitte geben Sie die Vorname ein</string>
+    <string name="get_user_location">Benutzerstandort erhalten</string>
+    <string name="map">Karte</string>
+    <string name="title_activity_maps">Karte</string>
+    <string name="language_italian">Italiano</string>
 </resources>

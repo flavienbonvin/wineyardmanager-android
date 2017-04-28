@@ -271,7 +271,21 @@ public class MainActivity extends AppCompatActivity
         orientationList.add(e);
         orientationList.add(w);
     }
+    private void initiateLanguage(){
+        String german = getString(R.string.language_german);
+        String french = getString(R.string.language_french);
+        String english = getString(R.string.language_english);
+        String italian = getString(R.string.language_italian);
 
+
+        languageList = new ArrayList<>();
+
+        languageList.add(german);
+        languageList.add(french);
+        languageList.add(english);
+        languageList.add(italian);
+
+    }
     public void getUserLocation(){
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
@@ -307,18 +321,6 @@ public class MainActivity extends AppCompatActivity
     public static Location getLocation() {
         return location;
     }
-    private void initiateLanguage(){
-        String german = getString(R.string.language_german);
-        String french = getString(R.string.language_french);
-        String english = getString(R.string.language_english);
 
-
-        languageList = new ArrayList<>();
-
-        languageList.add(german);
-        languageList.add(french);
-        languageList.add(english);
-
-    }
 
 }
