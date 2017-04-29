@@ -69,4 +69,14 @@
     <string name="map">Carte</string>
     <string name="title_activity_maps">Carte</string>
     <string name="language_italian">Italiano</string>
+    <string name="benvenuto">Benvenuto</string>
+    <string name="in_order_to_get_the_localisation_click_the_button_above">Pour utiliser la localisation, cliquez sur le bouton au dessus</string>
+    <string name="title_activity_map">Carte</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="no_details">Aucun détails</string>
+    <string name="no_email_client">Aucun client mail installé</string>
+    <string name="user_location">Position de l\'utilisateur</string>
+    <string name="user_position_unknown">Position de l\'utilisateur inconnue</string>
+    <string name="you_have_no_winelot">Aucune parcelle enregistrée</string>
 </resources>

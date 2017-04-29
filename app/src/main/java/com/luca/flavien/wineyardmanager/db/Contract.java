@@ -2,8 +2,6 @@ package com.luca.flavien.wineyardmanager.db;
 
 import android.provider.BaseColumns;
 
-import com.luca.flavien.wineyardmanager.db.object.WineLot;
-
 /**
  * Created by Flavien on 24.04.2017.
  */

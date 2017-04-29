@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -21,9 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.luca.flavien.wineyardmanager.activity_classes.AndroidDatabaseManager;
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityMap;
 import com.luca.flavien.wineyardmanager.db.adapter.JobDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WineLotDataSource;
@@ -40,6 +37,8 @@ import com.luca.flavien.wineyardmanager.fragment_classes.FragWork;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.os.Build.VERSION_CODES.M;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -53,52 +52,15 @@ public class MainActivity extends AppCompatActivity
     public static WineVarietyDataSource wineVarietyDataSource;
     public static WorkerDataSource workerDataSource;
 
+
     private LocationManager locationManager;
     private static Location location;
 
-    public static  List<String> languageList;
+
+    public static List<String> languageList;
+
 
     public static List<Orientation> orientationList;
-
-
-    /*
-        Problems:
-        OK Rotation brings back to location fragment
-        OK Deadline should have another keyboard or even a calendar
-        OK Works only have one line
-        - Adapt values of spinners when modifying a object (location, work)
-        - Update display instead of going back to the list (location, work)
-     */
-
-    /*
-        To add:
-        OK Send message to worker in order to notify the job
-        - Translate the app
-        - Comments
-        OK Edit for
-            OK Worker
-            OK Work (Add edit button)
-            OK Vine lot
-            OK Vine variety
-        OK Delete for
-            OK Worker
-            OK Work
-            OK Vine lot
-            OK Vine variety
-        OK Remove 3 dots
-     */
-
-    /*
-        Optional:
-        OK Make the first letter of a textEdit in capital
-        - Photo of the worker
-        - Photo of the vineyard
-        OK Remove orientation table
-        OK Create calendar event for the jobs
-        - Effect for buttons in work detail
-        - Create warning when delete object
-        - Create space for phone number in order to make them look like 000 000 00 00
-     */
 
 
     @Override
@@ -116,6 +78,22 @@ public class MainActivity extends AppCompatActivity
         wineVarietyDataSource = new WineVarietyDataSource(context);
         workerDataSource = new WorkerDataSource(context);
 
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+
+        this.setTitle(R.string.location);
+        ft.replace(R.id.content_layout, new FragLocationList()).commit();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         //Check if the app has all the permissions it needs;
         checkPermissions();
@@ -131,25 +109,12 @@ public class MainActivity extends AppCompatActivity
 
 
         //Get the location of the user
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         getUserLocation();
-
-
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
-
-        this.setTitle(R.string.location);
-        ft.replace(R.id.content_layout, new FragLocationList()).commit();
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void checkPermissions(){
@@ -172,7 +137,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private static boolean hasPermissions(Context context, String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+        if (android.os.Build.VERSION.SDK_INT >= M && context != null && permissions != null) {
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
                     return false;
@@ -194,8 +159,9 @@ public class MainActivity extends AppCompatActivity
 
         switch (id){
             case (R.id.nav_map):
-                Intent intentMap = new Intent(this, ActivityMap.class);
-                startActivity(intentMap);
+                Intent intent = new Intent(this, ActivityMap.class);
+                startActivity(intent);
+                break;
             case (R.id.nav_location):
                 this.setTitle(R.string.location);
                 ft.replace(R.id.content_layout, new FragLocationList()).commit();
@@ -271,6 +237,8 @@ public class MainActivity extends AppCompatActivity
         orientationList.add(e);
         orientationList.add(w);
     }
+
+
     private void initiateLanguage(){
         String german = getString(R.string.language_german);
         String french = getString(R.string.language_french);
@@ -286,13 +254,12 @@ public class MainActivity extends AppCompatActivity
         languageList.add(italian);
 
     }
-    public void getUserLocation(){
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+
+    private void getUserLocation(){
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2* 60 * 1000, 250, locationListenerNetwork);
     }
 
@@ -304,23 +271,18 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public void onStatusChanged(String s, int i, Bundle bundle) {
-
         }
 
         @Override
         public void onProviderEnabled(String s) {
-
         }
 
         @Override
         public void onProviderDisabled(String s) {
-
         }
     };
 
     public static Location getLocation() {
         return location;
     }
-
-
 }

@@ -121,20 +121,4 @@ public class JobDataSource {
 
         db.delete(Contract.JobEntry.TABLE_JOB, selection, args);
     }
-
-   /* public void deleteJob(long id){
-        RecordDataSource pra = new RecordDataSource(context);
-        //get all records of the user
-        List<Record> records = pra.getAllRecordsByPerson(id);
-
-        for(Record record : records){
-            pra.deleteRecord(record.getId());
-        }
-
-        //delete the person
-        this.db.delete(PersonEntry.TABLE_PERSON, PersonEntry.KEY_ID + " = ?",
-                new String[] { String.valueOf(id) });
-
-    }*/
-
 }

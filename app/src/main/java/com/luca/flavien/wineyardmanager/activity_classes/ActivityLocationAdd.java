@@ -2,24 +2,22 @@ package com.luca.flavien.wineyardmanager.activity_classes;
 
 import android.content.Intent;
 import android.location.Location;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
-import com.luca.flavien.wineyardmanager.MainActivity;
-import com.luca.flavien.wineyardmanager.R;
 
 import java.util.List;
 
@@ -119,7 +117,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
 
     public void locationManagement(View view){
         if (location != null)
-            textLocation.setText("Location: " + "\n" + "Longitude: " + location.getLongitude() + "\n" + "Latitude: " + location.getLatitude());
+            textLocation.setText(getString(R.string.location) + ": \n" + getString(R.string.longitude) + ": " + location.getLongitude() + "\n" + getString(R.string.latitude) + ": " + location.getLatitude());
     }
 
     private void setEdit(){

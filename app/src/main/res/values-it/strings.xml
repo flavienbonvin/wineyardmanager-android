@@ -69,4 +69,14 @@
     <string name="workername">nome operario</string>
     <string name="works">Lavoro</string>
     <string name="language_italian">Italiano</string>
+    <string name="benvenuto">Benvenuto</string>
+    <string name="in_order_to_get_the_localisation_click_the_button_above">Per utilizzare il percorso, fare clic sul pulsante sopra</string>
+    <string name="title_activity_map">Carta</string>
+    <string name="latitude">Latitudine</string>
+    <string name="longitude">Longitudine</string>
+    <string name="no_details">Non ci sono dettagli</string>
+    <string name="no_email_client">Non sono installati client di posta elettronica.</string>
+    <string name="user_location">Posizione utente</string>
+    <string name="user_position_unknown">Posizione utente sconosciuto</string>
+    <string name="you_have_no_winelot">Non hai registrato un vigneto</string>
 </resources>

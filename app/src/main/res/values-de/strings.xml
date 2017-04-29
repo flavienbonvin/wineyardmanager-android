@@ -53,7 +53,6 @@
     <string name="vineyard_name">Name des Weinberge</string>
     <string name="west">Westen</string>
     <string name="wine_variety">Traube</string>
-    <string name="winelotname">vinelotname</string>
     <string name="work_details">Arbeits Details</string>
     <string name="workername">Arbeiter Name</string>
     <string name="works">Arbeit</string>
@@ -69,4 +68,15 @@
     <string name="map">Karte</string>
     <string name="title_activity_maps">Karte</string>
     <string name="language_italian">Italiano</string>
+    <string name="benvenuto">Benvenuto</string>
+    <string name="in_order_to_get_the_localisation_click_the_button_above">Um den Standort zu verwenden, klicken Sie auf den Button oben</string>
+    <string name="title_activity_map">Karte</string>
+    <string name="winelotname">vineyardname</string>
+    <string name="latitude">Breite</string>
+    <string name="longitude">Länge</string>
+    <string name="no_details">Keine Details</string>
+    <string name="no_email_client">Es sind keine E-Mail-Clients installiert.</string>
+    <string name="user_location">Benutzerstandort</string>
+    <string name="user_position_unknown">Benutzerposition unbekannt</string>
+    <string name="you_have_no_winelot">Du hast keinen Weinberg registriert</string>
 </resources>

@@ -131,19 +131,4 @@ public class WorkerDataSource {
 
         db.delete(Contract.WorkerEntry.TABLE_WORKER, selection, args);
     }
-
-    /* public void deleteWorkerContract.WorkerEntry.KEY_ID + " (long id){
-        RecordDataSource pra = new RecordDataSource(context);
-        //get all records of the user
-        List<Record> records = pra.getAllRecordsByPerson(id);
-
-        for(Record record : records){
-            pra.deleteRecord(record.getId());
-        }
-
-        //delete the person
-        this.db.delete(PersonEntry.TABLE_PERSON, PersonEntry.KEY_ID + " = ?",
-                new String[] { String.valueOf(id) });
-
-    }*/
 }

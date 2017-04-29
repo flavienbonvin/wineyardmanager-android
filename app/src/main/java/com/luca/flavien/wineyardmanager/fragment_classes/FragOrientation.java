@@ -35,7 +35,7 @@ public class FragOrientation extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "There is no details", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.no_details, Toast.LENGTH_SHORT).show();
             }
         });
 
