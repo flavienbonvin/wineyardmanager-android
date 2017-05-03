@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
 
-        this.setTitle(R.string.location);
-        ft.replace(R.id.content_layout, new FragLocationList()).commit();
+        this.setTitle(R.string.works);
+        ft.replace(R.id.content_layout, new FragWork()).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
