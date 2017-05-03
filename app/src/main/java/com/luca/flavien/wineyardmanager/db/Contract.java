@@ -3,7 +3,13 @@ package com.luca.flavien.wineyardmanager.db;
 import android.provider.BaseColumns;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: db
+ *
+ * Description: Global definition (static), we can access from the all project
+                Inner class for each table that enumerate columns
  */
 
 public class Contract {

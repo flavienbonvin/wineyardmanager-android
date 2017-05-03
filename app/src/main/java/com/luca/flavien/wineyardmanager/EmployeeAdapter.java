@@ -19,7 +19,7 @@ import java.util.List;
  * Project : WineYardManager
  * Package: ${PACKAGE_NAME}
  *
- * Description:
+ * Description: We create this class for manage the list view in the Fragment Employee, it is use for have a icon in it
  */
 
 public class EmployeeAdapter extends ArrayAdapter<Worker> {

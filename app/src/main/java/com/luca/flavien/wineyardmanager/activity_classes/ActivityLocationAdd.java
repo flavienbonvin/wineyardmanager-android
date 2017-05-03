@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
@@ -92,6 +93,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
     private void setWineLotField(){
         Orientation orientation = (Orientation) spinnerOrientation.getSelectedItem();
         WineVariety wineVariety = (WineVariety) spinnerVariety.getSelectedItem();
+
 
         Log.d("CREATE VINEYARD: ", wineVariety.getId() +
                 " name: " + wineVariety.getName());
@@ -199,6 +201,13 @@ public class ActivityLocationAdd extends AppCompatActivity {
         ArrayAdapter<WineVariety> adapterVariety = new ArrayAdapter<>
                 (this, R.layout.row_simple, varietyList);
         spinnerVariety.setAdapter(adapterVariety);
+
+        if (spinnerVariety == null ||  spinnerVariety.getSelectedItem() == null){
+            Toast.makeText(getApplicationContext(),
+                    R.string.create_a_vinevariety,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
 

@@ -39,6 +39,15 @@ import java.util.List;
 
 import static android.os.Build.VERSION_CODES.M;
 
+/**
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: Main
+ *
+ * Description: MainActivity
+ */
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,8 +67,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public static List<String> languageList;
-
-
     public static List<Orientation> orientationList;
 
 

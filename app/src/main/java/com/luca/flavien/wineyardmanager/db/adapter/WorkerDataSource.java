@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: adapter
+ *
+ * Description: All functions for the WorkerData table
  */
 
 public class WorkerDataSource {
@@ -122,7 +127,9 @@ public class WorkerDataSource {
 
         return updated;
     }
-
+    /**
+     *  Delete a Worker
+     */
     public void deleteWorker(long id){
 
         String selection = Contract.WorkerEntry.KEY_ID + " LIKE ? ";

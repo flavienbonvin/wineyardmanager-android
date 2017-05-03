@@ -79,4 +79,7 @@
     <string name="user_location">Benutzerstandort</string>
     <string name="user_position_unknown">Benutzerposition unbekannt</string>
     <string name="you_have_no_winelot">Du hast keinen Weinberg registriert</string>
+    <string name="create_a_vinevariety">Erstellen Sie eine Rebsorte vor der Erstellung eines Standorts!</string>
+    <string name="create_a_winelot">Erstellen Sie ein Weingut, bevor Sie einen Standort erstellen!</string>
+    <string name="create_a_worker">Erstellen Sie einen Arbeiter, bevor Sie einen Standort erstellen!</string>
 </resources>

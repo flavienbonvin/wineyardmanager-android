@@ -18,7 +18,7 @@ import java.util.List;
  * Project : WineYardManager
  * Package: Main
  *
- * Description:
+ * Description: We create this class for manage the list view in the Fragment Work, it is use for have 2 lines in a list view
  */
 
 public class WorkAdapter extends ArrayAdapter<Job>{
@@ -29,7 +29,7 @@ public class WorkAdapter extends ArrayAdapter<Job>{
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-//
+
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_double_line,parent, false);
         }
@@ -39,7 +39,6 @@ public class WorkAdapter extends ArrayAdapter<Job>{
             viewHolder = new WorkViewHolder();
             viewHolder.action = (TextView) convertView.findViewById(R.id.top_line_action);
             viewHolder.employee = (TextView) convertView.findViewById(R.id.second_line_employe);
-            //viewHolder.avatar = (ImageView) convertView.findViewById(R.id.avatar);
             convertView.setTag(viewHolder);
         }
 
@@ -49,15 +48,6 @@ public class WorkAdapter extends ArrayAdapter<Job>{
             viewHolder.action.setText(job.getDescription());
         }
         viewHolder.employee.setText(job.getWorker().getLastName()+" "+job.getWorker().getFirstName());
-            /*String pathImg = vin.getImg();
-            if(pathImg== null || pathImg==""){
-                viewHolder.avatar.setImageResource(R.drawable.wine_default);
-            }else{
-                Bitmap bMap = BitmapFactory.decodeFile(vin.getImg());
-                viewHolder.avatar.setImageBitmap(bMap);
-            }*/
-
-
         return convertView;
     }
 
@@ -65,6 +55,5 @@ public class WorkAdapter extends ArrayAdapter<Job>{
     private class WorkViewHolder{
         public TextView action;
         public TextView employee;
-        //public ImageView avatar;
     }
 }

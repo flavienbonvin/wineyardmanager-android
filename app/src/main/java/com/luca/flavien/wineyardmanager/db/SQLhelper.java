@@ -5,7 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: db
+ *
+ * Description: We use this class for long-running operations of creating or updating the DB
+ *              only when when we need it (not during the app start up)
  */
 
 public class SQLhelper extends SQLiteOpenHelper {

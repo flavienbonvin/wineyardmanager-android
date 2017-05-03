@@ -19,7 +19,12 @@ import com.luca.flavien.wineyardmanager.R;
 import java.util.Locale;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: fragment_classes
+ *
+ * Description: Show the languages options
  */
 
 public class FragSettings extends Fragment {
@@ -68,6 +73,7 @@ public class FragSettings extends Fragment {
                 (getActivity(), R.layout.row_simple, MainActivity.languageList);
         spinnerLanguage.setAdapter(adapterLanguage);
     }
+    //Set the language to French
     private void langueFrench(View v)
     {
         String languageToLoad  = "fr";
@@ -82,7 +88,7 @@ public class FragSettings extends Fragment {
         startActivity(intent);
 
     }
-
+    //Set the language to German
     private void langueGerman(View v)
     {
         String languageToLoad  = "de";
@@ -96,7 +102,7 @@ public class FragSettings extends Fragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-
+    //Set the language to English
     private void langueEnglish(View v)
     {
         String languageToLoad  = "en";
@@ -110,6 +116,7 @@ public class FragSettings extends Fragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+    //Set the language to Italian
     private void langueItalian(View v)
     {
         String languageToLoad  = "it";

@@ -79,4 +79,7 @@
     <string name="you_have_no_winelot">You have no wineyard registered</string>
     <string name="no_email_client">There are no email clients installed.</string>
     <string name="no_details">There is no details</string>
+    <string name="create_a_worker">Create a worker before creating a location!</string>
+    <string name="create_a_winelot">Create a wine lot before creating a location!</string>
+    <string name="create_a_vinevariety">Create a vine variety before creating a location!</string>
 </resources>

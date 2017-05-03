@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: adapter
+ *
+ * Description: All functions for the WineVariety table
  */
 
 public class WineVarietyDataSource {
@@ -98,7 +103,9 @@ public class WineVarietyDataSource {
                 arg);
 
     }
-
+    /**
+     *  Delete a WineVariety
+     */
     public void deleteWineVariety(long id){
 
         String selection = Contract.WineVarietyEntry.KEY_ID + " LIKE ? ";

@@ -20,7 +20,12 @@ import com.luca.flavien.wineyardmanager.R;
 import java.util.List;
 
 /**
- * Created by flavien on 26/04/17.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: fragment_classes
+ *
+ * Description: Show the list of VineVariety
  */
 
 public class FragVineVariety extends Fragment{

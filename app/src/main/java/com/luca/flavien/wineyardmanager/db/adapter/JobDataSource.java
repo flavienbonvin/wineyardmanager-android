@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: adapter
+ *
+ * Description: All functions for the Job table
  */
 
 public class JobDataSource {
@@ -44,7 +49,7 @@ public class JobDataSource {
     }
 
     /**
-     * Find one Job by Id
+     * Find one Job by Id, , we did it, if needed
      */
     public Job getJobById(long id){
         String sql = "SELECT * FROM " + Contract.JobEntry.TABLE_JOB +
@@ -112,7 +117,9 @@ public class JobDataSource {
         return this.db.update(Contract.JobEntry.TABLE_JOB, values, Contract.JobEntry.KEY_ID + " = ?",
                 new String[] { String.valueOf(job.getId()) });
     }
-
+    /**
+     *  Delete a Job, we did it, if needed
+     */
     public void deleteWork(long id){
 
         String selection = Contract.JobEntry.KEY_ID + " LIKE ? ";

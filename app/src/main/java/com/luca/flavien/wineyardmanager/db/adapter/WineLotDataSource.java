@@ -15,7 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: adapter
+ *
+ * Description: All functions for the WineLot table
  */
 
 public class WineLotDataSource{
@@ -138,7 +143,9 @@ public class WineLotDataSource{
         return this.db.update(Contract.WineLotEntry.TABLE_WINELOT, values, Contract.WineLotEntry.KEY_ID + " = ?",
                 new String[] { String.valueOf(wineLot.getId()) });
     }
-
+    /**
+     *  Delete a WineLot
+     */
     public void deleteWineLot(long id){
 
         String selection = Contract.WineLotEntry.KEY_ID + " LIKE ? ";

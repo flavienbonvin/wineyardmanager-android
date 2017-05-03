@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.db.object.Job;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
@@ -187,10 +188,24 @@ public class ActivityWorkAdd extends AppCompatActivity {
                 (this, R.layout.row_simple, workerList);
         spinnerWorker.setAdapter(adapterWorker);
 
+        if (spinnerWorker == null ||  spinnerWorker.getSelectedItem() == null){
+            Toast.makeText(getApplicationContext(),
+                    R.string.create_a_worker,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
         List<WineLot> wineLotList = MainActivity.wineLotDataSource.getAllWineLots();
         ArrayAdapter<WineLot> adapterWineLot = new ArrayAdapter<>
                 (this, R.layout.row_simple, wineLotList);
         spinnerWineLot.setAdapter(adapterWineLot);
+
+        if (spinnerWineLot == null ||  spinnerWineLot.getSelectedItem() == null){
+            Toast.makeText(getApplicationContext(),
+                    R.string.create_a_winelot,
+                    Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
 

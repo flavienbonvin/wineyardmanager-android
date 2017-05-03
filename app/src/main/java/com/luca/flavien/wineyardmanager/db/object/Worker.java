@@ -3,7 +3,13 @@ package com.luca.flavien.wineyardmanager.db.object;
 import java.io.Serializable;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: object
+ *
+ * Description: The Worker WineVariety for refelect the DB, we use in the code for recuperate informations
+                We implements Serializable for use it in a intent (parameters)
  */
 
 public class Worker implements Serializable {

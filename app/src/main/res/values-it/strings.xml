@@ -79,4 +79,7 @@
     <string name="user_location">Posizione utente</string>
     <string name="user_position_unknown">Posizione utente sconosciuto</string>
     <string name="you_have_no_winelot">Non hai registrato un vigneto</string>
+    <string name="create_a_vinevariety">Crea una varietà di vite prima di creare una posizione!</string>
+    <string name="create_a_winelot">Crea un vino prima di creare una località!</string>
+    <string name="create_a_worker">Crea un lavoratore prima di creare una posizione!</string>
 </resources>

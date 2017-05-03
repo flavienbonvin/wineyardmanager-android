@@ -79,4 +79,7 @@
     <string name="user_location">Position de l\'utilisateur</string>
     <string name="user_position_unknown">Position de l\'utilisateur inconnue</string>
     <string name="you_have_no_winelot">Aucune parcelle enregistrée</string>
+    <string name="create_a_vinevariety">Créez un cépage avant de créer un emplacement!</string>
+    <string name="create_a_winelot">Créez une parcelle avant de créer un emplacement!</string>
+    <string name="create_a_worker">Créez un employé avant de créer un emplacement</string>
 </resources>
