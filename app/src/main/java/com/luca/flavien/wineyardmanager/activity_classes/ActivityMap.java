@@ -25,6 +25,7 @@ import java.util.List;
 
 public class ActivityMap extends FragmentActivity implements OnMapReadyCallback {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,6 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
 
 
     /**
@@ -63,6 +63,7 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
         Location location = MainActivity.getLocation();
 
 
+        //Add the user location if it is not null
         if (location != null) {
 
             MarkerOptions mO = new MarkerOptions().position(
@@ -84,7 +85,7 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
             Toast.makeText(getApplicationContext(), R.string.user_position_unknown, Toast.LENGTH_SHORT).show();
 
 
-
+        //Add all the location of the winelots if they have a location (test if location != 0)
         if (wineLots != null) {
             for (WineLot w : wineLots) {
                 if(w.getLatitude() != 0 || w.getLongitude() != 0) {
@@ -106,6 +107,9 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
             Toast.makeText(getApplicationContext(), R.string.you_have_no_winelot, Toast.LENGTH_SHORT).show();
         }
 
+        /*
+         * Listener used to display the detail of the wineLot when we click on it in the map
+         */
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {

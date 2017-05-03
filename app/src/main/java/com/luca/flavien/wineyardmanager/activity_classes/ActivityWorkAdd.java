@@ -21,6 +21,16 @@ import com.luca.flavien.wineyardmanager.R;
 import java.util.Calendar;
 import java.util.List;
 
+
+/**
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: activity_classes
+ *
+ * Description: Allow the creation and edit of employee
+ */
+
 public class ActivityWorkAdd extends AppCompatActivity {
 
     private Spinner spinnerWorker;
@@ -52,6 +62,7 @@ public class ActivityWorkAdd extends AppCompatActivity {
         editTextDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // calender class's instance and get current date , month and year from calender
                 final Calendar c = Calendar.getInstance();
                 int mYear = c.get(Calendar.YEAR); // current year
@@ -79,7 +90,6 @@ public class ActivityWorkAdd extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkEntries()){
 
-
                     if (hasIntent){
                         setJobField();
                         MainActivity.jobDataSource.updateJob(job);
@@ -95,6 +105,9 @@ public class ActivityWorkAdd extends AppCompatActivity {
         });
     }
 
+    /*
+     * Create the job and fill the information with the different information in the editText
+     */
     private void setJobField(){
         Worker worker = (Worker)spinnerWorker.getSelectedItem();
         WineLot wineLot = (WineLot)spinnerWineLot.getSelectedItem();
@@ -105,6 +118,12 @@ public class ActivityWorkAdd extends AppCompatActivity {
         job.setWorker(worker);
     }
 
+    /*
+     * If we want to edit a job, we put an Intent in the activity creation,
+     * we test here if this intent exist.
+     *
+     * If an Intent exist, we fill the fields with the information of the job in the Intent
+     */
     private  void checkIntent(){
         Intent intent = getIntent();
 
@@ -121,6 +140,10 @@ public class ActivityWorkAdd extends AppCompatActivity {
         }
     }
 
+    /*
+     * Set the content of the editText with the information of the job we passed in Intent
+     * Allow the user to know the different information
+     */
     private void setEdit(){
         editTextAction.setText(job.getDescription());
         editTextDeadline.setText(job.getDeadline());
@@ -130,12 +153,12 @@ public class ActivityWorkAdd extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
         updateSpinner();
     }
+
 
     private boolean checkEntries(){
         if (editTextAction.getText().toString().isEmpty()){
@@ -157,6 +180,7 @@ public class ActivityWorkAdd extends AppCompatActivity {
         editTextDeadline = (EditText)findViewById(R.id.edit_deadline);
     }
 
+
     private void updateSpinner(){
         List<Worker> workerList = MainActivity.workerDataSource.getAllWorkers();
         ArrayAdapter<Worker> adapterWorker = new ArrayAdapter<>
@@ -168,6 +192,7 @@ public class ActivityWorkAdd extends AppCompatActivity {
                 (this, R.layout.row_simple, wineLotList);
         spinnerWineLot.setAdapter(adapterWineLot);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

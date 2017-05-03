@@ -15,7 +15,12 @@ import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: activity_classes
+ *
+ * Description: Allow the creation and edit of the location
  */
 
 public class ActivityLocationDetail extends AppCompatActivity {

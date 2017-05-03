@@ -111,7 +111,7 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
 
     /*
      * Set the content of the editText with the information of the employee we passed in Intent
-     * Allow the user to know the different informations
+     * Allow the user to know the different information
      */
     private void setEdit() {
         editTextFirstName.setText(worker.getFirstName());

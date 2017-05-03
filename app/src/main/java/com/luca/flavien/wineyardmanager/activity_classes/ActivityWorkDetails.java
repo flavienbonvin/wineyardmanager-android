@@ -24,7 +24,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: activity_classes
+ *
+ * Description: Display the information of a job
  */
 
 public class ActivityWorkDetails extends AppCompatActivity {
@@ -72,7 +77,16 @@ public class ActivityWorkDetails extends AppCompatActivity {
         });
     }
 
+    /*
+     * All the methods of the FloatingActionButton here because there is a lot of FAB in the layout
+     *
+     * We create a listener for every FAB and make the required operations
+     */
     private void setFloatingActionButtonListener() {
+
+        /*
+         * Allow to edit the job
+         */
         floatingActionButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +96,10 @@ public class ActivityWorkDetails extends AppCompatActivity {
                 finish();
             }
         });
+
+        /*
+         * Allow to send a SMS to the worker
+         */
         floatingActionButtonMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +122,10 @@ public class ActivityWorkDetails extends AppCompatActivity {
                 displayHideFAB();
             }
         });
+
+        /*
+         * Allow to send a email to the worker
+         */
         floatingActionButtonMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,6 +152,10 @@ public class ActivityWorkDetails extends AppCompatActivity {
                 displayHideFAB();
             }
         });
+
+        /**
+         * Allow to call the worker
+         */
         floatingActionButtonPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,6 +172,10 @@ public class ActivityWorkDetails extends AppCompatActivity {
                 displayHideFAB();
             }
         });
+
+        /**
+         * Allow to add a calendar event
+         */
         floatingActionButtonCalendar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -187,6 +217,7 @@ public class ActivityWorkDetails extends AppCompatActivity {
         });
     }
 
+    //Allow to hide or display the FAB, it only invert the current state
     private void displayHideFAB(){
         if (floatingActionButtonEdit.getVisibility() == View.VISIBLE) {
             floatingActionButtonMsg.setVisibility(View.GONE);

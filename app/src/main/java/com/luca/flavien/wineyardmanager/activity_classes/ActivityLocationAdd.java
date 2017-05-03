@@ -27,7 +27,7 @@ import java.util.List;
  * Project : WineYardManager
  * Package: activity_classes
  *
- * Description: Allow the creation and edit of employee
+ * Description: Allow the creation and edit of a location
  */
 
 public class ActivityLocationAdd extends AppCompatActivity {
@@ -86,7 +86,6 @@ public class ActivityLocationAdd extends AppCompatActivity {
         });
     }
 
-
     /*
     * Create the wineField and fill the information with the different information in the editText
     */
@@ -135,7 +134,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
     }
 
     /*
-     * Check if there is a location in the main and set the textField with
+     * Check if there is a location in the main and set the textField with the information of it
      */
     public void locationManagement(View view){
         location = MainActivity.getLocation();
@@ -145,6 +144,10 @@ public class ActivityLocationAdd extends AppCompatActivity {
         }
     }
 
+    /*
+    * Set the content of the editText with the information of the wineLot we passed in Intent
+    * Allow the user to know the different information
+    */
     private void setEdit(){
         editTextName.setText(wineLot.getName());
         editTextNumber.setText(Integer.toString(wineLot.getNumberWineStock()));
@@ -152,6 +155,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
 
         spinnerOrientation.setSelection(wineLot.getOrientationid());
     }
+
 
     private boolean checkEntries(){
         if (editTextName.getText().toString().trim().isEmpty()){
@@ -169,6 +173,9 @@ public class ActivityLocationAdd extends AppCompatActivity {
         return true;
     }
 
+    /*
+     * Init the objects of the layout
+     */
     private void initObjects(){
         spinnerOrientation = (Spinner) findViewById(R.id.spinner_orientation);
         spinnerVariety = (Spinner) findViewById(R.id.spinner_variety);
@@ -182,6 +189,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
         textLocation = (TextView)findViewById(R.id.tw_user_location);
     }
 
+
     private void updateSpinner(){
         ArrayAdapter<Orientation> adapterOrientation = new ArrayAdapter<>
                 (this, R.layout.row_simple, MainActivity.orientationList);
@@ -192,6 +200,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
                 (this, R.layout.row_simple, varietyList);
         spinnerVariety.setAdapter(adapterVariety);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

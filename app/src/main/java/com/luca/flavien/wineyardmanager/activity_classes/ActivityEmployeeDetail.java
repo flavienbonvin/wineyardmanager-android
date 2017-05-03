@@ -18,7 +18,7 @@ import com.luca.flavien.wineyardmanager.R;
  * Project : WineYardManager
  * Package: activity_classes
  *
- * Description: Allow the creation and edit of employee
+ * Description: Display the information of an employee
  */
 
 public class ActivityEmployeeDetail extends AppCompatActivity{
