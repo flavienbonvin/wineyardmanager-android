@@ -87,18 +87,20 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
 
         if (wineLots != null) {
             for (WineLot w : wineLots) {
-                Log.d("ADD LOCATION: ", "Longitude: " + Double.toString(w.getLongitude()) + " Latitude: " + Double.toString(w.getLatitude()));
+                if(w.getLatitude() != 0 || w.getLongitude() != 0) {
+                    Log.d("ADD LOCATION: ", "Longitude: " + Double.toString(w.getLongitude()) + " Latitude: " + Double.toString(w.getLatitude()));
 
 
-                MarkerOptions mO = new MarkerOptions().position(
-                        new LatLng(w.getLatitude(), w.getLongitude())).title(w.getName());
+                    MarkerOptions mO = new MarkerOptions().position(
+                            new LatLng(w.getLatitude(), w.getLongitude())).title(w.getName());
 
-                builder.include(mO.getPosition());
-                mMap.addMarker(mO);
+                    builder.include(mO.getPosition());
+                    mMap.addMarker(mO);
 
-                LatLngBounds bounds = builder.build();
-                CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-                mMap.animateCamera(cu);
+                    LatLngBounds bounds = builder.build();
+                    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+                    mMap.animateCamera(cu);
+                }
             }
         } else{
             Toast.makeText(getApplicationContext(), R.string.you_have_no_winelot, Toast.LENGTH_SHORT).show();

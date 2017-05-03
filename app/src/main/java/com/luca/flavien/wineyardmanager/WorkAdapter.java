@@ -13,7 +13,12 @@ import com.luca.flavien.wineyardmanager.db.object.Job;
 import java.util.List;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: Main
+ *
+ * Description:
  */
 
 public class WorkAdapter extends ArrayAdapter<Job>{

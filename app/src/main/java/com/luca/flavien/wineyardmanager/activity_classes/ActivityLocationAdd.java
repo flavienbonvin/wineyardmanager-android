@@ -21,6 +21,15 @@ import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 
 import java.util.List;
 
+/**
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: activity_classes
+ *
+ * Description: Allow the creation and edit of employee
+ */
+
 public class ActivityLocationAdd extends AppCompatActivity {
 
     private EditText editTextName;
@@ -36,6 +45,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
     private WineLot wineLot;
     private boolean hasIntent;
 
+
     private FloatingActionButton floatingActionButtonDelete;
 
     @Override
@@ -47,9 +57,6 @@ public class ActivityLocationAdd extends AppCompatActivity {
         updateSpinner();
 
         checkIntent();
-
-
-        location = MainActivity.getLocation();
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)findViewById(R.id.fab_confirm_location);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -79,24 +86,36 @@ public class ActivityLocationAdd extends AppCompatActivity {
         });
     }
 
+
+    /*
+    * Create the wineField and fill the information with the different information in the editText
+    */
     private void setWineLotField(){
         Orientation orientation = (Orientation) spinnerOrientation.getSelectedItem();
         WineVariety wineVariety = (WineVariety) spinnerVariety.getSelectedItem();
 
         Log.d("CREATE VINEYARD: ", wineVariety.getId() +
-                " name: " + wineVariety.getName() +
-                " longitude: " + location.getLatitude() +
-                " latitude: " + location.getLatitude());
+                " name: " + wineVariety.getName());
 
         wineLot.setWineVariety(wineVariety);
         wineLot.setOrientationid(orientation.getId());
         wineLot.setName(editTextName.getText().toString());
         wineLot.setNumberWineStock(Integer.parseInt(editTextNumber.getText().toString()));
         wineLot.setSurface(Float.parseFloat(editTextSurface.getText().toString()));
-        wineLot.setLongitude(location.getLongitude());
-        wineLot.setLatitude(location.getLatitude());
+
+        //Test if the location is null to avoid overriding the information of the location
+        if (location != null) {
+            wineLot.setLongitude(location.getLongitude());
+            wineLot.setLatitude(location.getLatitude());
+        }
     }
 
+    /*
+     * If we want to edit a wineLot, we put an Intent in the activity creation,
+     * we test here if this intent exist.
+     *
+     * If an Intent exist, we fill the fields with the information of the employee in the Intent
+     */
     private  void checkIntent(){
         Intent intent = getIntent();
 
@@ -115,9 +134,15 @@ public class ActivityLocationAdd extends AppCompatActivity {
         }
     }
 
+    /*
+     * Check if there is a location in the main and set the textField with
+     */
     public void locationManagement(View view){
-        if (location != null)
+        location = MainActivity.getLocation();
+
+        if (location != null) {
             textLocation.setText(getString(R.string.location) + ": \n" + getString(R.string.longitude) + ": " + location.getLongitude() + "\n" + getString(R.string.latitude) + ": " + location.getLatitude());
+        }
     }
 
     private void setEdit(){

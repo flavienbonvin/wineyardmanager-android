@@ -13,7 +13,12 @@ import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.R;
 
 /**
- * Created by Flavien on 24.04.2017.
+ * Created by Flavien and Luca on 24.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: activity_classes
+ *
+ * Description: Allow the creation and edit of employee
  */
 
 public class ActivityEmployeeDetail extends AppCompatActivity{
@@ -25,6 +30,7 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         Intent intent = getIntent();
         final Worker passWorker = (Worker) intent.getSerializableExtra("Worker");
 
@@ -32,9 +38,11 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
         TextView textViewPhone = (TextView) findViewById(R.id.phone);
         TextView textViewMail = (TextView) findViewById(R.id.mail);
 
+
         setTitle(passWorker.getLastName()+" "+ passWorker.getFirstName());
         textViewPhone.setText(passWorker.getPhone());
         textViewMail.setText(passWorker.getMail());
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -46,12 +54,13 @@ public class ActivityEmployeeDetail extends AppCompatActivity{
                 finish();
             }
         });
+
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
     }
-
 
 
     @Override

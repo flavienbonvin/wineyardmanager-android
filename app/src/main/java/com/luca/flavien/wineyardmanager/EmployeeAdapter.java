@@ -15,9 +15,14 @@ import java.util.List;
 
 /**
  * Created by Cento on 25.04.2017.
+ *
+ * Project : WineYardManager
+ * Package: ${PACKAGE_NAME}
+ *
+ * Description:
  */
 
-    public class EmployeeAdapter extends ArrayAdapter<Worker> {
+public class EmployeeAdapter extends ArrayAdapter<Worker> {
         public EmployeeAdapter(Context context, List<Worker> workers) {
             super(context, 0, workers);
         }
