@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.cloud.CloudManager;
 
 import java.util.Locale;
 
@@ -37,6 +39,7 @@ public class FragSettings extends Fragment {
 
         spinnerLanguage = (Spinner)view.findViewById(R.id.spinner_language);
         updateSpinner();
+        spinnerLanguage.setSelection(MainActivity.languagePosition);
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.fab_confirm_language);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -44,18 +47,22 @@ public class FragSettings extends Fragment {
             public void onClick(View v) {
                 switch (spinnerLanguage.getSelectedItem().toString()){
                     case "Deutsch":
+                        MainActivity.languagePosition = 0;
                         Toast.makeText(getContext(), R.string.willkommen,Toast.LENGTH_SHORT).show();
                         langueGerman(v);
                         break;
                     case "Français":
+                        MainActivity.languagePosition = 1;
                         Toast.makeText(getContext(), R.string.bienvenue,Toast.LENGTH_SHORT).show();
                         langueFrench(v);
                         break;
                     case "English":
+                        MainActivity.languagePosition = 2;
                         Toast.makeText(getContext(), R.string.welcome,Toast.LENGTH_SHORT).show();
                         langueEnglish(v);
                         break;
                     case "Italiano":
+                        MainActivity.languagePosition = 3;
                         Toast.makeText(getContext(), R.string.benvenuto,Toast.LENGTH_SHORT).show();
                         langueItalian(v);
                         break;
@@ -64,6 +71,14 @@ public class FragSettings extends Fragment {
 
             });
 
+
+        Button buttonSync = (Button)view.findViewById(R.id.btSync);
+        buttonSync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CloudManager.SendToCloud();
+            }
+        });
 
         return view;
     }

@@ -5,7 +5,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_map"
-            android:icon="@drawable/ic_menu_people"
+            android:icon="@drawable/ic_menu_map"
             android:title="@string/map"
             android:checkable="false"/>
         <item
@@ -45,6 +45,10 @@
                     android:id="@+id/nav_setting"
                     android:icon="@drawable/ic_menu_setting"
                     android:title="@string/settings" />
+                <item
+                    android:id="@+id/nav_informations"
+                    android:icon="@drawable/ic_menu_info"
+                    android:title="@string/about_us" />
             </group>
         </menu>
     </item>

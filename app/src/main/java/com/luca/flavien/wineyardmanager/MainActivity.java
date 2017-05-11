@@ -22,20 +22,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityMap;
+import com.luca.flavien.wineyardmanager.cloud.JobAsyncTask;
+import com.luca.flavien.wineyardmanager.cloud.WineLotAsyncTask;
+import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
+import com.luca.flavien.wineyardmanager.cloud.WorkerAsyncTask;
 import com.luca.flavien.wineyardmanager.db.adapter.JobDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WineLotDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WineVarietyDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WorkerDataSource;
 import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragEmployee;
+import com.luca.flavien.wineyardmanager.fragment_classes.FragInformations;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragLocationList;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragOrientation;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragSettings;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragVineVariety;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragWork;
 
+import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety;
+import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
+import com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot;
+import com.luca.flavien.wineyardmanager.entities.jobApi.model.Job;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static android.os.Build.VERSION_CODES.M;
 
@@ -69,6 +80,8 @@ public class MainActivity extends AppCompatActivity
     public static List<String> languageList;
     public static List<Orientation> orientationList;
 
+    public static int languagePosition;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +89,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAppBar);
         setSupportActionBar(toolbar);
-
 
         //Create the adapter for the database
         Context context = getApplicationContext();
@@ -113,6 +125,9 @@ public class MainActivity extends AppCompatActivity
 
         //Create all the language possible
         initiateLanguage();
+
+        //Set the language
+        languagePosition = setLanguage();
 
 
         //Get the location of the user
@@ -193,6 +208,10 @@ public class MainActivity extends AppCompatActivity
                 this.setTitle(getString(R.string.Orientation));
                 ft.replace(R.id.content_layout, new FragOrientation()).commit();
                 break;
+            case (R.id.nav_informations):
+                this.setTitle("About us");
+                ft.replace(R.id.content_layout, new FragInformations()).commit();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -263,6 +282,24 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    private int setLanguage(){
+        String language = Locale.getDefault().getDisplayLanguage();
+        if(language.contains("Deutsch")){
+            return 0 ;
+        }
+
+        if(language.contains("français")){
+            return 1 ;
+        }
+
+        if(language.contains("italiano")){
+            return 3 ;
+        }
+        return 2 ;
+    }
+
+
+
     private void getUserLocation(){
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -291,5 +328,79 @@ public class MainActivity extends AppCompatActivity
 
     public static Location getLocation() {
         return location;
+    }
+
+    private void testSendCloud(){
+        WineVariety wineVariety = new WineVariety();
+        wineVariety.setId((long) 1);
+        wineVariety.setName("Variety 1");
+
+        Worker worker = new Worker();
+        worker.setId((long)1);
+        worker.setFirstName("Flavien");
+        worker.setLastName("Cento");
+        worker.setMail("cento@bonvin.ch");
+        worker.setPhone("88");
+
+
+        com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineVariety wineVariety1
+                = new com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineVariety();
+        wineVariety1.setId((long) 2);
+        wineVariety1.setName("Variety 2");
+
+        WineLot wineLot = new WineLot();
+        wineLot.setId((long) 1);
+        wineLot.setName("Parcelle 1");
+        wineLot.setLatitude(10.0d);
+        wineLot.setLongitude(10.0d);
+        wineLot.setNumberWineStock(250);
+        wineLot.setSurface(100f);
+        wineLot.setOrientationid(1);
+        wineLot.setWineVariety(wineVariety1);
+
+
+        com.luca.flavien.wineyardmanager.entities.jobApi.model.WineVariety wineVariety2
+                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.WineVariety();
+        wineVariety2.setId((long) 3);
+        wineVariety2.setName("Variety 3");
+        com.luca.flavien.wineyardmanager.entities.jobApi.model.WineLot wineLot1
+                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.WineLot();
+        wineLot1.setId((long) 1);
+        wineLot1.setName("Parcelle 2");
+        wineLot1.setLatitude(10.0d);
+        wineLot1.setLongitude(10.0d);
+        wineLot1.setNumberWineStock(250);
+        wineLot1.setSurface(100f);
+        wineLot1.setOrientationid(1);
+        wineLot1.setWineVariety(wineVariety2);
+
+        com.luca.flavien.wineyardmanager.entities.jobApi.model.Worker worker1
+                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.Worker();
+        worker1.setId((long)2);
+        worker1.setFirstName("Luca");
+        worker1.setLastName("Bonvin");
+        worker1.setMail("cento@bonvin.ch");
+        worker1.setPhone("55");
+
+        Job job = new Job();
+        job.setId((long) 1);
+        job.setDeadline("10.10.10");
+        job.setDescription("Tailler");
+        job.setWinelot(wineLot1);
+        job.setWorker(worker1);
+
+
+        new WineVarietyAsyncTask(wineVariety).execute();
+        new WorkerAsyncTask(worker).execute();
+        new WineLotAsyncTask(wineLot).execute();
+        new JobAsyncTask(job).execute();
+    }
+
+    private void testRecieveCloud(){
+
+        new WineVarietyAsyncTask().execute();
+        new WorkerAsyncTask().execute();
+        new WineLotAsyncTask().execute();
+        new JobAsyncTask().execute();
     }
 }
