@@ -113,4 +113,8 @@ public class WineVarietyDataSource {
 
         db.delete(Contract.WineVarietyEntry.TABLE_WINEVARIETY, selection, args);
     }
+
+    public SQLiteDatabase getDb() {
+        return db;
+    }
 }

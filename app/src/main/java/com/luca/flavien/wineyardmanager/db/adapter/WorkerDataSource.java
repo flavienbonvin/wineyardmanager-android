@@ -138,4 +138,8 @@ public class WorkerDataSource {
 
         db.delete(Contract.WorkerEntry.TABLE_WORKER, selection, args);
     }
+
+    public SQLiteDatabase getDb() {
+        return db;
+    }
 }

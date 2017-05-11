@@ -74,7 +74,7 @@ public class WorkerAsyncTask extends AsyncTask<Void, Void, List<Worker>> {
     //of this method
     @Override
     protected void onPostExecute(List<Worker> result){
-
+        CloudManager.getWorker(result);
         if(result != null) {
             for (Worker  worker : result) {
                 Log.i(TAG,

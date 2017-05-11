@@ -128,4 +128,8 @@ public class JobDataSource {
 
         db.delete(Contract.JobEntry.TABLE_JOB, selection, args);
     }
+
+    public SQLiteDatabase getDb() {
+        return db;
+    }
 }

@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fm;
     private FragmentTransaction ft;
 
-
     public static JobDataSource jobDataSource;
     public static WineLotDataSource wineLotDataSource;
     public static WineVarietyDataSource wineVarietyDataSource;
@@ -96,6 +95,8 @@ public class MainActivity extends AppCompatActivity
         wineLotDataSource = new WineLotDataSource(context);
         wineVarietyDataSource = new WineVarietyDataSource(context);
         workerDataSource = new WorkerDataSource(context);
+
+        testRecieveCloud();
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
@@ -401,6 +402,6 @@ public class MainActivity extends AppCompatActivity
         new WineVarietyAsyncTask().execute();
         new WorkerAsyncTask().execute();
         new WineLotAsyncTask().execute();
-        new JobAsyncTask().execute();
+        //new JobAsyncTask().execute();
     }
 }

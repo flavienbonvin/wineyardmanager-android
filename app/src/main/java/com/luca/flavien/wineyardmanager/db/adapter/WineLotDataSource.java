@@ -51,7 +51,7 @@ public class WineLotDataSource{
         values.put(Contract.WineLotEntry.KEY_LATITUDE, wineLot.getLatitude());
 
         Log.i(
-                "Values data",
+                this.getClass().getName(),
                 "name: " + values.getAsString(Contract.WineLotEntry.KEY_NAME) + "\t" +
                 " pic: " + values.getAsString(Contract.WineLotEntry.KEY_PICTURE) + "\t" +
                 " surf: " + values.getAsString(Contract.WineLotEntry.KEY_SURFACE) + "\t" +
@@ -152,5 +152,9 @@ public class WineLotDataSource{
         String[] args = {String.valueOf(id)};
 
         db.delete(Contract.WineLotEntry.TABLE_WINELOT, selection, args);
+    }
+
+    public SQLiteDatabase getDb() {
+        return db;
     }
 }
