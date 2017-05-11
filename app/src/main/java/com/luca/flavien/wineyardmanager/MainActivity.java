@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityMap;
+import com.luca.flavien.wineyardmanager.cloud.CloudManager;
 import com.luca.flavien.wineyardmanager.cloud.JobAsyncTask;
 import com.luca.flavien.wineyardmanager.cloud.WineLotAsyncTask;
 import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
@@ -221,6 +222,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        CloudManager.SendToCloud();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
