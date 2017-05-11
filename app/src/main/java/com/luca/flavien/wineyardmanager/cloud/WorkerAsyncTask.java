@@ -7,15 +7,12 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.WineVarietyApi;
-import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety;
+import com.luca.flavien.wineyardmanager.entities.workerApi.WorkerApi;
+import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
-import com.luca.flavien.wineyardmanager.entities.workerApi.WorkerApi;
 
 /**
  * Created by flavien on 11.05.17.
@@ -74,8 +71,11 @@ public class WorkerAsyncTask extends AsyncTask<Void, Void, List<Worker>> {
     //of this method
     @Override
     protected void onPostExecute(List<Worker> result){
-        CloudManager.getWorker(result);
+
         if(result != null) {
+
+            CloudManager.getWorker(result);
+
             for (Worker  worker : result) {
                 Log.i(TAG,
                         "Lastname: " + worker.getFirstName() +

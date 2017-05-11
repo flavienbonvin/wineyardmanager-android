@@ -21,7 +21,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 /**
  * WARNING: This generated code is intended as a sample or starting point for using a
- * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
+ * Google Cloud Endpoints REST full API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
  * <p>
  * DO NOT deploy this code unchanged as part of a real application to real users.
@@ -43,7 +43,7 @@ public class WorkerEndpoint {
     private static final int DEFAULT_LIST_LIMIT = 20;
 
     static {
-        // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
+        // Typically you would register this inside an Of a Service wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
         ObjectifyService.register(Worker.class);
     }
 
@@ -75,7 +75,7 @@ public class WorkerEndpoint {
             path = "worker",
             httpMethod = ApiMethod.HttpMethod.POST)
     public Worker insert(Worker worker) {
-        // Typically in a RESTful API a POST does not have a known ID (assuming the ID is used in the resource path).
+        // Typically in a REST full API a POST does not have a known ID (assuming the ID is used in the resource path).
         // You should validate that worker.id has not been set. If the ID type is not supported by the
         // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
         //

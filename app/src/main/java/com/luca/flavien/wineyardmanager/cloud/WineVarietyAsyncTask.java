@@ -73,9 +73,10 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
     @Override
     protected void onPostExecute(List<WineVariety> result){
 
-        CloudManager.getWineVariety(result);
-
         if(result != null) {
+
+            CloudManager.getWineVariety(result);
+
             for (WineVariety  wineVariety : result) {
                 Log.i(TAG,
                         "Name: " + wineVariety.getName());

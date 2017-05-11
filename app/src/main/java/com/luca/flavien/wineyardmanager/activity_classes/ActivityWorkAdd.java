@@ -41,6 +41,8 @@ public class ActivityWorkAdd extends AppCompatActivity {
     private EditText editTextDeadline;
     private DatePickerDialog datePickerDialog;
 
+    private FloatingActionButton floatingActionButtonDelete;
+
     private Job job;
     private boolean hasIntent;
 
@@ -104,6 +106,14 @@ public class ActivityWorkAdd extends AppCompatActivity {
                 }
             }
         });
+
+        floatingActionButtonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.jobDataSource.deleteWork(job.getId());
+                finish();
+            }
+        });
     }
 
     /*
@@ -135,6 +145,7 @@ public class ActivityWorkAdd extends AppCompatActivity {
             hasIntent = true;
 
             setEdit();
+            floatingActionButtonDelete.setVisibility(View.VISIBLE);
         }
         else {
             setTitle(getString(R.string.add_new_job));
@@ -179,6 +190,8 @@ public class ActivityWorkAdd extends AppCompatActivity {
 
         editTextAction = (EditText)findViewById(R.id.edit_action);
         editTextDeadline = (EditText)findViewById(R.id.edit_deadline);
+
+        floatingActionButtonDelete = (FloatingActionButton)findViewById(R.id.fab_delete_work);
     }
 
 

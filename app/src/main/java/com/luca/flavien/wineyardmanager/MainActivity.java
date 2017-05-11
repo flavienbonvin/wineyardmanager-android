@@ -31,6 +31,10 @@ import com.luca.flavien.wineyardmanager.db.adapter.WineLotDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WineVarietyDataSource;
 import com.luca.flavien.wineyardmanager.db.adapter.WorkerDataSource;
 import com.luca.flavien.wineyardmanager.db.object.Orientation;
+import com.luca.flavien.wineyardmanager.entities.jobApi.model.Job;
+import com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot;
+import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety;
+import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragEmployee;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragInformations;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragLocationList;
@@ -38,11 +42,6 @@ import com.luca.flavien.wineyardmanager.fragment_classes.FragOrientation;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragSettings;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragVineVariety;
 import com.luca.flavien.wineyardmanager.fragment_classes.FragWork;
-
-import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety;
-import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
-import com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot;
-import com.luca.flavien.wineyardmanager.entities.jobApi.model.Job;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +60,6 @@ import static android.os.Build.VERSION_CODES.M;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -331,6 +329,8 @@ public class MainActivity extends AppCompatActivity
         return location;
     }
 
+
+    //TODO delete once all tests are finished
     private void testSendCloud(){
         WineVariety wineVariety = new WineVariety();
         wineVariety.setId((long) 1);
@@ -398,10 +398,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void testRecieveCloud(){
-
         new WineVarietyAsyncTask().execute();
         new WorkerAsyncTask().execute();
         new WineLotAsyncTask().execute();
-        //new JobAsyncTask().execute();
+        new JobAsyncTask().execute();
     }
 }
