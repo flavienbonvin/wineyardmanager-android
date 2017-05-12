@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.cloud.CloudManager;
 import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
@@ -73,6 +74,9 @@ public class ActivityLocationAdd extends AppCompatActivity {
                         setWineLotField();
                         MainActivity.wineLotDataSource.createWineLot(wineLot);
                     }
+
+                    CloudManager.sendWineLot();
+
                     finish();
                 }
             }

@@ -1,5 +1,6 @@
 package com.luca.flavien.wineyardmanager.fragment_classes;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ import java.util.Locale;
 public class FragSettings extends Fragment {
 
     private Spinner spinnerLanguage;
+
+    private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +80,7 @@ public class FragSettings extends Fragment {
             @Override
             public void onClick(View v) {
                 CloudManager.SendToCloud();
+
             }
         });
 

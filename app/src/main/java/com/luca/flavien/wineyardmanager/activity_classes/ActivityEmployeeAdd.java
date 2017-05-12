@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.cloud.CloudManager;
+import com.luca.flavien.wineyardmanager.cloud.WorkerAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 
@@ -61,6 +63,9 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
                         setWorkerFiled(workerTemp);
                         MainActivity.workerDataSource.createWorker(workerTemp);
                     }
+
+                    CloudManager.sendWorker();
+
                     finish();
                 }
             }

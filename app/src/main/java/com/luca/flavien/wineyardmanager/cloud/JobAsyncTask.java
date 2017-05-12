@@ -7,9 +7,6 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.luca.flavien.wineyardmanager.db.Contract;
-import com.luca.flavien.wineyardmanager.entities.workerApi.WorkerApi;
-import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,7 +75,7 @@ public class JobAsyncTask extends AsyncTask<Void, Void, List<Job>> {
 
         if(result != null) {
 
-            CloudManager.getJob(result);
+            CloudManager.getJobFromAppEngine(result);
 
             for (Job  job : result) {
                 Log.i(TAG,

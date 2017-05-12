@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityMap;
+import com.luca.flavien.wineyardmanager.activity_classes.ActivitySync;
 import com.luca.flavien.wineyardmanager.cloud.CloudManager;
 import com.luca.flavien.wineyardmanager.cloud.JobAsyncTask;
 import com.luca.flavien.wineyardmanager.cloud.WineLotAsyncTask;
@@ -62,8 +63,10 @@ import static android.os.Build.VERSION_CODES.M;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     private FragmentManager fm;
     private FragmentTransaction ft;
+
 
     public static JobDataSource jobDataSource;
     public static WineLotDataSource wineLotDataSource;
@@ -78,15 +81,13 @@ public class MainActivity extends AppCompatActivity
     public static List<String> languageList;
     public static List<Orientation> orientationList;
 
+
     public static int languagePosition;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAppBar);
-        setSupportActionBar(toolbar);
 
         //Create the adapter for the database
         Context context = getApplicationContext();
@@ -95,7 +96,16 @@ public class MainActivity extends AppCompatActivity
         wineVarietyDataSource = new WineVarietyDataSource(context);
         workerDataSource = new WorkerDataSource(context);
 
-        testRecieveCloud();
+
+        Intent intent = new Intent(this, ActivitySync.class);
+        startActivity(intent);
+
+
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAppBar);
+        setSupportActionBar(toolbar);
+
+
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
@@ -109,9 +119,9 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 
 
         //Check if the app has all the permissions it needs;
@@ -126,6 +136,7 @@ public class MainActivity extends AppCompatActivity
         //Create all the language possible
         initiateLanguage();
 
+
         //Set the language
         languagePosition = setLanguage();
 
@@ -138,6 +149,7 @@ public class MainActivity extends AppCompatActivity
         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         getUserLocation();
     }
+
 
     private void checkPermissions(){
         int PERMISSION_ALL = 1;
@@ -218,6 +230,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
 
     @Override
@@ -303,7 +317,10 @@ public class MainActivity extends AppCompatActivity
 
 
     private void getUserLocation(){
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 2* 60 * 1000, 250, locationListenerNetwork);
@@ -314,15 +331,12 @@ public class MainActivity extends AppCompatActivity
         public void onLocationChanged(Location location) {
             MainActivity.location = location;
         }
-
         @Override
         public void onStatusChanged(String s, int i, Bundle bundle) {
         }
-
         @Override
         public void onProviderEnabled(String s) {
         }
-
         @Override
         public void onProviderDisabled(String s) {
         }
@@ -332,78 +346,4 @@ public class MainActivity extends AppCompatActivity
         return location;
     }
 
-
-    //TODO delete once all tests are finished
-    private void testSendCloud(){
-        WineVariety wineVariety = new WineVariety();
-        wineVariety.setId((long) 1);
-        wineVariety.setName("Variety 1");
-
-        Worker worker = new Worker();
-        worker.setId((long)1);
-        worker.setFirstName("Flavien");
-        worker.setLastName("Cento");
-        worker.setMail("cento@bonvin.ch");
-        worker.setPhone("88");
-
-
-        com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineVariety wineVariety1
-                = new com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineVariety();
-        wineVariety1.setId((long) 2);
-        wineVariety1.setName("Variety 2");
-
-        WineLot wineLot = new WineLot();
-        wineLot.setId((long) 1);
-        wineLot.setName("Parcelle 1");
-        wineLot.setLatitude(10.0d);
-        wineLot.setLongitude(10.0d);
-        wineLot.setNumberWineStock(250);
-        wineLot.setSurface(100f);
-        wineLot.setOrientationid(1);
-        wineLot.setWineVariety(wineVariety1);
-
-
-        com.luca.flavien.wineyardmanager.entities.jobApi.model.WineVariety wineVariety2
-                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.WineVariety();
-        wineVariety2.setId((long) 3);
-        wineVariety2.setName("Variety 3");
-        com.luca.flavien.wineyardmanager.entities.jobApi.model.WineLot wineLot1
-                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.WineLot();
-        wineLot1.setId((long) 1);
-        wineLot1.setName("Parcelle 2");
-        wineLot1.setLatitude(10.0d);
-        wineLot1.setLongitude(10.0d);
-        wineLot1.setNumberWineStock(250);
-        wineLot1.setSurface(100f);
-        wineLot1.setOrientationid(1);
-        wineLot1.setWineVariety(wineVariety2);
-
-        com.luca.flavien.wineyardmanager.entities.jobApi.model.Worker worker1
-                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.Worker();
-        worker1.setId((long)2);
-        worker1.setFirstName("Luca");
-        worker1.setLastName("Bonvin");
-        worker1.setMail("cento@bonvin.ch");
-        worker1.setPhone("55");
-
-        Job job = new Job();
-        job.setId((long) 1);
-        job.setDeadline("10.10.10");
-        job.setDescription("Tailler");
-        job.setWinelot(wineLot1);
-        job.setWorker(worker1);
-
-
-        new WineVarietyAsyncTask(wineVariety).execute();
-        new WorkerAsyncTask(worker).execute();
-        new WineLotAsyncTask(wineLot).execute();
-        new JobAsyncTask(job).execute();
-    }
-
-    private void testRecieveCloud(){
-        new WineVarietyAsyncTask().execute();
-        new WorkerAsyncTask().execute();
-        new WineLotAsyncTask().execute();
-        new JobAsyncTask().execute();
-    }
 }

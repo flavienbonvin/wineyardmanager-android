@@ -1,5 +1,7 @@
 package com.luca.flavien.wineyardmanager.cloud;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -18,6 +20,9 @@ import java.util.List;
 
 public class CloudManager {
 
+    private static ProgressDialog progressDialog;
+
+    private static boolean done = false;
 
     public static void SendToCloud(){
 
@@ -27,12 +32,11 @@ public class CloudManager {
         sendWineLot();
         sendJob();
         Log.d("SEND", "All data synced to the cloud");
-
     }
 
-    private static void sendWineVariety() {
+    public static void sendWineVariety() {
 
-        Log.e("SENGIND WINEVARIETY", "Sending winevariety to the cloud");
+        Log.i("CLOUD MANAGER", "Sending wine variety to the cloud");
 
         List<WineVariety> wineVarietyList = MainActivity.wineVarietyDataSource.getAllWineVarieties();
 
@@ -47,9 +51,9 @@ public class CloudManager {
         }
     }
 
-    private static void sendWorker(){
+    public static void sendWorker(){
 
-        Log.e("SENGIND WORKER", "Sending worker to the cloud");
+        Log.i("CLOUD MANAGER", "Sending worker to the cloud");
 
         List<Worker> workerList = MainActivity.workerDataSource.getAllWorkers();
 
@@ -67,9 +71,9 @@ public class CloudManager {
         }
     }
 
-    private static void sendWineLot(){
+    public static void sendWineLot(){
 
-        Log.e("SENGIND WINELOT", "Sending winelot to the cloud");
+        Log.i("CLOUD MANAGER", "Sending wine lot to the cloud");
 
         List<WineLot> wineLotList = MainActivity.wineLotDataSource.getAllWineLots();
 
@@ -97,7 +101,10 @@ public class CloudManager {
         }
     }
 
-    private static void sendJob(){
+    public static void sendJob(){
+
+        Log.i("CLOUD MANAGER", "Sending job to the cloud");
+
         List<Job> jobList = MainActivity.jobDataSource.getAllJobs();
 
         for (Job job : jobList) {
@@ -136,11 +143,15 @@ public class CloudManager {
             jobCloud.setWinelot(wineLotCloud);
             jobCloud.setWorker(workerCloud);
 
+            done = true;
+
             new JobAsyncTask(jobCloud).execute();
         }
     }
 
-    public static void getWineVariety(List<com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety> wineVarietyList){
+    public static void getWineVarietyFromAppEngine(List<com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety> wineVarietyList){
+
+        Log.i("CLOUD MANAGER", "Getting wine variety from the cloud");
 
         SQLiteDatabase db = MainActivity.wineVarietyDataSource.getDb();
 
@@ -154,7 +165,9 @@ public class CloudManager {
         }
     }
 
-    public static void getWorker(List<com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker> workerList){
+    public static void getWorkerFromAppEngine(List<com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker> workerList){
+
+        Log.i("CLOUD MANAGER", "Getting worker from the cloud");
 
         SQLiteDatabase db = MainActivity.workerDataSource.getDb();
 
@@ -171,7 +184,9 @@ public class CloudManager {
         }
     }
 
-    public static void getWinlot(List<com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot> winelotList){
+    public static void getWinlotFromAppEngine(List<com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot> winelotList){
+
+        Log.i("CLOUD MANAGER", "Getting wine lot from the cloud");
 
         SQLiteDatabase db = MainActivity.wineLotDataSource.getDb();
 
@@ -198,7 +213,9 @@ public class CloudManager {
 
     }
 
-    public static void getJob(List<com.luca.flavien.wineyardmanager.entities.jobApi.model.Job> jobList){
+    public static void getJobFromAppEngine(List<com.luca.flavien.wineyardmanager.entities.jobApi.model.Job> jobList){
+
+        Log.i("CLOUD MANAGER", "Getting job from the cloud");
 
         SQLiteDatabase db = MainActivity.jobDataSource.getDb();
 

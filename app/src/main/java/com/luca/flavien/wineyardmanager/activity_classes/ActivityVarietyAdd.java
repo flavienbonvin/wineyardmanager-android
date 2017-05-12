@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.luca.flavien.wineyardmanager.cloud.CloudManager;
+import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
@@ -59,6 +62,8 @@ public class ActivityVarietyAdd extends AppCompatActivity {
                         wineVarietyTemp.setName(editTextVariety.getText().toString());
                         MainActivity.wineVarietyDataSource.createWineVariety(wineVarietyTemp);
                     }
+
+                    CloudManager.sendWineVariety();
 
                     finish();
                 }

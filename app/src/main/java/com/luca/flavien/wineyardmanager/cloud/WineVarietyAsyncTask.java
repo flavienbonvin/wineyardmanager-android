@@ -24,11 +24,15 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
     private static final String TAG = WineVarietyAsyncTask.class.getName();
     private WineVariety wineVariety;
 
-    public WineVarietyAsyncTask(){}
+    private long id = -1;
+
+    public WineVarietyAsyncTask(){ id = -2;}
 
     public WineVarietyAsyncTask(WineVariety wineVariety){
         this.wineVariety = wineVariety;
     }
+
+    public WineVarietyAsyncTask(long id){ this.id = id; }
 
     @Override
     protected List<WineVariety> doInBackground(Void... params) {
@@ -57,8 +61,9 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
             // For instance insert
             if(wineVariety != null){
                 wineVarietyApi.insert(wineVariety).execute();
-                Log.i(TAG, "insert wine variety");
+                Log.i(TAG, "insert wine variety " + wineVariety.getId() + " " + wineVariety.getName());
             }
+
             // and for instance return the list of all employees
             return wineVarietyApi.list().execute().getItems();
 
@@ -75,7 +80,7 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
 
         if(result != null) {
 
-            CloudManager.getWineVariety(result);
+            CloudManager.getWineVarietyFromAppEngine(result);
 
             for (WineVariety  wineVariety : result) {
                 Log.i(TAG,

@@ -7,8 +7,6 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
-import com.luca.flavien.wineyardmanager.entities.workerApi.WorkerApi;
-import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,7 +75,7 @@ public class WineLotAsyncTask extends AsyncTask<Void, Void, List<WineLot>> {
 
         if(result != null) {
 
-            CloudManager.getWinlot(result);
+            CloudManager.getWinlotFromAppEngine(result);
 
             for (WineLot  wineLot : result) {
                 Log.i(TAG,
