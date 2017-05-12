@@ -5,7 +5,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -49,9 +48,8 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        GoogleMap mMap = googleMap;
-        mMap.setMaxZoomPreference(20);
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        googleMap.setMaxZoomPreference(20);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
 
         int width = getResources().getDisplayMetrics().widthPixels;
@@ -75,11 +73,11 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
                     .icon((BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
             builder.include(mO.getPosition());
-            mMap.addMarker(mO);
+            googleMap.addMarker(mO);
 
             LatLngBounds bounds = builder.build();
             CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-            mMap.animateCamera(cu);
+            googleMap.animateCamera(cu);
 
         }
         else
@@ -97,11 +95,11 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
                             new LatLng(w.getLatitude(), w.getLongitude())).title(w.getName());
 
                     builder.include(mO.getPosition());
-                    mMap.addMarker(mO);
+                    googleMap.addMarker(mO);
 
                     LatLngBounds bounds = builder.build();
                     CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
-                    mMap.animateCamera(cu);
+                    googleMap.animateCamera(cu);
                 }
             }
         } else{
@@ -111,7 +109,7 @@ public class ActivityMap extends FragmentActivity implements OnMapReadyCallback 
         /*
          * Listener used to display the detail of the wineLot when we click on it in the map
          */
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 if (!marker.getTitle().equals(getString(R.string.user_location))) {

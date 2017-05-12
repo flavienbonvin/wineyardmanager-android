@@ -7,13 +7,12 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.luca.flavien.wineyardmanager.entities.jobApi.JobApi;
+import com.luca.flavien.wineyardmanager.entities.jobApi.model.Job;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.luca.flavien.wineyardmanager.entities.jobApi.model.Job;
-import com.luca.flavien.wineyardmanager.entities.jobApi.JobApi;
 
 /**
  * Created by flavien on 11.05.17.
@@ -64,7 +63,7 @@ public class JobAsyncTask extends AsyncTask<Void, Void, List<Job>> {
 
         } catch (IOException e){
             Log.e(TAG, e.toString());
-            return new ArrayList<Job>();
+            return new ArrayList<>();
         }
     }
 

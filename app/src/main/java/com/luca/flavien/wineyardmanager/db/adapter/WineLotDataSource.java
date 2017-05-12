@@ -6,10 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.luca.flavien.wineyardmanager.db.Contract;
-import com.luca.flavien.wineyardmanager.db.object.WineLot;
-import com.luca.flavien.wineyardmanager.db.SQLhelper;
 import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.db.Contract;
+import com.luca.flavien.wineyardmanager.db.SQLhelper;
+import com.luca.flavien.wineyardmanager.db.object.WineLot;
 
 import java.util.ArrayList;
 import java.util.List;

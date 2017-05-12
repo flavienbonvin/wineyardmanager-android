@@ -16,8 +16,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.luca.flavien.wineyardmanager.db.object.Job;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.db.object.Job;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -153,8 +153,8 @@ public class ActivityWorkDetails extends AppCompatActivity {
             }
         });
 
-        /**
-         * Allow to call the worker
+        /*
+          Allow to call the worker
          */
         floatingActionButtonPhone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +173,8 @@ public class ActivityWorkDetails extends AppCompatActivity {
             }
         });
 
-        /**
-         * Allow to add a calendar event
+        /*
+          Allow to add a calendar event
          */
         floatingActionButtonCalendar.setOnClickListener(new View.OnClickListener() {
                 @Override

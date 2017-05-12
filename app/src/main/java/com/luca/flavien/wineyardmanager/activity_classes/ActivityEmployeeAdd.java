@@ -11,7 +11,6 @@ import android.widget.EditText;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.cloud.CloudManager;
-import com.luca.flavien.wineyardmanager.cloud.WorkerAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 
@@ -170,17 +169,9 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
      * Test if the mobile phone and the email is in a valid format
      */
     private boolean isValidMobile(CharSequence phone) {
-        if (phone.toString().trim().isEmpty()) {
-            return false;
-        } else {
-            return android.util.Patterns.PHONE.matcher(phone).matches();
-        }
+        return !phone.toString().trim().isEmpty() && android.util.Patterns.PHONE.matcher(phone).matches();
     }
     private static boolean isValidEmail(CharSequence mail) {
-        if (mail.toString().trim().isEmpty()) {
-            return false;
-        } else {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
-        }
+        return !mail.toString().trim().isEmpty() && android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches();
     }
 }

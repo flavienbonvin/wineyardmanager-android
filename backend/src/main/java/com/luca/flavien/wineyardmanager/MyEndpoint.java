@@ -20,8 +20,7 @@ import javax.inject.Named;
         version = "v1",
         namespace = @ApiNamespace(
                 ownerDomain = "wineyardmanager.flavien.luca.com",
-                ownerName = "wineyardmanager.flavien.luca.com",
-                packagePath = ""
+                ownerName = "wineyardmanager.flavien.luca.com"
         )
 )
 public class MyEndpoint {

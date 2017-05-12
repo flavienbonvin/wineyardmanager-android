@@ -1,19 +1,17 @@
 package com.luca.flavien.wineyardmanager.activity_classes;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.luca.flavien.wineyardmanager.cloud.CloudManager;
-import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
-import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.cloud.CloudManager;
+import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 
 /**
  * Created by Flavien and Luca on 24.04.2017.

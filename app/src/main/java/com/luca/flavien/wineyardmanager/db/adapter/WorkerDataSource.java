@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.luca.flavien.wineyardmanager.db.Contract;
-import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.db.SQLhelper;
+import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 import java.util.ArrayList;
 import java.util.List;

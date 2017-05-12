@@ -62,7 +62,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_sync"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".activity_classes.ActivityMap"
             android:screenOrientation="portrait"

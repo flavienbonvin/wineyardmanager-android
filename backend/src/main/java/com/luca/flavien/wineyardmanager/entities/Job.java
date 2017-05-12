@@ -3,10 +3,8 @@ package com.luca.flavien.wineyardmanager.entities;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
-import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
 
 /**
  * Created by flavien on 11.05.17.

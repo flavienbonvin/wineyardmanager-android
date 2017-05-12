@@ -32,8 +32,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
         resource = "job",
         namespace = @ApiNamespace(
                 ownerDomain = "entities.wineyardmanager.flavien.luca.com",
-                ownerName = "entities.wineyardmanager.flavien.luca.com",
-                packagePath = ""
+                ownerName = "entities.wineyardmanager.flavien.luca.com"
         )
 )
 public class JobEndpoint {
@@ -142,7 +141,7 @@ public class JobEndpoint {
             query = query.startAt(Cursor.fromWebSafeString(cursor));
         }
         QueryResultIterator<Job> queryIterator = query.iterator();
-        List<Job> jobList = new ArrayList<Job>(limit);
+        List<Job> jobList = new ArrayList<>(limit);
         while (queryIterator.hasNext()) {
             jobList.add(queryIterator.next());
         }

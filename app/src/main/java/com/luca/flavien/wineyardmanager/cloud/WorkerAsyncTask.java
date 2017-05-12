@@ -23,15 +23,15 @@ public class WorkerAsyncTask extends AsyncTask<Void, Void, List<Worker>> {
     private static final String TAG = WorkerAsyncTask.class.getName();
     private Worker worker;
 
-    private long id = -1;
-
     public WorkerAsyncTask(){}
 
     public WorkerAsyncTask(Worker worker){
         this.worker = worker;
     }
 
-    public WorkerAsyncTask(long id ){ this.id = id; }
+    private WorkerAsyncTask(long id){
+        long id1 = id;
+    }
 
     @Override
     protected List<Worker> doInBackground(Void... params) {
@@ -68,7 +68,7 @@ public class WorkerAsyncTask extends AsyncTask<Void, Void, List<Worker>> {
 
         } catch (IOException e){
             Log.e(TAG, e.toString());
-            return new ArrayList<Worker>();
+            return new ArrayList<>();
         }
     }
 

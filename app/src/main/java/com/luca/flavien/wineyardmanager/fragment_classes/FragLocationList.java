@@ -12,11 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityLocationAdd;
 import com.luca.flavien.wineyardmanager.activity_classes.ActivityLocationDetail;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
-import com.luca.flavien.wineyardmanager.MainActivity;
-import com.luca.flavien.wineyardmanager.R;
 
 import java.util.List;
 

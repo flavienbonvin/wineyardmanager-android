@@ -1,7 +1,7 @@
 package com.luca.flavien.wineyardmanager.fragment_classes;
 
-/**
- * Created by flavien on 11.05.17.
+/*
+  Created by flavien on 11.05.17.
  */
 
 
@@ -18,8 +18,7 @@ public class FragInformations extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragement_informations, container, false);
 
-        return view ;
+        return inflater.inflate(R.layout.fragement_informations, container, false);
     }
 }

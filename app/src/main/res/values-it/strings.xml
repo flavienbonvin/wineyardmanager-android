@@ -82,6 +82,7 @@
     <string name="create_a_vinevariety">Crea una varietà di vite prima di creare una posizione!</string>
     <string name="create_a_winelot">Crea un vino prima di creare una località!</string>
     <string name="create_a_worker">Crea un lavoratore prima di creare una posizione!</string>
-    <string name="about">WineYardManager è stato sviluppato da Flavien Bonvin e Luca Centofanti, per la conferenza 644-1 in HEVS</string>
+    <string name="about">WineYardManager è stato sviluppato da Flavien Bonvin e Luca Centofanti, per la conferenza 644–1 in HEVS</string>
     <string name="about_us">Riguardo a noi</string>
+    <string name="sync">Forza sincronizzare</string>
 </resources>

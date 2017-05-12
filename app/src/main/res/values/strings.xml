@@ -82,11 +82,9 @@
     <string name="create_a_worker">Create a worker before creating a location!</string>
     <string name="create_a_winelot">Create a wine lot before creating a location!</string>
     <string name="create_a_vinevariety">Create a vine variety before creating a location!</string>
-    <string name="about">WineYardManager is developed by Flavien Bonvin and Luca Centofanti, for the lecture 644-1 in HEVS</string>
+    <string name="about">WineYardManager is developed by Flavien Bonvin and Luca Centofanti, for the lecture 644–1 in HEVS</string>
     <string name="about_us">About us</string>
 
-    <string name="title_activity_sync">ActivitySync</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="sync">Force synchronisation</string>
+    <string name="title_activity_sync" translatable="false">ActivitySync</string>
+    <string name="sync">Force synchronize</string>
 </resources>

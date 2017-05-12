@@ -10,9 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.db.object.WineLot;
 
 /**
  * Created by Flavien and Luca on 24.04.2017.

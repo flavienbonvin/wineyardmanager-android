@@ -12,12 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.luca.flavien.wineyardmanager.activity_classes.ActivityEmployeeAdd;
-import com.luca.flavien.wineyardmanager.activity_classes.ActivityEmployeeDetail;
-import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.EmployeeAdapter;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.activity_classes.ActivityEmployeeAdd;
+import com.luca.flavien.wineyardmanager.activity_classes.ActivityEmployeeDetail;
+import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 import java.util.List;
 

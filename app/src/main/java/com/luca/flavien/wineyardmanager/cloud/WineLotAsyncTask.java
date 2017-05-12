@@ -7,13 +7,12 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.luca.flavien.wineyardmanager.entities.wineLotApi.WineLotApi;
+import com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot;
-import com.luca.flavien.wineyardmanager.entities.wineLotApi.WineLotApi;
 
 /**
  * Created by flavien on 11.05.17.
@@ -64,7 +63,7 @@ public class WineLotAsyncTask extends AsyncTask<Void, Void, List<WineLot>> {
 
         } catch (IOException e){
             Log.e(TAG, e.toString());
-            return new ArrayList<WineLot>();
+            return new ArrayList<>();
         }
     }
 

@@ -1,7 +1,6 @@
 package com.luca.flavien.wineyardmanager.cloud;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -21,8 +20,6 @@ import java.util.List;
 public class CloudManager {
 
     private static ProgressDialog progressDialog;
-
-    private static boolean done = false;
 
     public static void SendToCloud(){
 
@@ -101,7 +98,7 @@ public class CloudManager {
         }
     }
 
-    public static void sendJob(){
+    private static void sendJob(){
 
         Log.i("CLOUD MANAGER", "Sending job to the cloud");
 
@@ -143,7 +140,7 @@ public class CloudManager {
             jobCloud.setWinelot(wineLotCloud);
             jobCloud.setWorker(workerCloud);
 
-            done = true;
+            boolean done = true;
 
             new JobAsyncTask(jobCloud).execute();
         }

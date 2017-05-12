@@ -11,9 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.db.object.Orientation;
 
 /**
  * Created by Flavien and Luca on 24.04.2017.

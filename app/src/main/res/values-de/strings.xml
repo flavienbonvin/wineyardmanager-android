@@ -40,7 +40,7 @@
     <string name="number_of_stock">Anzahl der Rebe</string>
     <string name="phone">telefon</string>
     <string name="phone_not_valid">Telefon ist nicht gültig</string>
-    <string name="select_the_deadline">Wählen Sie die Frist ...</string>
+    <string name="select_the_deadline">Wählen Sie die Frist …</string>
     <string name="settings">Einstellungen</string>
     <string name="south">Süd</string>
     <string name="square_meters">Quadratmeter</string>
@@ -82,6 +82,7 @@
     <string name="create_a_vinevariety">Erstellen Sie eine Rebsorte vor der Erstellung eines Standorts!</string>
     <string name="create_a_winelot">Erstellen Sie ein Weingut, bevor Sie einen Standort erstellen!</string>
     <string name="create_a_worker">Erstellen Sie einen Arbeiter, bevor Sie einen Standort erstellen!</string>
-    <string name="about">WineYardManager wird von Flavien Bonvin und Luca Centofanti entwickelt, für die Vorlesung 644-1 in HEVS</string>
+    <string name="about">WineYardManager wird von Flavien Bonvin und Luca Centofanti entwickelt, für die Vorlesung 644–1 in HEVS</string>
     <string name="about_us">Über uns</string>
+    <string name="sync">Kraft synchronisieren</string>
 </resources>

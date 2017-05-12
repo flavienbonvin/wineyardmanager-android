@@ -7,13 +7,12 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.WineVarietyApi;
+import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety;
-import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.WineVarietyApi;
 
 /**
  * Created by flavien on 11.05.17.
@@ -32,7 +31,7 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
         this.wineVariety = wineVariety;
     }
 
-    public WineVarietyAsyncTask(long id){ this.id = id; }
+    private WineVarietyAsyncTask(long id){ this.id = id; }
 
     @Override
     protected List<WineVariety> doInBackground(Void... params) {
@@ -69,7 +68,7 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
 
         } catch (IOException e){
             Log.e(TAG, e.toString());
-            return new ArrayList<WineVariety>();
+            return new ArrayList<>();
         }
     }
 

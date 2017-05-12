@@ -9,8 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.luca.flavien.wineyardmanager.db.object.Worker;
 import com.luca.flavien.wineyardmanager.R;
+import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 /**
  * Created by Flavien and Luca on 24.04.2017.

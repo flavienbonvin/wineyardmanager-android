@@ -13,13 +13,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.cloud.CloudManager;
-import com.luca.flavien.wineyardmanager.cloud.WorkerAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.Job;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
-import com.luca.flavien.wineyardmanager.MainActivity;
-import com.luca.flavien.wineyardmanager.R;
 
 import java.util.Calendar;
 import java.util.List;
