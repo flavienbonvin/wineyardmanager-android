@@ -46,6 +46,14 @@ public class WineVarietyDataSource {
         return id;
     }
 
+    public void createWineVarietyFromCloud(WineVariety wineVariety, int idCloud){
+
+        ContentValues values = new ContentValues();
+        values.put(Contract.WineVarietyEntry.KEY_ID,idCloud);
+        values.put(Contract.WineVarietyEntry.KEY_NAME, wineVariety.getName());
+        this.db.insert(Contract.WineVarietyEntry.TABLE_WINEVARIETY, null, values);
+    }
+
     /**
      * Find one WineVariety by Id
      */

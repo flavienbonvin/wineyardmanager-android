@@ -7,6 +7,8 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.WineVarietyApi;
 import com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety;
 
@@ -62,12 +64,19 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
                 wineVarietyApi.insert(wineVariety).execute();
                 Log.i(TAG, "insert wine variety " );
 
-            } else if(id != -1){
+            } else if(id == -2){
+                List<WineVariety> wineVarietyList = wineVarietyApi.list().execute().getItems();
+                if(wineVarietyList != null) {
+                    CloudManager.getWineVarietyFromAppEngine(wineVarietyList);
+                }else {
+                    MainActivity.wineVarietyDataSource.getDb().delete(Contract.WineVarietyEntry.TABLE_WINEVARIETY, null, null);
+                }
+            }
+                else if(id != -1){
                 Log.i(TAG, "delete wine variety " );
-                wineVarietyApi.remove(id).execute();
+                wineVarietyApi.remove(id+1).execute();
                 return null;
             }
-
             // and for instance return the list of all employees
             return wineVarietyApi.list().execute().getItems();
 
@@ -85,11 +94,12 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
 
         if(result != null) {
 
-            CloudManager.getWineVarietyFromAppEngine(result);
+           // CloudManager.getWineVarietyFromAppEngine(result);
 
             for (WineVariety  wineVariety : result) {
                 Log.i(TAG,
-                        "Name: " + wineVariety.getName());
+                        "onPostExecute" +
+                                "Name: " + wineVariety.getName());
 
             }
         }

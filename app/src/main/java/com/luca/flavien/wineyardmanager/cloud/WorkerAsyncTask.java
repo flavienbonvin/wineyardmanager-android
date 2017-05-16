@@ -7,6 +7,8 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.entities.workerApi.WorkerApi;
 import com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker;
 
@@ -62,9 +64,16 @@ public class WorkerAsyncTask extends AsyncTask<Void, Void, List<Worker>> {
                 workerApi.insert(worker).execute();
                 Log.i(TAG, "insert worker");
 
-            }else if(id != -1){
+            }else if(id == -2){
+                List<Worker> workerList = workerApi.list().execute().getItems();
+                if(workerList != null) {
+                    CloudManager.getWorkerFromAppEngine(workerList);
+                }else {
+                    MainActivity.workerDataSource.getDb().delete(Contract.WorkerEntry.TABLE_WORKER, null, null);
+                }
+            } else if(id != -1){
                 Log.i(TAG, "delete worker ");
-                workerApi.remove(id).execute();
+                workerApi.remove(id+1).execute();
                 return null;
             }
 
@@ -84,11 +93,12 @@ public class WorkerAsyncTask extends AsyncTask<Void, Void, List<Worker>> {
 
         if(result != null) {
 
-            CloudManager.getWorkerFromAppEngine(result);
+            //CloudManager.getWorkerFromAppEngine(result);
 
             for (Worker  worker : result) {
                 Log.i(TAG,
-                        "Lastname: " + worker.getFirstName() +
+                        "onPostExecute" +
+                                "Lastname: " + worker.getFirstName() +
                         " Firstname: " + worker.getLastName() +
                         " Mail: " + worker.getMail() +
                         " Phone: " + worker.getPhone());

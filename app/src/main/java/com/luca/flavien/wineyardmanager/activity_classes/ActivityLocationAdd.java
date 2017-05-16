@@ -77,7 +77,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
                         MainActivity.wineLotDataSource.createWineLot(wineLot);
                     }
 
-                    CloudManager.sendWineLot();
+                    CloudManager.sendOneWineLot(wineLot);
 
                     finish();
                 }

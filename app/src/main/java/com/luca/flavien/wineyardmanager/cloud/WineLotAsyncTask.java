@@ -7,6 +7,8 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.entities.wineLotApi.WineLotApi;
 import com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot;
 
@@ -61,9 +63,16 @@ public class WineLotAsyncTask extends AsyncTask<Void, Void, List<WineLot>> {
             if(wineLot != null){
                 wineLotApi.insert(wineLot).execute();
                 Log.i(TAG, "insert winelot");
+            }else if(id == -2) {
+                List<WineLot> wineLotList = wineLotApi.list().execute().getItems();
+                if(wineLotList != null) {
+                    CloudManager.getWinlotFromAppEngine(wineLotList);
+                }else {
+                    MainActivity.wineLotDataSource.getDb().delete(Contract.WineLotEntry.TABLE_WINELOT, null, null);
+                }
             }else if(id != -1){
                 Log.i(TAG, "delete winelot ");
-                wineLotApi.remove(id).execute();
+                wineLotApi.remove(id+1).execute();
                 return null;
             }
             // and for instance return the list of all employees
@@ -82,11 +91,12 @@ public class WineLotAsyncTask extends AsyncTask<Void, Void, List<WineLot>> {
 
         if(result != null) {
 
-            CloudManager.getWinlotFromAppEngine(result);
+           // CloudManager.getWinlotFromAppEngine(result);
 
             for (WineLot  wineLot : result) {
                 Log.i(TAG,
-                    "Name: " + wineLot.getName() +
+                        "onPostExecute" +
+                                "Name: " + wineLot.getName() +
                     " ¦ Surface: " + wineLot.getSurface() +
                     " ¦ Wine stock: " + wineLot.getNumberWineStock() +
                     " ¦ Orientation id: " + wineLot.getOrientationid() +

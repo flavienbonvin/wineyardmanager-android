@@ -65,7 +65,7 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
                         MainActivity.workerDataSource.createWorker(workerTemp);
                     }
 
-                    CloudManager.sendWorker();
+                    CloudManager.sendOneWorker(workerTemp);
 
                     finish();
                 }

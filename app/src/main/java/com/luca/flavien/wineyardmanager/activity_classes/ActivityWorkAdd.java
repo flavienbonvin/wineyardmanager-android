@@ -106,7 +106,7 @@ public class ActivityWorkAdd extends AppCompatActivity {
                         MainActivity.jobDataSource.createJob(job);
                     }
 
-                    CloudManager.sendJob();
+                    CloudManager.sendOneJob(job);
 
                     finish();
                 }

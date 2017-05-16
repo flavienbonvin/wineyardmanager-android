@@ -48,6 +48,16 @@ public class WorkerDataSource {
         return id;
     }
 
+    public void createWorkerFromCloud(Worker worker, int idCloud){
+        ContentValues values = new ContentValues();
+        values.put(Contract.WorkerEntry.KEY_ID,idCloud);
+        values.put(Contract.WorkerEntry.KEY_FIRSTNAME, worker.getFirstName());
+        values.put(Contract.WorkerEntry.KEY_LASTNAME, worker.getLastName());
+        values.put(Contract.WorkerEntry.KEY_PHONE, worker.getPhone());
+        values.put(Contract.WorkerEntry.KEY_MAIL, worker.getMail());
+        this.db.insert(Contract.WorkerEntry.TABLE_WORKER, null, values);
+    }
+
     /**
      * Find one Worker by Id
      */

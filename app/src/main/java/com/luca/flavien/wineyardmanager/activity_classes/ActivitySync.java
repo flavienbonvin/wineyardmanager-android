@@ -105,7 +105,7 @@ public class ActivitySync extends AppCompatActivity {
             public void run() {
                 try {
                     getDataFromAppEngine();
-                    sleep(3000);
+                    sleep(4000);
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -170,9 +170,9 @@ public class ActivitySync extends AppCompatActivity {
     }
 
     private void getDataFromAppEngine(){
-        new WineVarietyAsyncTask().execute();
-        new WorkerAsyncTask().execute();
-        new WineLotAsyncTask().execute();
-        new JobAsyncTask().execute();
+        new WineVarietyAsyncTask((long)-2).execute();
+        new WorkerAsyncTask((long)-2).execute();
+        new WineLotAsyncTask((long)-2).execute();
+        new JobAsyncTask((long)-2).execute();
     }
 }

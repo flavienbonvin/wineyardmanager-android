@@ -48,6 +48,21 @@ public class CloudManager {
         }
     }
 
+    public static void sendOneVariety(WineVariety wineVariety){
+
+        Log.i("CLOUD MANAGER", "Sending ONE wine variety to the cloud");
+
+        List<WineVariety> wineVarietyList = MainActivity.wineVarietyDataSource.getAllWineVarieties();
+
+        com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety wineVarietyCloud
+                = new com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety();
+
+        wineVarietyCloud.setId((long) wineVarietyList.size()+1);
+        wineVarietyCloud.setName(wineVariety.getName());
+
+        new WineVarietyAsyncTask(wineVarietyCloud).execute();
+    }
+
     public static void sendWorker(){
 
         Log.i("CLOUD MANAGER", "Sending worker to the cloud");
@@ -66,6 +81,24 @@ public class CloudManager {
 
             new WorkerAsyncTask(workerCloud).execute();
         }
+    }
+
+    public static void sendOneWorker(Worker worker){
+
+        Log.i("CLOUD MANAGER", "Sending ONE worker to the cloud");
+
+        List<Worker> workerList = MainActivity.workerDataSource.getAllWorkers();
+
+        com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker workerCloud
+                = new com.luca.flavien.wineyardmanager.entities.workerApi.model.Worker();
+
+        workerCloud.setId((long)workerList.size()+1);
+        workerCloud.setFirstName(worker.getFirstName());
+        workerCloud.setLastName(worker.getLastName());
+        workerCloud.setPhone(worker.getPhone());
+        workerCloud.setMail(worker.getMail());
+
+        new WorkerAsyncTask(workerCloud).execute();
     }
 
     public static void sendWineLot(){
@@ -96,6 +129,33 @@ public class CloudManager {
 
             new WineLotAsyncTask(wineLotCloud).execute();
         }
+    }
+
+    public static void sendOneWineLot(WineLot wineLot){
+
+        Log.i("CLOUD MANAGER", "Sending ONE wine lot to the cloud");
+
+        List<WineLot> wineLotList = MainActivity.wineLotDataSource.getAllWineLots();
+
+        com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot wineLotCloud
+                = new com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineLot();
+        com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineVariety wineVarietyCloud
+                = new com.luca.flavien.wineyardmanager.entities.wineLotApi.model.WineVariety();
+
+        wineVarietyCloud.setId((long)wineLot.getWineVariety().getId());
+        wineVarietyCloud.setName(wineLot.getWineVariety().getName());
+
+        wineLotCloud.setId((long)wineLotList.size()+1);
+        wineLotCloud.setName(wineLot.getName());
+        wineLotCloud.setSurface(wineLot.getSurface());
+        wineLotCloud.setNumberWineStock(wineLot.getNumberWineStock());
+        wineLotCloud.setPicture(wineLot.getPicture());
+        wineLotCloud.setLatitude(wineLot.getLatitude());
+        wineLotCloud.setLongitude(wineLot.getLongitude());
+        wineLotCloud.setOrientationid(wineLot.getOrientationid());
+        wineLotCloud.setWineVariety(wineVarietyCloud);
+
+        new WineLotAsyncTask(wineLotCloud).execute();
     }
 
     public static void sendJob(){
@@ -146,6 +206,52 @@ public class CloudManager {
         }
     }
 
+    public static void sendOneJob(Job job){
+
+        Log.i("CLOUD MANAGER", "Sending ONE job to the cloud");
+
+        List<Job> jobList = MainActivity.jobDataSource.getAllJobs();
+
+        com.luca.flavien.wineyardmanager.entities.jobApi.model.Job jobCloud
+                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.Job();
+        com.luca.flavien.wineyardmanager.entities.jobApi.model.WineLot wineLotCloud
+                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.WineLot();
+        com.luca.flavien.wineyardmanager.entities.jobApi.model.WineVariety wineVarietyCloud
+                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.WineVariety();
+        com.luca.flavien.wineyardmanager.entities.jobApi.model.Worker workerCloud
+                = new com.luca.flavien.wineyardmanager.entities.jobApi.model.Worker();
+
+        wineVarietyCloud.setId((long)job.getWinelot().getWineVariety().getId());
+        wineVarietyCloud.setName(job.getWinelot().getWineVariety().getName());
+
+        wineLotCloud.setId((long)job.getWinelot().getId());
+        wineLotCloud.setName(job.getWinelot().getName());
+        wineLotCloud.setSurface(job.getWinelot().getSurface());
+        wineLotCloud.setNumberWineStock(job.getWinelot().getNumberWineStock());
+        wineLotCloud.setPicture(job.getWinelot().getPicture());
+        wineLotCloud.setLatitude(job.getWinelot().getLatitude());
+        wineLotCloud.setLongitude(job.getWinelot().getLongitude());
+        wineLotCloud.setOrientationid(job.getWinelot().getOrientationid());
+        wineLotCloud.setWineVariety(wineVarietyCloud);
+
+        workerCloud.setId((long)job.getWorker().getId());
+        workerCloud.setFirstName(job.getWorker().getFirstName());
+        workerCloud.setLastName(job.getWorker().getLastName());
+        workerCloud.setPhone(job.getWorker().getPhone());
+        workerCloud.setMail(job.getWorker().getMail());
+
+
+        jobCloud.setId((long)jobList.size()+1);
+        jobCloud.setDeadline(job.getDeadline());
+        jobCloud.setDescription(job.getDescription());
+        jobCloud.setWinelot(wineLotCloud);
+        jobCloud.setWorker(workerCloud);
+
+        boolean done = true;
+
+        new JobAsyncTask(jobCloud).execute();
+    }
+
     public static void getWineVarietyFromAppEngine(List<com.luca.flavien.wineyardmanager.entities.wineVarietyApi.model.WineVariety> wineVarietyList){
 
         Log.i("CLOUD MANAGER", "Getting wine variety from the cloud");
@@ -158,7 +264,7 @@ public class CloudManager {
             WineVariety wineVarietyTemp = new WineVariety();
             wineVarietyTemp.setName(wineVarietyCloud.getName());
 
-            MainActivity.wineVarietyDataSource.createWineVariety(wineVarietyTemp);
+            MainActivity.wineVarietyDataSource.createWineVarietyFromCloud(wineVarietyTemp, wineVarietyCloud.getId().intValue());
         }
     }
 
@@ -177,7 +283,7 @@ public class CloudManager {
             workerTemp.setMail(workerCloud.getMail());
             workerTemp.setPhone(workerCloud.getPhone());
 
-            MainActivity.workerDataSource.createWorker(workerTemp);
+            MainActivity.workerDataSource.createWorkerFromCloud(workerTemp,workerCloud.getId().intValue());
         }
     }
 
@@ -205,7 +311,7 @@ public class CloudManager {
             winelotTemp.setPicture(winlotCloud.getPicture());
             winelotTemp.setWineVariety(wineVarietyTemp);
 
-            MainActivity.wineLotDataSource.createWineLot(winelotTemp);
+            MainActivity.wineLotDataSource.createWineLotFromCloud(winelotTemp, winlotCloud.getId().intValue());
         }
 
     }
@@ -248,7 +354,7 @@ public class CloudManager {
             jobTemp.setWorker(workerTemp);
             jobTemp.setWinelot(wineLotTemp);
 
-            MainActivity.jobDataSource.createJob(jobTemp);
+            MainActivity.jobDataSource.createJobFromCloud(jobTemp, jobCloud.getId().intValue());
         }
     }
 }

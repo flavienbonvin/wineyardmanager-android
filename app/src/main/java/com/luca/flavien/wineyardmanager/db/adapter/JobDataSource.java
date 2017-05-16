@@ -12,6 +12,8 @@ import com.luca.flavien.wineyardmanager.db.object.Job;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.id;
+
 /**
  * Created by Flavien and Luca on 24.04.2017.
  *
@@ -46,6 +48,17 @@ public class JobDataSource {
         values.put(Contract.JobEntry.KEY_WORKER_ID, job.getWorker().getId());
         id = this.db.insert(Contract.JobEntry.TABLE_JOB, null, values);
         return id;
+    }
+
+    public void createJobFromCloud(Job job, int idCloud){
+        ContentValues values = new ContentValues();
+        values.put(Contract.JobEntry.KEY_ID,idCloud);
+        values.put(Contract.JobEntry.KEY_DESCRIPTION, job.getDescription());
+        values.put(Contract.JobEntry.KEY_DEADLINE, job.getDeadline());
+        values.put(Contract.JobEntry.KEY_WINELOT_ID, job.getWinelot().getId());
+        values.put(Contract.JobEntry.KEY_WORKER_ID, job.getWorker().getId());
+        this.db.insert(Contract.JobEntry.TABLE_JOB, null, values);
+
     }
 
     /**

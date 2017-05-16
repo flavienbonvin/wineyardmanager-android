@@ -14,6 +14,8 @@ import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.id;
+
 /**
  * Created by Flavien and Luca on 24.04.2017.
  *
@@ -53,16 +55,32 @@ public class WineLotDataSource{
         Log.i(
                 this.getClass().getName(),
                 "name: " + values.getAsString(Contract.WineLotEntry.KEY_NAME) + "\t" +
-                " pic: " + values.getAsString(Contract.WineLotEntry.KEY_PICTURE) + "\t" +
-                " surf: " + values.getAsString(Contract.WineLotEntry.KEY_SURFACE) + "\t" +
-                " stock: " + values.getAsString(Contract.WineLotEntry.KEY_NUMWINESTOCK) + "\t" +
-                " variety: " + values.getAsString(Contract.WineLotEntry.KEY_WINEVARIETY_ID) +  "\t" +
-                " orientation: " + values.getAsString(Contract.WineLotEntry.KEY_ORIENTATION_ID) + "\t" +
-                " id : " + MainActivity.orientationList.get(wineLot.getOrientationid()));
+                        " pic: " + values.getAsString(Contract.WineLotEntry.KEY_PICTURE) + "\t" +
+                        " surf: " + values.getAsString(Contract.WineLotEntry.KEY_SURFACE) + "\t" +
+                        " stock: " + values.getAsString(Contract.WineLotEntry.KEY_NUMWINESTOCK) + "\t" +
+                        " variety: " + values.getAsString(Contract.WineLotEntry.KEY_WINEVARIETY_ID) +  "\t" +
+                        " orientation: " + values.getAsString(Contract.WineLotEntry.KEY_ORIENTATION_ID) + "\t" +
+                        " id : " + MainActivity.orientationList.get(wineLot.getOrientationid()));
 
 
         id = this.db.insert(Contract.WineLotEntry.TABLE_WINELOT, null, values);
         return id;
+    }
+
+    public void createWineLotFromCloud(WineLot wineLot, int idCloud){
+
+        ContentValues values = new ContentValues();
+        values.put(Contract.WineLotEntry.KEY_ID,idCloud);
+        values.put(Contract.WineLotEntry.KEY_SURFACE, wineLot.getSurface());
+        values.put(Contract.WineLotEntry.KEY_NAME, wineLot.getName());
+        values.put(Contract.WineLotEntry.KEY_WINEVARIETY_ID, wineLot.getWineVariety().getId());
+        values.put(Contract.WineLotEntry.KEY_PICTURE, wineLot.getPicture());
+        values.put(Contract.WineLotEntry.KEY_ORIENTATION_ID, wineLot.getOrientationid());
+        values.put(Contract.WineLotEntry.KEY_NUMWINESTOCK, wineLot.getNumberWineStock());
+        values.put(Contract.WineLotEntry.KEY_LONGITUDE, wineLot.getLongitude());
+        values.put(Contract.WineLotEntry.KEY_LATITUDE, wineLot.getLatitude());
+
+        this.db.insert(Contract.WineLotEntry.TABLE_WINELOT, null, values);
     }
 
     /**

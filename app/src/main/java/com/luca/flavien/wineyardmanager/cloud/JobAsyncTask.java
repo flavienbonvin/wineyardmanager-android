@@ -7,12 +7,16 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.luca.flavien.wineyardmanager.MainActivity;
+import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.entities.jobApi.JobApi;
 import com.luca.flavien.wineyardmanager.entities.jobApi.model.Job;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.id.list;
 
 /**
  * Created by flavien on 11.05.17.
@@ -63,9 +67,16 @@ public class JobAsyncTask extends AsyncTask<Void, Void, List<Job>> {
             if(job != null){
                 jobApi.insert(job).execute();
                 Log.i(TAG, "insert job");
+            }else if(id == -2) {
+                List<Job> jobList = jobApi.list().execute().getItems();
+                if(jobList != null){
+                    CloudManager.getJobFromAppEngine(jobList);
+                }else {
+                    MainActivity.jobDataSource.getDb().delete(Contract.JobEntry.TABLE_JOB, null, null);
+                }
             }else if(id != -1){
                 Log.i(TAG, "delete job ");
-                jobApi.remove(id).execute();
+                jobApi.remove(id+1).execute();
                 return null;
             }
             // and for instance return the list of all employees
@@ -84,10 +95,11 @@ public class JobAsyncTask extends AsyncTask<Void, Void, List<Job>> {
 
         if(result != null) {
 
-            CloudManager.getJobFromAppEngine(result);
+            //CloudManager.getJobFromAppEngine(result);
 
             for (Job  job : result) {
                 Log.i(TAG,
+                        "onPostExecute" +
                         "Description: " + job.getDescription() +
                         " Vinelot: " + job.getWinelot().getName() +
                         " Deadline: " + job.getDeadline() +

@@ -62,8 +62,8 @@ public class ActivityVarietyAdd extends AppCompatActivity {
                         MainActivity.wineVarietyDataSource.createWineVariety(wineVarietyTemp);
                     }
 
-                    CloudManager.sendWineVariety();
-
+                    //CloudManager.sendWineVariety();
+                    CloudManager.sendOneVariety(wineVarietyTemp);
                     finish();
                 }
                 else{
