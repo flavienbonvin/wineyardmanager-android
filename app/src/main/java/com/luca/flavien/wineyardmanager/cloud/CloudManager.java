@@ -98,7 +98,7 @@ public class CloudManager {
         }
     }
 
-    private static void sendJob(){
+    public static void sendJob(){
 
         Log.i("CLOUD MANAGER", "Sending job to the cloud");
 

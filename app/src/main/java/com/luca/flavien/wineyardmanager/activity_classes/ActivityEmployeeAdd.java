@@ -11,6 +11,8 @@ import android.widget.EditText;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.cloud.CloudManager;
+import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
+import com.luca.flavien.wineyardmanager.cloud.WorkerAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
 
 
@@ -74,6 +76,7 @@ public class ActivityEmployeeAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.workerDataSource.deleteWorker(worker.getId());
+                new WorkerAsyncTask(((long)worker.getId())).execute();
                 finish();
             }
         });

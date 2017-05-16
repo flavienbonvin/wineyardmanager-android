@@ -23,10 +23,16 @@ public class JobAsyncTask extends AsyncTask<Void, Void, List<Job>> {
     private static final String TAG = JobAsyncTask.class.getName();
     private Job job;
 
+    private long id = -1;
+
     public JobAsyncTask(){}
 
     public JobAsyncTask(Job job){
         this.job = job;
+    }
+
+    public JobAsyncTask(long id){
+        this.id = id;
     }
 
     @Override
@@ -57,6 +63,10 @@ public class JobAsyncTask extends AsyncTask<Void, Void, List<Job>> {
             if(job != null){
                 jobApi.insert(job).execute();
                 Log.i(TAG, "insert job");
+            }else if(id != -1){
+                Log.i(TAG, "delete job ");
+                jobApi.remove(id).execute();
+                return null;
             }
             // and for instance return the list of all employees
             return jobApi.list().execute().getItems();

@@ -25,13 +25,13 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
 
     private long id = -1;
 
-    public WineVarietyAsyncTask(){ id = -2;}
+    public WineVarietyAsyncTask(){ }
 
     public WineVarietyAsyncTask(WineVariety wineVariety){
         this.wineVariety = wineVariety;
     }
 
-    private WineVarietyAsyncTask(long id){ this.id = id; }
+    public WineVarietyAsyncTask(long id){ this.id = id; }
 
     @Override
     protected List<WineVariety> doInBackground(Void... params) {
@@ -60,11 +60,17 @@ public class WineVarietyAsyncTask extends AsyncTask<Void, Void, List<WineVariety
             // For instance insert
             if(wineVariety != null){
                 wineVarietyApi.insert(wineVariety).execute();
-                Log.i(TAG, "insert wine variety " + wineVariety.getId() + " " + wineVariety.getName());
+                Log.i(TAG, "insert wine variety " );
+
+            } else if(id != -1){
+                Log.i(TAG, "delete wine variety " );
+                wineVarietyApi.remove(id).execute();
+                return null;
             }
 
             // and for instance return the list of all employees
             return wineVarietyApi.list().execute().getItems();
+
 
         } catch (IOException e){
             Log.e(TAG, e.toString());

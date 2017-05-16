@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.cloud.CloudManager;
+import com.luca.flavien.wineyardmanager.cloud.WineLotAsyncTask;
+import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.Orientation;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
@@ -86,6 +88,7 @@ public class ActivityLocationAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.wineLotDataSource.deleteWineLot(wineLot.getId());
+                new WineLotAsyncTask(((long)wineLot.getId())).execute();
                 finish();
             }
         });

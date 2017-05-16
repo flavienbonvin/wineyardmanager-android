@@ -23,11 +23,15 @@ public class WineLotAsyncTask extends AsyncTask<Void, Void, List<WineLot>> {
     private static final String TAG = WineLotAsyncTask.class.getName();
     private WineLot wineLot;
 
+    private long id = -1;
+
     public WineLotAsyncTask(){}
 
     public WineLotAsyncTask(WineLot wineLot){
         this.wineLot = wineLot;
     }
+
+    public WineLotAsyncTask(long id){ this.id = id; }
 
     @Override
     protected List<WineLot> doInBackground(Void... params) {
@@ -57,6 +61,10 @@ public class WineLotAsyncTask extends AsyncTask<Void, Void, List<WineLot>> {
             if(wineLot != null){
                 wineLotApi.insert(wineLot).execute();
                 Log.i(TAG, "insert winelot");
+            }else if(id != -1){
+                Log.i(TAG, "delete winelot ");
+                wineLotApi.remove(id).execute();
+                return null;
             }
             // and for instance return the list of all employees
             return wineLotApi.list().execute().getItems();

@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.luca.flavien.wineyardmanager.cloud.WineLotAsyncTask;
+import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
 import com.luca.flavien.wineyardmanager.db.Contract;
 import com.luca.flavien.wineyardmanager.db.SQLhelper;
+import com.luca.flavien.wineyardmanager.db.object.Job;
+import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 
 import java.util.ArrayList;
@@ -23,6 +27,8 @@ import java.util.List;
 
 public class WineVarietyDataSource {
     private final SQLiteDatabase db;
+    private WineLotDataSource wineLotDataSource ;
+    private JobDataSource jobDataSource;
 
     public WineVarietyDataSource(Context context){
         SQLhelper sqliteHelper = SQLhelper.getInstance(context);
@@ -117,4 +123,43 @@ public class WineVarietyDataSource {
     public SQLiteDatabase getDb() {
         return db;
     }
+
+   /* public void deleteWineVarietyFromCloud(int varietyId){
+
+        WineVariety variety = getWineVarietyById(varietyId);
+
+        List<WineLot> wineLotsToDelete   = wineLotDataSource.getAllWineLots();
+
+        for(WineLot wineLot : wineLotsToDelete)
+        {
+            if(wineLot.getWineVariety().getId() == varietyId){
+                deleteWineLotsFromCloud(wineLot.getId());
+            }
+        }
+        new WineVarietyAsyncTask(varietyId).execute();
+    }
+
+    public void deleteWineLotsFromCloud(int wineLotId) {
+        WineLot wineLotToDelete = wineLotDataSource.getWineLotById(wineLotId);
+
+        List<Job> jobToDelete = jobDataSource.getAllJobs();
+
+        for(Job job : jobToDelete)
+        {
+            if(job.getWinelot().getId() == wineLotId){
+                deleteJobFromCloud(job.getId());
+            }
+
+        }
+        new WineLotAsyncTask(wineLotId).execute();
+
+    }
+
+    public void deleteJobFromCloud(int jobId) {
+        new WineLotAsyncTask(jobId).execute();
+
+    }
+    */
+
+
 }

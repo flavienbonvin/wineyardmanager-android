@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.cloud.CloudManager;
+import com.luca.flavien.wineyardmanager.cloud.JobAsyncTask;
+import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.Job;
 import com.luca.flavien.wineyardmanager.db.object.WineLot;
 import com.luca.flavien.wineyardmanager.db.object.Worker;
@@ -104,7 +106,7 @@ public class ActivityWorkAdd extends AppCompatActivity {
                         MainActivity.jobDataSource.createJob(job);
                     }
 
-                    CloudManager.sendWorker();
+                    CloudManager.sendJob();
 
                     finish();
                 }
@@ -115,6 +117,7 @@ public class ActivityWorkAdd extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.jobDataSource.deleteWork(job.getId());
+                new JobAsyncTask(((long)job.getId())).execute();
                 finish();
             }
         });

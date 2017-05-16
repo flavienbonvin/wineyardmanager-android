@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import com.luca.flavien.wineyardmanager.MainActivity;
 import com.luca.flavien.wineyardmanager.R;
 import com.luca.flavien.wineyardmanager.cloud.CloudManager;
+import com.luca.flavien.wineyardmanager.cloud.WineVarietyAsyncTask;
 import com.luca.flavien.wineyardmanager.db.object.WineVariety;
 
 /**
@@ -23,7 +25,6 @@ import com.luca.flavien.wineyardmanager.db.object.WineVariety;
  */
 
 public class ActivityVarietyAdd extends AppCompatActivity {
-
     private EditText editTextVariety;
 
     private WineVariety wineVariety;
@@ -74,7 +75,9 @@ public class ActivityVarietyAdd extends AppCompatActivity {
         floatingActionButtonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("Id for delete",wineVariety.getId()+"");
                 MainActivity.wineVarietyDataSource.deleteWineVariety(wineVariety.getId());
+                new WineVarietyAsyncTask(((long)wineVariety.getId())).execute();
                 finish();
             }
         });
